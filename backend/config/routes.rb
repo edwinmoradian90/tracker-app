@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   get 'logged_in', to: 'sessions#is_logged_in?'
 
   resources :users
+  resources :trackers
 end

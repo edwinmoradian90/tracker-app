@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fuel: 1.5
+  amount_driven: 1.5
+  limit: 1.5
+  user: one
+
+two:
+  fuel: 1.5
+  amount_driven: 1.5
+  limit: 1.5
+  user: two

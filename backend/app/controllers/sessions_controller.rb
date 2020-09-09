@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
     @user = User.find_by(email: session_params[:email])
     print @user
 
-    if @user && @user.authenticate(session_params[:email])
+    if @user && @user.authenticate(session_params[:password])
       login! 
       render json: {
         logged_in: true, 

@@ -2,6 +2,7 @@ class ApplicationController < ActionController::API
 
   def login!
     session[:user_id] = @user.id
+    print session[:user_id]
   end
 
   def logged_in?
