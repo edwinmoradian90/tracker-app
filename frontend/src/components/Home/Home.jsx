@@ -21,9 +21,9 @@ const Home = props => {
                 }
             })
             .catch(err => console.log(err));
-    }, []);
+    }, [loading]);
     return (
-        loading ? <Loading /> : <HomeView />
+        <HomeView />
     );
 };
 
