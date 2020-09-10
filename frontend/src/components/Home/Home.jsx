@@ -1,30 +1,27 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
+import { withRouter } from 'react-router-dom';
+import { currentUser } from '../../redux/actions/sessions';
 import Loading from '../Loading/Loading';
 import HomeView from './HomeView';
 
 const Home = props => {
-    const url = "http://localhost:3001/logged_in"
-    const [loading, setLoading] = useState(true);
-    const [currentUser, setCurrentUser] = useState('');
+    const dispatch = useDispatch();
     useEffect(() => {
-        axios.get(url)
-            .then(res => {
-                console.log(res)
-                const { data } = res;
-                const { logged_in, current_user } = data;
-                if (logged_in) {
-                    setLoading(false);
-                    setCurrentUser(current_user);
-                } else {
-                    props.history.push('/login');
-                }
-            })
-            .catch(err => console.log(err));
-    }, [loading]);
+        const userInfo = JSON.parse(localStorage.getItem('currentUser'));
+        if (userInfo) {
+            dispatch(currentUser(userInfo));
+        } else {
+            props.history.push('/login');
+        };
+    }, []);
+    const user = useSelector(state => state.sessions.currentUser);
+    console.log(currentUser)
+
     return (
         <HomeView />
     );
 };
 
-export default Home;
+export default withRouter(Home);

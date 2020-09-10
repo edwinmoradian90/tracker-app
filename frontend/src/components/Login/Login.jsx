@@ -20,6 +20,7 @@ const Login = props => {
         console.log(state);
     };
     const onSubmit = e => {
+        e.preventDefault();
         const { email, password } = state;
         const user = { email, password };
         axios.post(url, user)
@@ -42,10 +43,11 @@ const Login = props => {
                     updatedAt: updated_at,
                     createdAt: created_at,
                     id: id,
+                    token: `Bearer ${token}`,
                 };
                 if (token) {
                     console.log('there is a token');
-                    localStorage.setItem('token', `Bearer ${token}`);
+                    localStorage.setItem('currentUser', JSON.stringify(userInfo));
                     dispatch(currentUser(userInfo));
                     props.history.push('/');
                 };

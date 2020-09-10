@@ -1,7 +1,7 @@
 import { GET_CURRENT_USER } from '../constants/sessions';
 
 const initialState = {
-    currentUser: {},
+    currentUser: "",
 };
 
 const sessions = (state = initialState, action) => {
