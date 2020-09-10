@@ -1,49 +1,27 @@
 class SessionsController < ApplicationController
 
-  def create
-    @user = User.find_by(email: session_params[:email])
-    print @user
-
-    if @user && @user.authenticate(session_params[:password])
-      login! 
-      render json: {
-        logged_in: true, 
-        user: @user,
-      }
+  skip_before_action :require_login, only: [:login, :auto_login]
+  def login
+    user = User.find_by(email: params[:email])
+    if user && user.authenticate(params[:password])
+        payload = {user_id: user.id}
+        token = encode_token(payload)
+        render json: {user: user, jwt: token}
     else
-      render json: {
-        status: 401,
-        errors: ['No such user', 'Verify credentials and try again or signup']
-      }
+        render json: {failure: "Log in failed! Username or password invalid!"}
     end
   end
 
-  def is_logged_in?
-    if logged_in? && current_user
-      render json: {
-        logged_in: true,
-        user: current_user,
-      }
+  def auto_login
+    if session_user
+      render json: session_user
     else
-      render json: {
-        logged_in: false,
-        message: 'No such user',
-      }
+      render json: {errors: "No User Logged In"}
     end
   end
 
-  def destroy
-    logout!
-    render json: {
-      status: 200,
-      logged_out: true,
-    }
-  end
-
-  private
-
-    def session_params
-      params.require(:user).permit(:email, :password)
-    end
+  def user_is_authed
+    render json: {message: "You are authorized"}
+  end 
 end
 
