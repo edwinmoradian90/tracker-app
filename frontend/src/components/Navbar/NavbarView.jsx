@@ -5,7 +5,7 @@ const NavbarList = styled.ul`
     display: flex;
     justify-content: space-around;
     list-style: none;
-`
+`;
 
 const NavbarView = () => {
     return (
