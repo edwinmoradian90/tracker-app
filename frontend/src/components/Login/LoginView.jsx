@@ -1,10 +1,17 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const LoginView = props => {
     const { onChange, onSubmit } = props;
     return (
         <div className="loginView">
             <h3 className="loginTitle">Please login or sign up to continue.</h3>
+            <p className="newUserSignupLink">
+                New User? {" "}
+                <Link to="/signup">
+                    Sign up.
+                </Link>
+            </p>
             <div className="loginInputContainer">
                 <div className="emailInputContainer">
                     <input
