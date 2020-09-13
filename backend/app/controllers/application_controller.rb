@@ -1,8 +1,9 @@
 class ApplicationController < ActionController::API
   before_action :require_login
 
-  def encode_token(payload)
-      JWT.encode(payload, 'my_secret')
+  def encode_token(payload, expiration)
+       payload[:exp] = expiration
+       JWT.encode(payload, 'my_secret')
   end
 
   def auth_header
@@ -27,7 +28,10 @@ class ApplicationController < ActionController::API
           user_id = decoded_hash[0]['user_id']
           @user = User.find_by(id: user_id)
       else
-          nil 
+          render json: {
+              status: 404,
+              message: 'An error has occured. No users can be found.'
+          }
       end
   end
 

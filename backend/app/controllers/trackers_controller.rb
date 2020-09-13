@@ -1,9 +1,7 @@
 class TrackersController < ApplicationController
 
-  before_action :set_user
-
   def create
-    @tracker = current_user.trackers.new(tracker_params)
+    @tracker = session_user.trackers.new(tracker_params)
     if @tracker && @tracker.save!
       render json: {
         status: 200,
@@ -18,7 +16,7 @@ class TrackersController < ApplicationController
   end
 
   def index
-    @trackers = Tracker.all
+    @trackers = session_user.trackers.all
     if @trackers
       render json: {
         status: 200,
@@ -36,10 +34,6 @@ class TrackersController < ApplicationController
 
     def tracker_params
       params.require(:tracker).permit(:fuel, :miles_driven, :limit)
-    end
-
-    def set_user
-      @user = User.find(session[:user_id])
     end
 
 end

@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:email])
     if user && user.authenticate(params[:password])
         payload = {user_id: user.id}
-        token = encode_token(payload)
+        token = encode_token(payload, Time.now.to_i + 3600)
         render json: {user: user, jwt: token}
     else
         render json: {failure: "Log in failed! Username or password invalid!"}
