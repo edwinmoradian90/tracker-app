@@ -12,6 +12,12 @@ const Login = props => {
         email: "",
         password: "",
     });
+    const currentUserCheck = () => {
+        return localStorage.getItem('currentUser');
+    };
+    const removeCurrentUser = () => {
+        localStorage.removeItem('currentUser');
+    };
     const onChange = e => {
         setState({
             ...state,
@@ -21,6 +27,9 @@ const Login = props => {
     };
     const onSubmit = e => {
         e.preventDefault();
+        if (currentUserCheck()) {
+            removeCurrentUser();
+        };
         const { email, password } = state;
         const user = { email, password };
         axios.post(url, user)
