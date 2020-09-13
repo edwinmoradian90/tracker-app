@@ -53,6 +53,11 @@ const Home = props => {
                 if (res.data.status === 200) {
                     setTrackerCreated(true);
                 }
+                setState({
+                    amountOfFuel: "",
+                    amountDriven: "",
+                    drivingLimit: "",
+                });
             })
             .catch(err => console.log(err));
     };
