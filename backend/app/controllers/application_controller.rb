@@ -7,7 +7,7 @@ class ApplicationController < ActionController::API
   end
 
   def auth_header
-      request.headers['Authorization']
+      request.headers["Authorization"]
   end
 
   def decoded_token
@@ -30,7 +30,7 @@ class ApplicationController < ActionController::API
       else
           render json: {
               status: 404,
-              message: 'An error has occured. No users can be found.'
+              message: 'An error has occured. No user found.'
           }
       end
   end

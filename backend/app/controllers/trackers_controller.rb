@@ -33,7 +33,7 @@ class TrackersController < ApplicationController
   private
 
     def tracker_params
-      params.require(:tracker).permit(:fuel, :miles_driven, :limit)
+      params.require(:tracker).permit(:fuel, :amount_driven, :limit)
     end
 
 end

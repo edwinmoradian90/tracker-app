@@ -47,6 +47,13 @@ const Login = props => {
                 };
                 if (token) {
                     console.log('there is a token');
+                    const newUrl = "http://localhost:3001/user_is_authed";
+                    const headers = {
+                        "Authorization": `Bearer ${token}`,
+                    };
+                    axios.get(newUrl, { headers })
+                        .then(res => console.log('headers', res))
+                        .catch(err => console.log(err));
                     localStorage.setItem('currentUser', JSON.stringify(userInfo));
                     dispatch(currentUser(userInfo));
                     props.history.push('/');
