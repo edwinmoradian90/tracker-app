@@ -1,11 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { cleanDate } from '../../utils/generalHelpers';
 
 const TrackersView = props => {
     const { trackers } = props;
-    const cleanDate = date => {
-        return date.split('T')[0]
-    };
     return (
         <div className="trackersView">
             <h3 className="trackersPageTitle">All recent trackers</h3>

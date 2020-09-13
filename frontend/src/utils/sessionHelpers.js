@@ -11,4 +11,10 @@ const authHeader = () => {
         .catch(err => console.log(err));
 };
 
-export { authHeader };
+const getToken = () => {
+    const token = JSON.parse(localStorage.getItem('currentUser')).token;
+    if (token) {
+        return token;
+    };
+};
+export { authHeader, getToken };
