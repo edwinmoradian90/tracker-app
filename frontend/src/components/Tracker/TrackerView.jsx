@@ -1,8 +1,16 @@
 import React from 'react';
 
 const TrackerView = props => {
-    const { selectedTracker, editMode, editModeToggle } = props;
+    const {
+        onChange,
+        submitEdits,
+        selectedTracker,
+        editMode,
+        editModeToggle,
+        updateTrackers,
+    } = props;
     const data = [selectedTracker.limit, selectedTracker.fuel, selectedTracker.amount_driven];
+    const trackerName = ['limit', 'fuel', 'amount_driven'];
     return (
         <div className="trackerView">
             <div className="editModeButtons">
@@ -18,7 +26,11 @@ const TrackerView = props => {
                 {
                     editMode
                         ?
-                        <button className="submitEditsButton">Submit changes</button>
+                        <button
+                            onClick={e => submitEdits(e)}
+                            className="submitEditsButton">
+                            Submit changes
+                        </button>
                         :
                         null
                 }
@@ -27,15 +39,18 @@ const TrackerView = props => {
                 data.map((stat, i) => {
                     const titles = ['Driving Limit', 'Fuel Used', 'Amount Driven'];
                     return (
-                        <div key={`${stat}Container`} className={`${stat}Container`}>
-                            <h3 className={`${stat}Text`}>{titles[i]}</h3>
+                        <div key={`${trackerName[i]}Container`} className={`${trackerName[i]}Container`}>
+                            <h3 key={`${trackerName[i]}Title`} className={`${stat}Text`}>{titles[i]}</h3>
                             {
                                 editMode
                                     ?
                                     <input
+                                        name={trackerName[i]}
+                                        onChange={e => onChange(e)}
                                         placeholder={`${titles[i]}`}
                                         type="text"
-                                        className={`${stat}EditInput`}
+                                        className={`${titles[i]}EditInput`}
+                                        value={updateTrackers[trackerName[i]]}
                                     />
                                     :
                                     <p className={`${stat}Value`}>{stat}</p>

@@ -11,7 +11,7 @@ const TrackersView = props => {
                 {trackers ? trackers.map((tracker, i) => {
                     const { created_at, id } = tracker;
                     return (
-                        <Link to={`/trackers/${id}`}>
+                        <Link key={i} to={`/trackers/${id}`}>
                             <li key={i} className="trackerInfo">
                                 {cleanDate(created_at)}
                             </li>

@@ -30,6 +30,22 @@ class TrackersController < ApplicationController
     end
   end
 
+  def update
+    @tracker = Tracker.find(params[:id])
+    @tracker.update(fuel: params[:fuel], amount_driven: params[:amount_driven], limit: params[:limit])
+    if @tracker.save!
+      render json: {
+        status: 200,
+        message: 'Successfully updated tracker'
+      }
+    else 
+      render json: {
+        status: 500,
+        message: 'Could not update tracker'
+      }
+    end
+  end
+
   private
 
     def tracker_params

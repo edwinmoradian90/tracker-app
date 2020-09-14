@@ -23,10 +23,14 @@ const Trackers = props => {
         if (token) {
             axios.get(url, { headers })
                 .then(res => {
-                    dispatch(userTrackers(res.data.trackers));
-                    setTrackers(res.data.trackers);
-                    setLoading(false);
-                    console.log(token);
+                    if (res.data.status === 200) {
+                        dispatch(userTrackers(res.data.trackers));
+                        setTrackers(res.data.trackers);
+                        setLoading(false);
+                        console.log(token);
+                    } else if (res.data.status === 404) {
+                        props.history.push("/login");
+                    }
                 })
                 .catch(err => console.log(err));
         } else {
