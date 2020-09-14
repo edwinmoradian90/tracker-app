@@ -4,7 +4,7 @@ import HeaderView from './HeaderView';
 const Header = props => {
     const { pageName } = props;
     return (
-        <HeaderView pageName={pageName} />
+        <HeaderView {...props} pageName={pageName} />
     );
 };
 
