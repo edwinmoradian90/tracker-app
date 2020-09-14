@@ -9,6 +9,7 @@ import Loading from '../Loading/Loading';
 
 const Trackers = props => {
     const pageName = "Track it";
+    const pageRef = "trackIt";
     const url = "http://localhost:3001/trackers";
     const [trackers, setTrackers] = useState("");
     const [loading, setLoading] = useState(true);

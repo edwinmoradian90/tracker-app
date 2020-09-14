@@ -4,13 +4,13 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
-import Navbar from './components/Navbar/Navbar';
 import Home from './components/Home/Home';
 import Login from './components/Login/Login';
 import Signup from './components/Signup/Signup';
 import Trackers from './components/Trackers/Trackers';
 import Tracker from './components/Tracker/Tracker';
 import './App.css';
+import Navbar from './components/Navbar/Navbar';
 
 function App() {
   return (

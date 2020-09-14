@@ -65,7 +65,6 @@ const NavbarView = props => {
             <NavbarList className="navbar">
                 <NavItem
                     tab={addStat}
-                    onClick={e => selectTab(e)}
                     name="addStat"
                     className="navbarItem"
                 >
@@ -78,7 +77,6 @@ const NavbarView = props => {
                 </NavItem>
                 <NavItem
                     tab={trackIt}
-                    onClick={e => selectTab(e)}
                     name="trackIt"
                     className="navbarItem"
                 >
@@ -91,7 +89,6 @@ const NavbarView = props => {
                 </NavItem>
                 <NavItem
                     tab={progress}
-                    onClick={e => selectTab(e)}
                     name="progress"
                     className="navbarItem">
                     <StyledLink tab={progress} name="progress" to="/progress">
@@ -102,7 +99,7 @@ const NavbarView = props => {
                     </StyledLink>
                 </NavItem>
                 <NavItem className="navbarItem">
-                    <StyledLink>
+                    <StyledLink to="/">
                         <Icon>
                             <BsThreeDots />
                         </Icon>

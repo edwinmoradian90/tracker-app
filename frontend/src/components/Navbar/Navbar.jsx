@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { withRouter } from 'react-router-dom';
 import NavbarView from './NavbarView';
 
-const Navbar = () => {
+const Navbar = props => {
+    const path = props.location.pathname;
+    const pageRef = {
+        "/": "addStat",
+        "/trackers": "trackIt",
+    };
+    const currentPage = pageRef[path];
     const [selectedTab, setSelectedTab] = useState({
         addStat: true,
         trackIt: false,
@@ -9,26 +16,23 @@ const Navbar = () => {
         more: false,
     });
 
-    const selectTab = e => {
-        e.preventDefault();
-        const name = e.target.attributes.name.nodeValue;
-        if (selectedTab[name]) return;
+    useEffect(() => {
+        if (selectedTab[currentPage]) return;
+        console.log('changing color')
         setSelectedTab({
             addStat: false,
             trackIt: false,
             progress: false,
             more: false,
-            [name]: !selectedTab[name],
+            [currentPage]: true,
         });
-        console.log(e.target.attributes.name.nodeValue)
-    };
+    }, [currentPage]);
 
     return (
         <NavbarView
-            selectTab={selectTab}
             selectedTab={selectedTab}
         />
     );
 };
 
-export default Navbar;
+export default withRouter(Navbar);
