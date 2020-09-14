@@ -1,52 +1,49 @@
 import React from 'react';
 
 const TrackerView = props => {
-    const { selectedTracker, editTracker, closeTrackerEditor, state } = props;
-    console.log(state)
+    const { selectedTracker, editMode, editModeToggle } = props;
+    const data = [selectedTracker.limit, selectedTracker.fuel, selectedTracker.amount_driven];
     return (
         <div className="trackerView">
-            <div
-                name="fuel"
-                onClick={e => editTracker(e)}
-                className="fuel"
-            >
+            <div className="editModeButtons">
+                <button onClick={editModeToggle} className="editModeButton">
+                    {
+                        editMode
+                            ?
+                            "Go back"
+                            :
+                            "Edit"
+                    }
+                </button>
                 {
-                    !state.fuel
+                    editMode
                         ?
-                        selectedTracker.fuel
+                        <button className="submitEditsButton">Submit changes</button>
                         :
-                        <>
-                            <input
-                                placeholder="Fuel Used"
-                                className="fuelEditInput"
-                                type="text"
-                            />
-                            <button
-                                className="fuel"
-                                onClick={e => closeTrackerEditor(e)}
-                            >
-                                Done!
-                            </button>
-                        </>
+                        null
                 }
-                <p className="fuelText">Fuel Used</p>
             </div>
-            <div
-                name="limit"
-                onClick={e => editTracker(e)}
-                className="limit"
-            >
-                {selectedTracker.limit}
-                <p className="limitText">Driving Limit</p>
-            </div>
-            <div
-                name="amountDriven"
-                onClick={e => editTracker(e)}
-                className="amountDriven"
-            >
-                {selectedTracker.amount_driven}
-                <p className="amountDrivenText">Amount Driven</p>
-            </div>
+            {
+                data.map((stat, i) => {
+                    const titles = ['Driving Limit', 'Fuel Used', 'Amount Driven'];
+                    return (
+                        <div key={`${stat}Container`} className={`${stat}Container`}>
+                            <h3 className={`${stat}Text`}>{titles[i]}</h3>
+                            {
+                                editMode
+                                    ?
+                                    <input
+                                        placeholder={`${titles[i]}`}
+                                        type="text"
+                                        className={`${stat}EditInput`}
+                                    />
+                                    :
+                                    <p className={`${stat}Value`}>{stat}</p>
+                            }
+                        </div>
+                    );
+                })
+            }
         </div>
     );
 };

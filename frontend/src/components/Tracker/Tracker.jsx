@@ -14,11 +14,10 @@ const Tracker = props => {
     const dispatch = useDispatch();
     const id = props.match.params.id;
     const [loading, setLoading] = useState(true);
-    const [state, setState] = useState({
-        amountDriven: false,
-        limit: false,
-        fuel: false,
-    });
+    const [editMode, setEditMode] = useState(false);
+    const editModeToggle = () => {
+        setEditMode(!editMode);
+    };
     useEffect(() => {
         const url = "http://localhost:3001/trackers";
         const token = getToken();
@@ -40,21 +39,6 @@ const Tracker = props => {
     }, []);
     const trackers = useSelector(state => state.trackers.trackers);
     const selectedTracker = trackers[id - 1];
-    const editTracker = e => {
-        const name = e.target.className;
-        console.log(name)
-        setState({
-            ...state,
-            [name]: true
-        });
-    };
-    const closeTrackerEditor = e => {
-        const name = e.target.className;
-        setState({
-            ...state,
-            [name]: false
-        });
-    };
 
     return (
         <div className="tracker">
@@ -67,9 +51,8 @@ const Tracker = props => {
                     <Loading />
                     :
                     <TrackerView
-                        state={state}
-                        editTracker={editTracker}
-                        closeTrackerEditor={closeTrackerEditor}
+                        editMode={editMode}
+                        editModeToggle={editModeToggle}
                         selectedTracker={selectedTracker}
                     />
             }
