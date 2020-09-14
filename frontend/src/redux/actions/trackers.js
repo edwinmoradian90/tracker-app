@@ -1,8 +1,13 @@
-import { USER_TRACKERS } from '../constants/trackers';
+import { USER_TRACKER, USER_TRACKERS } from '../constants/trackers';
 
 const userTrackers = trackers => ({
     type: USER_TRACKERS,
     trackers,
 });
 
-export { userTrackers };
+const userTracker = tracker => ({
+    type: USER_TRACKER,
+    tracker
+});
+
+export { userTrackers, userTracker };

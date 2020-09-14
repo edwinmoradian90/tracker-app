@@ -46,6 +46,22 @@ class TrackersController < ApplicationController
     end
   end
 
+  def show
+    @tracker = session_user.trackers.find(params[:id])
+    if @tracker
+      render json: {
+        status: 200,
+        tracker: @tracker,
+        message: 'Found tracker',
+      }
+    else
+      render json: {
+        status: 404,
+        message: 'Tracker not found'
+      }
+    end
+  end
+
   private
 
     def tracker_params

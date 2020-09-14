@@ -53,7 +53,7 @@ const TrackerView = props => {
                                         value={updateTrackers[trackerName[i]]}
                                     />
                                     :
-                                    <p className={`${stat}Value`}>{stat}</p>
+                                    <p className={`${titles[i]}Value`}>{stat}</p>
                             }
                         </div>
                     );
