@@ -1,5 +1,6 @@
 const white = '#FFFFFF';
 const lightGrey = '#F6F6F6';
+const medGrey = '#888888';
 const grey = '#67899C';
 const darkGrey = '#333333';
 const blue = '#5AB1E5';
@@ -12,4 +13,5 @@ export {
     grey,
     darkGrey,
     black,
+    medGrey,
 };

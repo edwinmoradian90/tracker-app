@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import NavbarView from './NavbarView';
 
 const Navbar = props => {
-    const path = props.location.pathname;
+    const path = `/${props.location.pathname.split('/')[1]}`;
     const pageRef = {
         "/": "addStat",
         "/trackers": "trackIt",

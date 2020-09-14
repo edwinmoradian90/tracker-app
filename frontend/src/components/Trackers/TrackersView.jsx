@@ -13,7 +13,7 @@ import {
 
 const TrackersContainer = styled.div`
     background: ${lightGrey};
-    height: 100vh;
+    height: calc(100vh - 70px);
 `;
 
 const StyledLink = styled(Link)`

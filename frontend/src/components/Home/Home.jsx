@@ -9,7 +9,7 @@ import Header from '../Header/Header';
 
 const Home = props => {
     const url = "http://localhost:3001/trackers";
-    const pageName = "Add Stat";
+    const pageName = "Add stat";
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(true);
     const [state, setState] = useState({

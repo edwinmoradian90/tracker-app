@@ -9,7 +9,8 @@ import {
     white,
     blue,
     grey,
-    darkGrey
+    darkGrey,
+    medGrey,
 } from '../../utils/colors/main';
 
 const Navbar = styled.div`
@@ -22,14 +23,14 @@ const NavbarList = styled.ul`
     align-items: center;
     background: ${darkGrey};
     display: flex;
-    height: 80px;
+    height: 70px;
     justify-content: space-around;
     list-style: none;
 `;
 
 const StyledLink = styled(Link)`
     align-items: center;
-    color: ${props => props.tab ? white : grey};
+    color: ${props => props.tab ? white : medGrey};
     display: flex;
     height: 100%;
     flex-direction: column;
@@ -46,12 +47,12 @@ const NavItem = styled.li`
 `;
 
 const Icon = styled.div`
-    color: ${props => props.tab ? white : grey};
-    font-size: 25px;
+    color: ${props => props.tab ? white : medGrey};
+    font-size: 20px;
 `;
 
 const IconText = styled.p`
-    color: ${props => props.tab ? white : grey};
+    color: ${props => props.tab ? white : medGrey};
     margin-top: 5px;
 `;
 
