@@ -15,6 +15,9 @@ const Arrow = styled.div`
     font-size: 30px;
     margin-top: 10px;
     margin-right: 33%;
+    &:hover {
+        cursor: pointer;
+    };
 `;
 
 const PageName = styled.div`
