@@ -1,3 +1,5 @@
+import React from 'react';
+
 const cleanDate = date => {
     const months = {
         '01': 'Jan',
@@ -21,4 +23,10 @@ const cleanDate = date => {
     return modifiedArray.join(' ');
 };
 
-export { cleanDate };
+const delayLoading = (time, func, bool = false) => {
+    setTimeout(() => {
+        func(bool);
+    }, time)
+};
+
+export { cleanDate, delayLoading };

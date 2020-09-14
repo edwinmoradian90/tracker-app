@@ -6,6 +6,7 @@ import { userTrackers } from '../../redux/actions/trackers';
 import TrackersView from './TrackersView';
 import Header from '../Header/Header';
 import Loading from '../Loading/Loading';
+import { delayLoading } from '../../utils/generalHelpers';
 
 const Trackers = props => {
     const pageName = "Track it";
@@ -26,7 +27,7 @@ const Trackers = props => {
                     if (res.data.status === 200) {
                         dispatch(userTrackers(res.data.trackers));
                         setTrackers(res.data.trackers);
-                        setLoading(false);
+                        delayLoading(1000, setLoading, false);
                         console.log(token);
                     } else if (res.data.status === 404) {
                         props.history.push("/login");

@@ -8,6 +8,7 @@ import TrackerView from '../Tracker/TrackerView';
 import Header from '../Header/Header';
 import Loading from '../Loading/Loading';
 import { getToken } from '../../utils/sessionHelpers';
+import { delayLoading } from '../../utils/generalHelpers';
 
 const Tracker = props => {
     const [loading, setLoading] = useState(true);
@@ -51,7 +52,7 @@ const Tracker = props => {
                     dispatch(userTracker(res.data.tracker));
                     setTracker(res.data.tracker);
                     selectedTracker = res.data.tracker;
-                    setLoading(false);
+                    delayLoading(1000, setLoading, false);
                     console.log(selectedTracker);
                 } else if (res.data.status === 404) {
                     props.history.push("/login");

@@ -3,9 +3,11 @@ import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 import { currentUser } from '../../redux/actions/sessions';
+import { delayLoading } from '../../utils/generalHelpers';
 import Loading from '../Loading/Loading';
 import HomeView from './HomeView';
 import Header from '../Header/Header';
+import { blue } from '../../utils/colors/main';
 
 const Home = props => {
     const url = "http://localhost:3001/trackers";
@@ -25,7 +27,7 @@ const Home = props => {
             const token = userInfo.token;
             dispatch(currentUser(userInfo));
             setToken(token);
-            setLoading(false);
+            delayLoading(1000, setLoading, false);
         } else {
             props.history.push('/login');
             setLoading(false);
