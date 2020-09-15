@@ -8,7 +8,6 @@ import { BsThreeDots } from 'react-icons/bs';
 import {
     white,
     blue,
-    grey,
     darkGrey,
     medGrey,
 } from '../../utils/colors/main';
@@ -61,9 +60,8 @@ const IconText = styled.p`
 
 
 const NavbarView = props => {
-    const { selectTab, selectedTab } = props;
-    const { addStat, trackIt, progress, more } = selectedTab;
-    console.log(selectedTab.addStat)
+    const { selectedTab } = props;
+    const { addStat, trackIt, progress } = selectedTab;
     return (
         <Navbar className="navbarView">
             <NavbarList className="navbar">

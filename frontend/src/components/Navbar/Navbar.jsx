@@ -18,7 +18,6 @@ const Navbar = props => {
 
     useEffect(() => {
         if (selectedTab[currentPage]) return;
-        console.log('changing color')
         setSelectedTab({
             addStat: false,
             trackIt: false,

@@ -38,7 +38,6 @@ const AddStatButton = styled(Link)`
 
 const HeaderView = props => {
     const { pageName } = props;
-    console.log(pageName)
     return (
         <NavContainer className="headerView">
             <Arrow onClick={props.history.goBack} className="backButton">

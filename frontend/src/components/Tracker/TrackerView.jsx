@@ -123,7 +123,7 @@ const EditButton = styled.div`
     padding: 20px;
     position: fixed;
     right: 600px;
-    top: 40px;
+    top: 100px;
     width: 45px;
 `;
 

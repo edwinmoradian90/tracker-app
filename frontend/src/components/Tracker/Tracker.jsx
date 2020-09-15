@@ -33,8 +33,9 @@ const Tracker = props => {
         const tracker = updateTrackers;
         axios.put(url, tracker, { headers })
             .then(res => {
-                console.log(res);
-                setEditMode(false);
+                if (res.data.status === 200) {
+                    setEditMode(false);
+                };
             })
             .catch(err => console.log(err));
     };
@@ -47,13 +48,11 @@ const Tracker = props => {
         };
         axios.get(url, { headers })
             .then(res => {
-                console.log(res);
                 if (res.data.status === 200) {
                     dispatch(userTracker(res.data.tracker));
                     setTracker(res.data.tracker);
                     selectedTracker = res.data.tracker;
                     delayLoading(1000, setLoading, false);
-                    console.log(selectedTracker);
                 } else if (res.data.status === 404) {
                     props.history.push("/login");
                 };
@@ -65,7 +64,6 @@ const Tracker = props => {
             ...updateTrackers,
             [e.target.name]: e.target.value
         });
-        console.log(updateTrackers)
     };
     const editModeToggle = () => {
         setEditMode(!editMode);
@@ -88,6 +86,7 @@ const Tracker = props => {
                         onChange={onChange}
                         submitEdits={submitEdits}
                         updateTrackers={updateTrackers}
+                        tracker={tracker}
                     />
             }
         </div>

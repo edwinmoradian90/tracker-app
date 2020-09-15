@@ -18,7 +18,6 @@ const Signup = props => {
     });
     const onSignup = e => {
         e.preventDefault();
-        console.log(state)
         const {
             firstName,
             lastName,

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { currentUser } from '../../redux/actions/sessions';
@@ -23,7 +23,6 @@ const Login = props => {
             ...state,
             [e.target.name]: e.target.value
         });
-        console.log(state);
     };
     const onSubmit = e => {
         e.preventDefault();
@@ -35,7 +34,6 @@ const Login = props => {
         axios.post(url, user)
             .then(res => {
                 const { data } = res;
-                console.log(data)
                 const token = data.jwt;
                 const {
                     first_name,
@@ -55,7 +53,6 @@ const Login = props => {
                     token: `Bearer ${token}`,
                 };
                 if (token) {
-                    console.log('there is a token');
                     const newUrl = "http://localhost:3001/user_is_authed";
                     const headers = {
                         "Authorization": `Bearer ${token}`,

@@ -7,7 +7,6 @@ import { delayLoading } from '../../utils/generalHelpers';
 import Loading from '../Loading/Loading';
 import HomeView from './HomeView';
 import Header from '../Header/Header';
-import { blue } from '../../utils/colors/main';
 
 const Home = props => {
     const url = "http://localhost:3001/trackers";
@@ -57,7 +56,6 @@ const Home = props => {
         axios.post(url, { tracker }, { headers })
             .then(res => {
                 const { status } = res.data;
-                console.log("Status", status)
                 if (status === 200) {
                     setTrackerCreated(true);
                 } else if (status === 404) {

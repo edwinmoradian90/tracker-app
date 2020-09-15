@@ -16,7 +16,6 @@ const Trackers = props => {
     const dispatch = useDispatch();
     const userInfo = JSON.parse(localStorage.getItem("currentUser")) || "";
     const token = userInfo.token;
-    console.log(token);
     const headers = {
         "Authorization": token
     };
@@ -28,7 +27,6 @@ const Trackers = props => {
                         dispatch(userTrackers(res.data.trackers));
                         setTrackers(res.data.trackers);
                         delayLoading(1000, setLoading, false);
-                        console.log(token);
                     } else if (res.data.status === 404) {
                         delayLoading(1000, props.history.push, "/login");
                     }

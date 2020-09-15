@@ -1,5 +1,3 @@
-import React from 'react';
-
 const cleanDate = date => {
     const months = {
         '01': 'Jan',
