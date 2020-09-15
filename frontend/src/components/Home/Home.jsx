@@ -73,21 +73,25 @@ const Home = props => {
     };
 
     return (
-        loading
-            ?
-            <Loading />
-            :
-            <div className="home">
-                <Header
-                    pageName={pageName}
-                />
-                <HomeView
-                    onChange={onChange}
-                    submitTrackerForm={submitTrackerForm}
-                    trackerCreated={trackerCreated}
-                    state={state}
-                />
-            </div>
+        <>
+            <Header
+                pageName={pageName}
+            />
+            {
+                loading
+                    ?
+                    <Loading />
+                    :
+                    <div className="home">
+                        <HomeView
+                            onChange={onChange}
+                            submitTrackerForm={submitTrackerForm}
+                            trackerCreated={trackerCreated}
+                            state={state}
+                        />
+                    </div>
+            }
+        </>
     );
 };
 
