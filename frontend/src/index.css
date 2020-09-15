@@ -1,4 +1,14 @@
 body, html, *{
     padding: 0;
     margin: 0;
-}
+};
+
+@font-face {
+    font-family: 'HelveticaNeueBold';
+    src: url('./assets/fonts/HelveticaNeueBold.ttf') format('truetype');
+};
+
+@font-face {
+    font-family: 'HelveticaNeueLight';
+    src: url('./assets/fonts/HelveticaNeueLight.ttf');
+};

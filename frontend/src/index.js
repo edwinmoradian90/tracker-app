@@ -4,8 +4,9 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import rootReducer from './redux/reducers/rootReducer';
 import './index.css';
+import './assets/fonts/HelveticaNeueBold.ttf';
+import './assets/fonts/HelveticaNeueLight.ttf';
 import App from './App';
-
 const store = createStore(rootReducer);
 
 ReactDOM.render(

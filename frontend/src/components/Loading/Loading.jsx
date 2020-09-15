@@ -6,7 +6,7 @@ import { blue } from '../../utils/colors/main';
 const LoadingContainer = styled.div`
     display: flex;
     justify-content: center;
-    margin-top: 60%;
+    margin-top: 80%;
 `;
 
 const Loading = ({ type = "cylon", color = blue }) => {

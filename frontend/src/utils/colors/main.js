@@ -5,6 +5,7 @@ const grey = '#67899C';
 const darkGrey = '#333333';
 const blue = '#5AB1E5';
 const black = '#222222';
+const green = '#a8de8c';
 
 export {
     white,
@@ -14,4 +15,5 @@ export {
     darkGrey,
     black,
     medGrey,
+    green,
 };

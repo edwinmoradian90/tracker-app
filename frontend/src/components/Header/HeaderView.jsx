@@ -23,6 +23,7 @@ const Arrow = styled.div`
 
 const PageName = styled.div`
     color: ${white};
+    font-family: 'HelveticaNeueBold';
     font-size: 20px;
     margin-right: 30%;
     margin-top: 2px;
