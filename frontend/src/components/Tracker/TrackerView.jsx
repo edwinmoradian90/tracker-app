@@ -136,7 +136,7 @@ const TrackerView = props => {
         editModeToggle,
         updateTrackers,
     } = props;
-    const data = [selectedTracker.limit, selectedTracker.fuel, selectedTracker.amount_driven];
+    const data = [selectedTracker.amount_driven, selectedTracker.fuel, selectedTracker.limit];
     const trackerName = ['amount_driven', 'fuel', 'limit'];
     const trackerIcons = [<GiSteeringWheel />, <RiGasStationFill />, <AiFillCar />];
     const percent = (selectedTracker.amount_driven / selectedTracker.limit) * 100;
