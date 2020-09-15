@@ -32,7 +32,7 @@ const fadein = keyframes`
     }
 
     to {
-        opacity: 1;
+        opacity: .7;
     }
 `;
 
@@ -43,16 +43,6 @@ const grow = keyframes`
 
     to {
         padding: 0px 0px;
-    }
-`;
-
-const shrink = keyframes`
-    from {
-        font-size: 30px;
-    }
-    
-    to {
-        font-size: 12px;
     }
 `;
 
@@ -75,14 +65,16 @@ const CardContainer = styled.div`
 const Percent = styled.div`
     animation: ${fadein} .7s 1;
     color: ${medGrey};
-    font-size: 12px;
+    font-size: 10px;
     margin: auto;
     margin-bottom: 10px;
+    opacity: .7;
     width: 85vw;
 `;
 
 const LineContainer = styled.div`
     margin: auto;
+    opacity: .9;
     width: 85vw;
 `;
 
@@ -93,11 +85,17 @@ const StatContainer = styled.div`
 const Label = styled.p`
     color: ${medGrey};
     font-family: 'Roboto', sans-serif;
+    font-size: 14px;
     font-weight: 300;
     margin-bottom: 10px;
+    opacity: .7;
 `;
 
 const Stat = styled.p`
+    color: ${black};
+    font-size: 16px;
+    font-weight: 300;
+    opacity: .8;
     padding: 7.5px 0px;
 `;
 
@@ -116,7 +114,8 @@ const EditButton = styled.div`
     animation: ${fadein} .7s 1;
     align-items: center;
     color: ${props => props.editMode ? blue : 'lightgrey'};
-    font-size: 30px;
+    font-size: 25px;
+    opacity: .7;
     padding: 20px;
     position: fixed;
     right: 3%;
@@ -143,7 +142,7 @@ const TrackerView = props => {
                 <Line
                     percent={percent}
                     strokeWidth="4"
-                    strokeColor={blue}
+                    strokeColor={green}
                 />
             </LineContainer>
             {

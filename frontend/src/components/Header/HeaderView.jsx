@@ -15,7 +15,8 @@ const Arrow = styled.div`
     color: ${white};
     font-size: 30px;
     margin-top: 10px;
-    margin-right: 30%;
+    margin-left: 12px;
+    margin-right: 28%;
     &:hover {
         cursor: pointer;
     };
@@ -23,16 +24,16 @@ const Arrow = styled.div`
 
 const PageName = styled.div`
     color: ${white};
-    font-family: 'HelveticaNeueBold';
-    font-size: 20px;
-    margin-right: 30%;
+    font-family: 'Roboto', sans-serif;
+    font-size: 19px;
+    margin-right: 31%;
     margin-top: 2px;
 `;
 
 const AddStatButton = styled(Link)`
     color: ${white};
     font-size: 25px;
-    margin-top: 4px;
+    margin-top: 5px;
 `;
 
 const HeaderView = props => {

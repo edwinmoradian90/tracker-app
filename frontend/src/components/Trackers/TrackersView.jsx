@@ -7,6 +7,7 @@ import {
     white,
     black,
     darkGrey,
+    medGrey,
     grey,
     lightGrey
 } from '../../utils/colors/main';
@@ -33,7 +34,7 @@ const StyledLink = styled(Link)`
     border-bottom: 1px solid lightgray;
     display: flex;
     height: 50px;
-    justify-content: space-around;
+    justify-content: space-between;
     text-decoration: none;
 `;
 
@@ -41,14 +42,19 @@ const ListItem = styled.li`
     align-items: center;
     color: ${black};
     display: flex;
+    font-size: 13px;
     height: 40px;
+    margin-left: 20px;
+    opacity: .7;
 `;
 
 const ForwardIcon = styled.div`
     align-items: center;
-    color: ${darkGrey};
+    color: ${medGrey};
     display: flex;
     height: 40px;
+    opacity: .7;
+    margin-right: 20px;
 `;
 
 const TrackersView = props => {
