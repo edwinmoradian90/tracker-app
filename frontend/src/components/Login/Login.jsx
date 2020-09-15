@@ -12,6 +12,12 @@ const Login = props => {
         email: "",
         password: "",
     });
+    const currentUserCheck = () => {
+        return localStorage.getItem('currentUser');
+    };
+    const removeCurrentUser = () => {
+        localStorage.removeItem('currentUser');
+    };
     const onChange = e => {
         setState({
             ...state,
@@ -21,6 +27,9 @@ const Login = props => {
     };
     const onSubmit = e => {
         e.preventDefault();
+        if (currentUserCheck()) {
+            removeCurrentUser();
+        };
         const { email, password } = state;
         const user = { email, password };
         axios.post(url, user)
@@ -47,6 +56,13 @@ const Login = props => {
                 };
                 if (token) {
                     console.log('there is a token');
+                    const newUrl = "http://localhost:3001/user_is_authed";
+                    const headers = {
+                        "Authorization": `Bearer ${token}`,
+                    };
+                    axios.get(newUrl, { headers })
+                        .then(res => console.log('headers', res))
+                        .catch(err => console.log(err));
                     localStorage.setItem('currentUser', JSON.stringify(userInfo));
                     dispatch(currentUser(userInfo));
                     props.history.push('/');
@@ -58,6 +74,7 @@ const Login = props => {
         <LoginView
             onChange={onChange}
             onSubmit={onSubmit}
+            state={state}
         />
     );
 };
