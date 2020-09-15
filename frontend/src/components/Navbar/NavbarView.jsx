@@ -14,7 +14,7 @@ import {
 } from '../../utils/colors/main';
 
 const Navbar = styled.div`
-    bottom: 103px;
+    bottom: 50px;
     position: fixed;
     width: 375px;
 `;
