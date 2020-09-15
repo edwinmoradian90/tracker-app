@@ -74,6 +74,7 @@ const Login = props => {
         <LoginView
             onChange={onChange}
             onSubmit={onSubmit}
+            state={state}
         />
     );
 };

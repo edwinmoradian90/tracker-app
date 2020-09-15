@@ -8,8 +8,6 @@ import { GiSteeringWheel } from 'react-icons/gi';
 import {
     black,
     medGrey,
-    lightGrey,
-    grey,
     blue,
     green,
     white,

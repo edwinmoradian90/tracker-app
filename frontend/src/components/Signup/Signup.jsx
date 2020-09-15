@@ -74,6 +74,7 @@ const Signup = props => {
                 onChange={onChange}
                 onSignup={onSignup}
                 correctPassword={correctPassword}
+                state={state}
             />
         </div>
     );
