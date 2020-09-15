@@ -1,6 +1,17 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+const riseup = keyframes`
+    from { 
+        margin-top: 300px;
+    }
+
+    to {
+        margin-top: 3vh;
+    }
+`;
 
 const GeneralButton = styled.div`
+    animation: ${riseup} .7s 1;
     align-items: center;
     background: ${props => props.background};
     border-radius: 3px;

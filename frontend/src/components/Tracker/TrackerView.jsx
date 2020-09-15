@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { GoPencil } from 'react-icons/go';
 import { AiFillCar } from 'react-icons/ai';
 import { RiGasStationFill } from 'react-icons/ri';
@@ -15,12 +15,34 @@ import {
 } from '../../utils/colors/main';
 import { GeneralButton } from '../../utils/styles/generalStyles';
 
+const dropdown = keyframes`
+    from { 
+        margin-bottom: 300px;
+    }
+
+    to {
+        margin-bottom: 0;
+    }
+`;
+
+const fadein = keyframes`
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+`;
+
 const TrackerContainer = styled.div`
     padding-top: 80px;
 `;
 
 const CardContainer = styled.div`
+    animation: ${dropdown} .7s 1;
     align-items: center;
+    border-radius: 4px;
     background: ${white};
     display: flex;
     justify-content: space-between;
@@ -38,6 +60,10 @@ const Label = styled.p`
     margin-bottom: 10px;
 `;
 
+const Stat = styled.p`
+    padding: 7.5px 0px;
+`;
+
 const TrackerIconWrapper = styled.div`
     color: ${blue};
     font-size: 35px;
@@ -45,6 +71,7 @@ const TrackerIconWrapper = styled.div`
 `;
 
 const EditButton = styled.div`
+    animation: ${fadein} .7s 1;
     align-items: center;
     color: ${props => props.editMode ? blue : 'lightgrey'};
     font-size: 30px;
@@ -88,7 +115,7 @@ const TrackerView = props => {
                                             value={updateTrackers[trackerName[i]]}
                                         />
                                         :
-                                        <p className={`${titles[i]}Value`}>{stat}</p>
+                                        <Stat className={`${titles[i]}Value`}>{stat}</Stat>
                                 }
                             </StatContainer>
                             <TrackerIconWrapper>
@@ -110,8 +137,8 @@ const TrackerView = props => {
                         ?
                         <GeneralButton
                             color={white}
-                            margin="100px auto 0 auto"
-                            width="250px"
+                            margin="3vh auto 0 auto"
+                            width="85vw"
                             background={updateTrackers.amount_driven ? green : grey}
                             onClick={e => updateTrackers.amount_driven ? submitEdits(e) : null}
                             className="submitEditsButton"
