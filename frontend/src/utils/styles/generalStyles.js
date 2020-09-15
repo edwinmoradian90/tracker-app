@@ -2,7 +2,7 @@ import styled, { keyframes } from 'styled-components';
 
 const riseup = keyframes`
     from { 
-        margin-top: 200px;
+        margin-top: 100px;
     }
 
     to {

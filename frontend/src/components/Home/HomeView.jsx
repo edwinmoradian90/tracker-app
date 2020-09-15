@@ -10,7 +10,7 @@ import {
 
 const dropdown = keyframes`
     from { 
-        margin-bottom: 200px;
+        margin-bottom: 100px;
         opacity: 0;
     }
 
