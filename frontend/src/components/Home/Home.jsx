@@ -85,6 +85,7 @@ const Home = props => {
                     onChange={onChange}
                     submitTrackerForm={submitTrackerForm}
                     trackerCreated={trackerCreated}
+                    state={state}
                 />
             </div>
     );

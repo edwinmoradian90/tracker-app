@@ -132,12 +132,12 @@ const TrackerView = props => {
         updateTrackers,
     } = props;
     const data = [selectedTracker.limit, selectedTracker.fuel, selectedTracker.amount_driven];
-    const trackerName = ['limit', 'fuel', 'amount_driven'];
-    const trackerIcons = [<AiFillCar />, <RiGasStationFill />, <GiSteeringWheel />];
+    const trackerName = ['amount_driven', 'fuel', 'limit'];
+    const trackerIcons = [<GiSteeringWheel />, <RiGasStationFill />, <AiFillCar />];
     const percent = (selectedTracker.amount_driven / selectedTracker.limit) * 100;
     return (
         <TrackerContainer className="trackerView">
-            <Percent className="percentLimit">Amount driven: {percent.toFixed(0)}%</Percent>
+            <Percent className="percentLimit">Limit reached: {percent.toFixed(0)}%</Percent>
             <LineContainer>
                 <Line
                     percent={percent}
@@ -147,7 +147,7 @@ const TrackerView = props => {
             </LineContainer>
             {
                 data.map((stat, i) => {
-                    const titles = ['Driving Limit', 'Fuel Used', 'Amount Driven'];
+                    const titles = ['Amount Driven', 'Fuel Used', 'Driving Limit'];
                     return (
                         <CardContainer key={`${trackerName[i]}Container`} className={`${trackerName[i]}Container`}>
                             <StatContainer>
