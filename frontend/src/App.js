@@ -14,16 +14,18 @@ import Navbar from './components/Navbar/Navbar';
 
 function App() {
   return (
-    <Router>
-      <Switch>
-        <Route exact path='/trackers/:id' component={Tracker} />
-        <Route exact path='/trackers' component={Trackers} />
-        <Route exact path='/signup' component={Signup} />
-        <Route exact path='/login' component={Login} />
-        <Route path='/' component={Home} />
-      </Switch>
-      <Navbar />
-    </Router>
+    <div className="app">
+      <Router>
+        <Switch>
+          <Route exact path='/trackers/:id' component={Tracker} />
+          <Route exact path='/trackers' component={Trackers} />
+          <Route exact path='/signup' component={Signup} />
+          <Route exact path='/login' component={Login} />
+          <Route path='/' component={Home} />
+        </Switch>
+        <Navbar />
+      </Router>
+    </div>
   );
 }
 

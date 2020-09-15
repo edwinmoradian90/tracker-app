@@ -14,9 +14,9 @@ import {
 } from '../../utils/colors/main';
 
 const Navbar = styled.div`
-    bottom: 0;
+    bottom: 103px;
     position: fixed;
-    width: 100%;
+    width: 375px;
 `;
 
 const NavbarList = styled.ul`

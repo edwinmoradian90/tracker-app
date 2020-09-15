@@ -2,11 +2,11 @@ import styled, { keyframes } from 'styled-components';
 
 const riseup = keyframes`
     from { 
-        margin-top: 300px;
+        margin-top: 200px;
     }
 
     to {
-        margin-top: 3vh;
+        margin-top: 0px;
     }
 `;
 

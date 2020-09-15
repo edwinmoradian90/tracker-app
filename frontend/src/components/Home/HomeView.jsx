@@ -10,12 +10,12 @@ import {
 
 const dropdown = keyframes`
     from { 
-        margin-bottom: 300px;
+        margin-bottom: 200px;
         opacity: 0;
     }
 
     to {
-        margin-bottom: 0;
+        margin-bottom: 0px;
         opacity: .7;
     }
 `;
@@ -66,7 +66,7 @@ const ButtonContainer = styled.div`
 
 const TrackersButton = styled.div`
     animation: ${fadein} 2s 1;
-    bottom: 20%;
+    bottom: 300px;
     color: ${medGrey};
     opacity: .7;
     position: fixed;
@@ -116,7 +116,7 @@ const HomeView = props => {
                 <GeneralButton
                     background={amountDriven ? green : medGrey}
                     color={white}
-                    width="53vw"
+                    width="190px"
                     className="submitNewTracker"
                     onClick={e => submitTrackerForm(e)}
                 >

@@ -18,7 +18,7 @@ import { GeneralButton } from '../../utils/styles/generalStyles';
 
 const dropdown = keyframes`
     from { 
-        margin-bottom: 300px;
+        margin-bottom: 100px;
     }
 
     to {
@@ -48,6 +48,7 @@ const grow = keyframes`
 
 const TrackerContainer = styled.div`
     padding-top: 40px;
+    height: calc(812px - 117.5px);
 `;
 
 const CardContainer = styled.div`
@@ -59,23 +60,23 @@ const CardContainer = styled.div`
     justify-content: space-between;
     margin: 20px auto;
     padding: 20px 10px;
-    width: 85vw;
+    width: 320px;
 `;
 
 const Percent = styled.div`
     animation: ${fadein} .7s 1;
     color: ${medGrey};
-    font-size: 10px;
+    font-size: 12px;
     margin: auto;
     margin-bottom: 10px;
     opacity: .7;
-    width: 85vw;
+    width: 340px;
 `;
 
 const LineContainer = styled.div`
     margin: auto;
     opacity: .9;
-    width: 85vw;
+    width: 340px;
 `;
 
 const StatContainer = styled.div`
@@ -96,7 +97,7 @@ const Stat = styled.p`
     font-size: 16px;
     font-weight: 300;
     opacity: .8;
-    padding: 7.5px 0px;
+    padding: 11px 0px;
 `;
 
 const Input = styled.input`
@@ -110,6 +111,11 @@ const TrackerIconWrapper = styled.div`
     padding-right: 20px;
 `;
 
+const EditButtonContainer = styled.div`
+    max-width: 375px;
+    width: 375px;
+`;
+
 const EditButton = styled.div`
     animation: ${fadein} .7s 1;
     align-items: center;
@@ -118,8 +124,9 @@ const EditButton = styled.div`
     opacity: .7;
     padding: 20px;
     position: fixed;
-    right: 3%;
-    top: 6%;
+    right: 600px;
+    top: 40px;
+    width: 45px;
 `;
 
 const TrackerView = props => {
@@ -177,18 +184,18 @@ const TrackerView = props => {
             }
 
             <div className="editModeButtons">
-                <div onClick={editModeToggle} className="editModeButton">
+                <EditButtonContainer onClick={editModeToggle} className="editModeButton">
                     <EditButton editMode={editMode}>
                         <GoPencil />
                     </EditButton>
-                </div>
+                </EditButtonContainer>
                 {
                     editMode
                         ?
                         <GeneralButton
                             color={white}
-                            margin="3vh auto 0 auto"
-                            width="85vw"
+                            margin="20px auto 0 auto"
+                            width="320px"
                             background={updateTrackers.amount_driven ? green : medGrey}
                             onClick={e => updateTrackers.amount_driven ? submitEdits(e) : null}
                             className="submitEditsButton"

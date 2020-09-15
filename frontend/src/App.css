@@ -1,5 +1,12 @@
-
-body, html {
+html {
+    background: white !important;
+    overflow-y: hidden !important;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+}
+body{
     background: #f6f6f6;
     font-family: 'Roboto';
+    height: 812px !important;
 };
