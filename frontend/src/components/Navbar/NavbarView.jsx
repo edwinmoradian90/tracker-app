@@ -53,6 +53,9 @@ const Icon = styled.div`
 
 const IconText = styled.p`
     color: ${props => props.tab ? white : medGrey};
+    font-family: 'Roboto', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
     margin-top: 5px;
 `;
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
+import { Line } from 'rc-progress';
 import { GoPencil } from 'react-icons/go';
 import { AiFillCar } from 'react-icons/ai';
 import { RiGasStationFill } from 'react-icons/ri';
@@ -35,8 +36,28 @@ const fadein = keyframes`
     }
 `;
 
+const grow = keyframes`
+    from { 
+        padding: 0px 10px;
+    }
+
+    to {
+        padding: 0px 0px;
+    }
+`;
+
+const shrink = keyframes`
+    from {
+        font-size: 30px;
+    }
+    
+    to {
+        font-size: 12px;
+    }
+`;
+
 const TrackerContainer = styled.div`
-    padding-top: 80px;
+    padding-top: 40px;
 `;
 
 const CardContainer = styled.div`
@@ -51,12 +72,28 @@ const CardContainer = styled.div`
     width: 85vw;
 `;
 
+const Percent = styled.div`
+    animation: ${fadein} .7s 1;
+    color: ${medGrey};
+    font-size: 12px;
+    margin: auto;
+    margin-bottom: 10px;
+    width: 85vw;
+`;
+
+const LineContainer = styled.div`
+    margin: auto;
+    width: 85vw;
+`;
+
 const StatContainer = styled.div`
     padding-left: 20px;
 `;
 
 const Label = styled.p`
     color: ${medGrey};
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
     margin-bottom: 10px;
 `;
 
@@ -64,9 +101,14 @@ const Stat = styled.p`
     padding: 7.5px 0px;
 `;
 
+const Input = styled.input`
+    animation: ${grow} .7s 1;
+    color: ${medGrey};
+`;
+
 const TrackerIconWrapper = styled.div`
     color: ${blue};
-    font-size: 35px;
+    font-size: 30px;
     padding-right: 20px;
 `;
 
@@ -93,8 +135,17 @@ const TrackerView = props => {
     const data = [selectedTracker.limit, selectedTracker.fuel, selectedTracker.amount_driven];
     const trackerName = ['limit', 'fuel', 'amount_driven'];
     const trackerIcons = [<AiFillCar />, <RiGasStationFill />, <GiSteeringWheel />];
+    const percent = (selectedTracker.amount_driven / selectedTracker.limit) * 100;
     return (
         <TrackerContainer className="trackerView">
+            <Percent className="percentLimit">Amount driven: {percent.toFixed(0)}%</Percent>
+            <LineContainer>
+                <Line
+                    percent={percent}
+                    strokeWidth="4"
+                    strokeColor={blue}
+                />
+            </LineContainer>
             {
                 data.map((stat, i) => {
                     const titles = ['Driving Limit', 'Fuel Used', 'Amount Driven'];
@@ -106,7 +157,7 @@ const TrackerView = props => {
                                 {
                                     editMode
                                         ?
-                                        <input
+                                        <Input
                                             name={trackerName[i]}
                                             onChange={e => onChange(e)}
                                             placeholder={`${titles[i]}`}
@@ -139,7 +190,7 @@ const TrackerView = props => {
                             color={white}
                             margin="3vh auto 0 auto"
                             width="85vw"
-                            background={updateTrackers.amount_driven ? green : grey}
+                            background={updateTrackers.amount_driven ? green : medGrey}
                             onClick={e => updateTrackers.amount_driven ? submitEdits(e) : null}
                             className="submitEditsButton"
                         >
