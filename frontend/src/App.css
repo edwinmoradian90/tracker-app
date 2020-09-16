@@ -1,5 +1,4 @@
 html {
-    align-items: center;
     background: white !important;
     overflow-y: hidden !important;
     display: flex;
@@ -9,5 +8,5 @@ html {
 body{
     background: #f6f6f6;
     font-family: 'Roboto';
-    height: 812px !important;
+    max-height: 812px !important;
 };

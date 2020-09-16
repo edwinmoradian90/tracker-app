@@ -121,9 +121,9 @@ const EditButton = styled.div`
     font-size: 25px;
     opacity: .7;
     padding: 20px;
-    position: fixed;
-    right: 600px;
-    top: 100px;
+    position: absolute;
+    right: 35%;
+    top: 50px;
     width: 45px;
 `;
 
