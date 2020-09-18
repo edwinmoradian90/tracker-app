@@ -67,6 +67,12 @@ const Tracker = props => {
     };
     const editModeToggle = () => {
         setEditMode(!editMode);
+        const { fuel, amount_driven, limit } = selectedTracker;
+        setUpdateTrackers({
+            fuel,
+            amount_driven,
+            limit
+        });
     };
 
     return (

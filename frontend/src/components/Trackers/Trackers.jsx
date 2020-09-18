@@ -28,7 +28,7 @@ const Trackers = props => {
                         setTrackers(res.data.trackers);
                         delayLoading(1000, setLoading, false);
                     } else if (res.data.status === 404) {
-                        delayLoading(1000, props.history.push, "/login");
+                        delayLoading(1000, props.history.push, '/login');
                     }
                 })
                 .catch(err => console.log(err));

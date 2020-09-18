@@ -100,7 +100,7 @@ const SignupView = props => {
             <GeneralButton
                 background={() => checkForm() ? green : medGrey}
                 color={white}
-                onClick={() => checkForm() ? e => onSignup(e) : null}
+                onClick={() => checkForm() ? onSignup() : console.log('not working')}
                 className="signupSubmit"
             >
                 Sign up

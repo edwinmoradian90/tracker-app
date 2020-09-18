@@ -57,28 +57,45 @@ const ForwardIcon = styled.div`
     margin-right: 20px;
 `;
 
+const NoTrackers = styled.div`
+    color: ${medGrey};
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    opacity: .7;
+`;
+
 const TrackersView = props => {
     const { trackers } = props;
+    console.log(trackers)
+
     return (
         <TrackersContainer className="trackersView">
-            <ul className="allTrackers">
-                {trackers ? trackers.map((tracker, i) => {
-                    const { created_at, id } = tracker;
-                    return (
-                        <StyledLink key={i} to={`/trackers/${id}`}>
-                            <ListItem key={i} className="trackerInfo">
-                                {cleanDate(created_at)}
-                            </ListItem>
-                            <ForwardIcon className="forwardIcon">
-                                <IoIosArrowForward />
-                            </ForwardIcon>
-                        </StyledLink>
-                    );
-                })
+            {
+                trackers.length > 0
+                    ?
+                    <ul className="allTrackers">
+                        {trackers ? trackers.map((tracker, i) => {
+                            console.log('dispalying trackers')
+                            const { created_at, id } = tracker;
+                            return (
+                                <StyledLink key={i} to={`/trackers/${id}`}>
+                                    <ListItem key={i} className="trackerInfo">
+                                        {cleanDate(created_at)}
+                                    </ListItem>
+                                    <ForwardIcon className="forwardIcon">
+                                        <IoIosArrowForward />
+                                    </ForwardIcon>
+                                </StyledLink>
+                            );
+                        })
+                            :
+                            null
+                        }
+                    </ul>
                     :
-                    null
-                }
-            </ul>
+                    <NoTrackers className="noTrackers">You have no trackers yet.</NoTrackers>
+            }
         </TrackersContainer>
     );
 };

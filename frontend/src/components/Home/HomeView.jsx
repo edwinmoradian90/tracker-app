@@ -66,18 +66,26 @@ const ButtonContainer = styled.div`
 
 const TrackersButton = styled.div`
     animation: ${fadein} 2s 1;
-    bottom: 300px;
     color: ${medGrey};
     opacity: .7;
-    position: fixed;
+    top: 4vh;
+    position: relative;
     &:hover {
         cursor: pointer;
     }
 `;
 
+const TrackerCreated = styled.div`
+    color: ${green};
+    display: flex;
+    justify-content: center;
+    margin-top: 6vh;
+    opacity: .7;
+`;
+
 const HomeView = props => {
     const { onChange, submitTrackerForm, trackerCreated, state } = props;
-    const { amountDriven } = state;
+    const { amountDriven, drivingLimit, amountOfFuel } = state;
     return (
         <div className="homeView">
             <InputContainer>
@@ -88,6 +96,7 @@ const HomeView = props => {
                         type="text"
                         className="addStatAmountDriven"
                         placeholder="Amount driven"
+                        value={amountDriven}
                         onChange={e => onChange(e)}
                     />
                 </InputWrapper>
@@ -98,6 +107,7 @@ const HomeView = props => {
                         type="text"
                         className="addStatFuel"
                         placeholder="Amount of fuel"
+                        value={amountOfFuel}
                         onChange={e => onChange(e)}
                     />
                 </InputWrapper>
@@ -108,6 +118,7 @@ const HomeView = props => {
                         type="text"
                         className="addStatLimit"
                         placeholder="Driving limit"
+                        value={drivingLimit}
                         onChange={e => onChange(e)}
                     />
                 </InputWrapper>
@@ -132,7 +143,7 @@ const HomeView = props => {
             {
                 trackerCreated
                     ?
-                    <p className="trackerCreated">Tracker has been created!</p>
+                    <TrackerCreated className="trackerCreated">Tracker has been created!</TrackerCreated>
                     :
                     null
             }

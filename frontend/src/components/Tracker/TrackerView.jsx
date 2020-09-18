@@ -5,6 +5,7 @@ import { GoPencil } from 'react-icons/go';
 import { AiFillCar } from 'react-icons/ai';
 import { RiGasStationFill } from 'react-icons/ri';
 import { GiSteeringWheel } from 'react-icons/gi';
+import { BsFillTrashFill } from 'react-icons/bs';
 import {
     black,
     medGrey,
@@ -45,8 +46,16 @@ const grow = keyframes`
 `;
 
 const TrackerContainer = styled.div`
-    padding-top: 40px;
+    padding-top: 20px;
     height: calc(812px - 117.5px);
+`;
+
+const TopIconContainer = styled.div`
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    margin-bottom: 10px;
 `;
 
 const CardContainer = styled.div`
@@ -65,10 +74,7 @@ const Percent = styled.div`
     animation: ${fadein} .7s 1;
     color: ${medGrey};
     font-size: 12px;
-    margin: auto;
-    margin-bottom: 10px;
     opacity: .7;
-    width: 340px;
 `;
 
 const LineContainer = styled.div`
@@ -95,7 +101,7 @@ const Stat = styled.p`
     font-size: 16px;
     font-weight: 300;
     opacity: .8;
-    padding: 11px 0px;
+    padding: 7.5px 0px;
 `;
 
 const Input = styled.input`
@@ -120,11 +126,14 @@ const EditButton = styled.div`
     color: ${props => props.editMode ? blue : 'lightgrey'};
     font-size: 25px;
     opacity: .7;
-    padding: 20px;
-    position: absolute;
-    right: 35%;
-    top: 50px;
-    width: 45px;
+`;
+
+const TrashCan = styled.span`
+    animation: ${fadein} 1s 1;
+    color: lightcoral;
+    font-size: 23px;
+    opacity: .7;
+    visibility: ${props => props.editMode ? 'visible' : 'hidden'}
 `;
 
 const TrackerView = props => {
@@ -142,7 +151,20 @@ const TrackerView = props => {
     const percent = (selectedTracker.amount_driven / selectedTracker.limit) * 100;
     return (
         <TrackerContainer className="trackerView">
-            <Percent className="percentLimit">Limit reached: {percent.toFixed(0)}%</Percent>
+            <TopIconContainer>
+                <EditButton
+                    onClick={editModeToggle}
+                    editMode={editMode}
+                >
+                    <GoPencil />
+                </EditButton>
+                <Percent className="percentLimit">Limit reached: {percent.toFixed(0)}%</Percent>
+                <TrashCan
+                    editMode={editMode}
+                >
+                    <BsFillTrashFill />
+                </TrashCan>
+            </TopIconContainer>
             <LineContainer>
                 <Line
                     percent={percent}
@@ -183,9 +205,6 @@ const TrackerView = props => {
 
             <div className="editModeButtons">
                 <EditButtonContainer onClick={editModeToggle} className="editModeButton">
-                    <EditButton editMode={editMode}>
-                        <GoPencil />
-                    </EditButton>
                 </EditButtonContainer>
                 {
                     editMode
@@ -199,7 +218,7 @@ const TrackerView = props => {
                             className="submitEditsButton"
                         >
                             Save
-                        </GeneralButton>
+                            </GeneralButton>
                         :
                         null
                 }
