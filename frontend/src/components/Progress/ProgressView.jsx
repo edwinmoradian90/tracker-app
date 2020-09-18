@@ -66,11 +66,10 @@ const IconContainer = styled.div`
 const ProgressVisuals = styled.div`
     background: ${white};
     border-radius: 5px;
-    display: flex;
     height: 100px;
-    padding: 30px 120px;
-    margin: 0 auto;
-    margin-top: 20px;
+    padding: 40px 120px;
+    margin: 20px auto 0 auto;
+    opacity: .8;
     width: 100px;
 `;
 
@@ -80,6 +79,14 @@ const LimitLabel = styled.label`
     font-weight: 300;
     opacity: .7;
     padding: 20px;
+`;
+
+const Percent = styled.div`
+   color: ${blue};
+   bottom: 62%;
+   left: 38%;
+   opacity: .7;
+   position: relative;
 `;
 
 const ProgressView = props => {
@@ -145,13 +152,14 @@ const ProgressView = props => {
                         null
                 }
             </div>
-            <LimitLabel>Driving limit reached: {percent.toFixed(0)}%</LimitLabel>
+            <LimitLabel>Total driving limit reached: {percent.toFixed(0)}%</LimitLabel>
             <ProgressVisuals className="progressVisuals">
                 <Circle
                     strokeWidth="4"
                     stokeColor={blue}
                     percent={percent}
                 />
+                <Percent>{percent.toFixed(0)}%</Percent>
             </ProgressVisuals>
         </div>
     );
