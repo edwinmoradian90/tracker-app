@@ -27,13 +27,4 @@ const delayLoading = (time, func, bool = false) => {
     }, time)
 };
 
-const getHeaders = token => {
-    const headers = {}
-    const currentUserToken = JSON.parse(localStorage.getItem('currentUser').token) || '';
-    if (token || currentUserToken) {
-        headers['Authorization'] = token || currentUserToken;
-    };
-    return headers;
-};
-
-export { cleanDate, delayLoading, getHeaders };
+export { cleanDate, delayLoading };

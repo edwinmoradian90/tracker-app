@@ -10,10 +10,15 @@ const LoginContainer = styled.div`
     padding: 20px;
 `;
 
+const LoginTitle = styled.div`
+    margin-top: 20px;
+`;
+
 const NewUser = styled.p`
+    animation: ${fadein} 1s 1;
     color: ${medGrey};
     opacity: .7;
-    margin: 10px 0px;
+    margin: 10px auto;
 `;
 
 const InputContainer = styled.div`
@@ -30,13 +35,7 @@ const LoginView = props => {
     const { email, password } = state;
     return (
         <LoginContainer className="loginView">
-            <h3 className="loginTitle">Please login or sign up to continue.</h3>
-            <NewUser className="newUserSignupLink">
-                New User? {" "}
-                <Link to="/signup">
-                    Sign up.
-                </Link>
-            </NewUser>
+            <LoginTitle className="loginTitle">Please login or sign up to continue.</LoginTitle>
             <div className="loginInputContainer">
                 <InputContainer className="emailInputContainer">
                     <Input
@@ -73,6 +72,12 @@ const LoginView = props => {
             >
                 Log in
             </GeneralButton>
+            <NewUser className="newUserSignupLink">
+                New User? {" "}
+                <Link to="/signup">
+                    Sign up.
+                </Link>
+            </NewUser>
         </LoginContainer>
     );
 };

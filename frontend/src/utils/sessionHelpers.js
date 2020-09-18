@@ -12,9 +12,27 @@ const authHeader = () => {
 };
 
 const getToken = () => {
-    const token = JSON.parse(localStorage.getItem('currentUser')).token;
-    if (token) {
-        return token;
+    const currentUser = localStorage.getItem('currentUser');
+    if (currentUser !== null) {
+        return JSON.parse(currentUser.token);
     };
 };
-export { authHeader, getToken };
+
+const removeCurrentUser = () => {
+    const currentUser = localStorage.getItem('currentUser');
+    if (currentUser !== null) {
+        localStorage.removeItem('currentUser');
+    };
+};
+
+const getHeaders = token => {
+    const headers = {}
+    const currentUserToken = JSON.parse(localStorage.getItem('currentUser').token) || '';
+    if (token || currentUserToken) {
+        headers['Authorization'] = token || currentUserToken;
+    };
+    return headers;
+};
+
+
+export { authHeader, getToken, removeCurrentUser, getHeaders };
