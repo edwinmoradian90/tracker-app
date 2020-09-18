@@ -53,6 +53,15 @@ const Home = props => {
         const headers = {
             "Authorization": token
         };
+        if (trackerCreated) {
+            setTrackerCreated(false);
+            setState({
+                amountOfFuel: "",
+                amountDriven: "",
+                drivingLimit: "",
+            });
+            return;
+        };
         axios.post(url, { tracker }, { headers })
             .then(res => {
                 const { status } = res.data;
@@ -61,11 +70,6 @@ const Home = props => {
                 } else if (status === 404) {
                     props.history.push("/login");
                 }
-                setState({
-                    amountOfFuel: "",
-                    amountDriven: "",
-                    drivingLimit: "",
-                });
             })
             .catch(err => console.log(err));
     };

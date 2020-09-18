@@ -23,6 +23,19 @@ const Tracker = props => {
         limit: selectedTracker.limit,
         amount_driven: selectedTracker.amount_driven,
     });
+    const deleteTracker = () => {
+        const token = getToken();
+        const url = `http://localhost:3001/trackers/${id}`;
+        const headers = {
+            'Authorization': token,
+        };
+        axios.delete(url, { headers })
+            .then(res => {
+                console.log(res);
+                props.history.push('/trackers');
+            })
+            .catch(err => console.log(err));
+    };
     const submitEdits = e => {
         e.preventDefault();
         const token = getToken();
@@ -86,6 +99,7 @@ const Tracker = props => {
                     <Loading />
                     :
                     <TrackerView
+                        deleteTracker={deleteTracker}
                         editMode={editMode}
                         editModeToggle={editModeToggle}
                         selectedTracker={selectedTracker}

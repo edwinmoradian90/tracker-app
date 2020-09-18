@@ -45,6 +45,7 @@ const Input = styled.input`
     animation: ${dropdown} .7s 1;
     color: ${medGrey};
     opacity: .7;
+    pointer-events: ${props => props.disabled ? 'none' : null}
 `;
 
 const Label = styled.div`
@@ -76,6 +77,7 @@ const TrackersButton = styled.div`
 `;
 
 const TrackerCreated = styled.div`
+    animation: ${dropdown} .7s 1;
     color: ${green};
     display: flex;
     justify-content: center;
@@ -98,6 +100,7 @@ const HomeView = props => {
                         placeholder="Amount driven"
                         value={amountDriven}
                         onChange={e => onChange(e)}
+                        disabled={trackerCreated}
                     />
                 </InputWrapper>
                 <InputWrapper className="addStatFuelContainer">
@@ -109,6 +112,7 @@ const HomeView = props => {
                         placeholder="Amount of fuel"
                         value={amountOfFuel}
                         onChange={e => onChange(e)}
+                        disabled={trackerCreated}
                     />
                 </InputWrapper>
                 <InputWrapper className="addStatLimitContainer">
@@ -120,6 +124,7 @@ const HomeView = props => {
                         placeholder="Driving limit"
                         value={drivingLimit}
                         onChange={e => onChange(e)}
+                        disabled={trackerCreated}
                     />
                 </InputWrapper>
             </InputContainer>
@@ -131,8 +136,8 @@ const HomeView = props => {
                     className="submitNewTracker"
                     onClick={e => submitTrackerForm(e)}
                 >
-                    Create new tracker
-            </GeneralButton>
+                    {trackerCreated ? 'Add another one' : 'Create new tracker'}
+                </GeneralButton>
                 <TrackersButton
                     className="viewAllTrackers"
                     onClick={() => props.history.push("/trackers")}

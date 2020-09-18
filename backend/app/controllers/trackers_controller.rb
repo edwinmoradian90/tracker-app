@@ -62,6 +62,22 @@ class TrackersController < ApplicationController
     end
   end
 
+  def destroy
+    @tracker = Tracker.find(params[:id])
+    if @tracker
+      @tracker.destroy
+      render json: {
+        status: 200,
+        message: 'Tracker deleted'
+      }
+    else
+      render json: {
+        status: 404,
+        message: 'Could not find tracker'
+      }
+    end
+  end
+
   private
 
     def tracker_params

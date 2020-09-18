@@ -74,6 +74,7 @@ const Percent = styled.div`
     animation: ${fadein} .7s 1;
     color: ${medGrey};
     font-size: 12px;
+    margin-bottom: 5px;
     opacity: .7;
 `;
 
@@ -141,6 +142,7 @@ const TrackerView = props => {
         onChange,
         submitEdits,
         selectedTracker,
+        deleteTracker,
         editMode,
         editModeToggle,
         updateTrackers,
@@ -161,8 +163,11 @@ const TrackerView = props => {
                 <Percent className="percentLimit">Limit reached: {percent.toFixed(0)}%</Percent>
                 <TrashCan
                     editMode={editMode}
+                    onClick={deleteTracker}
                 >
-                    <BsFillTrashFill />
+                    <BsFillTrashFill
+                        onClick={deleteTracker}
+                    />
                 </TrashCan>
             </TopIconContainer>
             <LineContainer>
