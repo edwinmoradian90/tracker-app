@@ -9,7 +9,7 @@ const LoadingContainer = styled.div`
     margin-top: 80%;
 `;
 
-const Loading = ({ type = "cylon", color = blue }) => {
+const Loading = ({ type = "bubbles", color = blue }) => {
     return (
         <LoadingContainer>
             <ReactLoading

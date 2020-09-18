@@ -15,7 +15,7 @@ const LoginTitle = styled.div`
 `;
 
 const NewUser = styled.p`
-    animation: ${fadein} 1s 1;
+    animation: ${fadein} 1.5s 1;
     color: ${medGrey};
     opacity: .7;
     margin: 10px auto;
@@ -73,7 +73,7 @@ const LoginView = props => {
                 Log in
             </GeneralButton>
             <NewUser className="newUserSignupLink">
-                New User? {" "}
+                New user? {" "}
                 <Link to="/signup">
                     Sign up.
                 </Link>

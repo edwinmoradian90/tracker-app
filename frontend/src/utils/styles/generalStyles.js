@@ -36,4 +36,4 @@ const GeneralButton = styled.div`
     }
 `;
 
-export { GeneralButton, fadein };
+export { GeneralButton, fadein, riseup };

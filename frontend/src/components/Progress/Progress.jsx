@@ -14,12 +14,14 @@ const Progress = props => {
     const thingsToGet = [
         ['totalAmountDriven', 'amount_driven'],
         ['totalFuelUsed', 'fuel'],
+        ['totalDrivingLimit', 'limit'],
     ];
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(true);
     const [state, setState] = useState({
         totalAmountDriven: 0,
         totalFuelUsed: 0,
+        totalDrivingLimit: 0,
     });
     let allUserTrackers = useSelector(state => state.trackers.trackers);
 
@@ -34,7 +36,6 @@ const Progress = props => {
                 const name = id[0];
                 newState[name] = total;
                 setState(newState);
-                console.log(typeof name)
             })
         };
         console.log(state)
