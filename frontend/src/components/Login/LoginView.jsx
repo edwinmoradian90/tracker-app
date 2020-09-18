@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { GeneralButton } from '../../utils/styles/generalStyles';
+import { GeneralButton, fadein } from '../../utils/styles/generalStyles';
 import { green, medGrey, white } from '../../utils/colors/main';
 
 const LoginContainer = styled.div`
@@ -11,7 +11,7 @@ const LoginContainer = styled.div`
 `;
 
 const LoginTitle = styled.div`
-    margin-top: 20px;
+    margin: 20px 0;;
 `;
 
 const NewUser = styled.p`

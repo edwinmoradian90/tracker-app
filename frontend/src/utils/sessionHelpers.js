@@ -14,7 +14,7 @@ const authHeader = () => {
 const getToken = () => {
     const currentUser = localStorage.getItem('currentUser');
     if (currentUser !== null) {
-        return JSON.parse(currentUser.token);
+        return JSON.parse(currentUser).token;
     };
 };
 

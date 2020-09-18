@@ -10,6 +10,15 @@ const riseup = keyframes`
     }
 `;
 
+const fadein = keyframes`
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: .7;
+    }
+`;
+
 const GeneralButton = styled.div`
     animation: ${riseup} .7s 1;
     align-items: center;
@@ -27,4 +36,4 @@ const GeneralButton = styled.div`
     }
 `;
 
-export { GeneralButton };
+export { GeneralButton, fadein };
