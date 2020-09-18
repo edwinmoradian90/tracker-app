@@ -13,7 +13,7 @@ import {
 } from '../../utils/colors/main';
 
 const Navbar = styled.div`
-    bottom: 50px;
+    top: min(91vh, 812px);
     position: fixed;
     width: 375px;
 `;

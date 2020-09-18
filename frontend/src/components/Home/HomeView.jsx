@@ -81,7 +81,7 @@ const TrackerCreated = styled.div`
     color: ${green};
     display: flex;
     justify-content: center;
-    margin-top: 6vh;
+    margin-top: 12vh;
     opacity: .7;
 `;
 
