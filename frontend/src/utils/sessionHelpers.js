@@ -25,6 +25,13 @@ const removeCurrentUser = () => {
     };
 };
 
+const getCurrentUser = () => {
+    const getCurrentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (getCurrentUser !== null) {
+        return getCurrentUser;
+    };
+};
+
 const getHeaders = token => {
     const headers = {}
     const currentUserToken = JSON.parse(localStorage.getItem('currentUser').token) || '';
@@ -35,4 +42,10 @@ const getHeaders = token => {
 };
 
 
-export { authHeader, getToken, removeCurrentUser, getHeaders };
+export {
+    authHeader,
+    getToken,
+    getCurrentUser,
+    removeCurrentUser,
+    getHeaders,
+};

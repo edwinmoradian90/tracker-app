@@ -27,4 +27,11 @@ const delayLoading = (time, func, bool = false) => {
     }, time)
 };
 
-export { cleanDate, delayLoading };
+const capitalizeFirstLetter = word => {
+    const newWord = [];
+    const capitalizedLetter = word.split('')[0].toUpperCase();
+    word.split('').forEach((letter, i) => newWord.push(i === 0 ? capitalizedLetter : letter));
+    return newWord;
+};
+
+export { cleanDate, delayLoading, capitalizeFirstLetter };

@@ -10,6 +10,18 @@ const riseup = keyframes`
     }
 `;
 
+const dropdown = keyframes`
+    from { 
+        margin-bottom: 300px;
+        opacity: 0;
+    }
+
+    to {
+        margin-bottom: 0;
+        opacity: .7;
+    }
+`;
+
 const fadein = keyframes`
     from {
         opacity: 0;
@@ -36,4 +48,4 @@ const GeneralButton = styled.div`
     }
 `;
 
-export { GeneralButton, fadein, riseup };
+export { GeneralButton, fadein, riseup, dropdown };

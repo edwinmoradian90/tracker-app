@@ -61,7 +61,7 @@ const IconText = styled.p`
 
 const NavbarView = props => {
     const { selectedTab } = props;
-    const { addStat, trackIt, progress } = selectedTab;
+    const { addStat, trackIt, progress, more } = selectedTab;
     return (
         <Navbar className="navbarView">
             <NavbarList className="navbar">
@@ -100,12 +100,12 @@ const NavbarView = props => {
                         <IconText tab={progress} name="progress" className="progressText">Progress</IconText>
                     </StyledLink>
                 </NavItem>
-                <NavItem className="navbarItem">
-                    <StyledLink to="/">
-                        <Icon>
+                <NavItem tab={more} name="more" className="navbarItem">
+                    <StyledLink tab={more} to="/more">
+                        <Icon tab={more}>
                             <BsThreeDots />
                         </Icon>
-                        <IconText className="moreText">More</IconText>
+                        <IconText tab={more} className="moreText">More</IconText>
                     </StyledLink>
                 </NavItem>
             </NavbarList>

@@ -156,7 +156,7 @@ const ProgressView = props => {
             <ProgressVisuals className="progressVisuals">
                 <Circle
                     strokeWidth="4"
-                    stokeColor={blue}
+                    strokeColor={blue}
                     percent={percent}
                 />
                 <Percent>{percent.toFixed(0)}%</Percent>

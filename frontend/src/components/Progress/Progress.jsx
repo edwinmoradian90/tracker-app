@@ -27,7 +27,7 @@ const Progress = props => {
 
     const getTotal = (ids = [[]]) => {
         let newState = { ...state };
-        if (allUserTrackers.length > 0) {
+        if (allUserTrackers.length > 0 && allUserTrackers !== undefined) {
             ids.forEach(id => {
                 let total = 0;
                 allUserTrackers.forEach(tracker => {
@@ -60,10 +60,10 @@ const Progress = props => {
     };
 
     useEffect(() => {
-        const loginUrl = 'http://localhost:3001/trackers';
+        const trackersUrl = 'http://localhost:3001/trackers';
         const token = getToken();
         const headers = { 'Authorization': token };
-        axios.get(loginUrl, { headers })
+        axios.get(trackersUrl, { headers })
             .then(res => {
                 const { status } = res.data;
                 if (status === 404) {

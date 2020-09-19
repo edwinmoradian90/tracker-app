@@ -8,6 +8,7 @@ const Navbar = props => {
         "/": "addStat",
         "/trackers": "trackIt",
         "/progress": "progress",
+        "/more": "more",
     };
     const currentPage = pageRef[path];
     const [selectedTab, setSelectedTab] = useState({
