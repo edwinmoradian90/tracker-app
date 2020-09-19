@@ -11,7 +11,7 @@ const LoginContainer = styled.div`
 `;
 
 const LoginTitle = styled.div`
-    margin: 20px 0;;
+    margin: 20px 0;
 `;
 
 const NewUser = styled.p`

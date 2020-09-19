@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { GeneralButton } from '../../utils/styles/generalStyles';
 import { green, medGrey, white } from '../../utils/colors/main';
+import { fadein } from '../../utils/styles/generalStyles';
 
 const SignupContainer = styled.div`
     display: flex;
@@ -10,10 +11,15 @@ const SignupContainer = styled.div`
     padding: 20px;
 `;
 
+const SignupTitle = styled.div`
+    margin: 20px 0px;
+`;
+
 const NewUser = styled.p`
+    animation: ${fadein} 1.5s 1;
     color: ${medGrey};
+    margin: 10px auto;
     opacity: .7;
-    margin: 10px 0px;
 `;
 
 const InputContainer = styled.div`
@@ -48,13 +54,7 @@ const SignupView = props => {
     };
     return (
         <SignupContainer className="signupView">
-            <h3 className="signupTitle">Sign up to Tracker App today.</h3>
-            <NewUser className="returningUserLogin">
-                Already a user? {" "}
-                <Link to="/login">
-                    Log in.
-                </Link>
-            </NewUser>
+            <SignupTitle className="signupTitle">Sign up to Tracker App today.</SignupTitle>
             <InputContainer className="signupInputContainer">
                 <Input
                     marginBottom="20px"
@@ -105,6 +105,12 @@ const SignupView = props => {
             >
                 Sign up
             </GeneralButton>
+            <NewUser className="returningUserLogin">
+                Already a user? {" "}
+                <Link to="/login">
+                    Log in.
+                </Link>
+            </NewUser>
             {
                 correctPassword
                     ?

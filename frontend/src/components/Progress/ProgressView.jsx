@@ -2,7 +2,6 @@ import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { Circle } from 'rc-progress';
 import {
-    green,
     blue,
     medGrey,
     black,
@@ -89,10 +88,18 @@ const Percent = styled.div`
    position: relative;
 `;
 
+const NoProgress = styled.div`
+    color: ${medGrey};
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    opacity: .7;
+`;
+
 const ProgressView = props => {
     const { trackers, state, addToValue, value } = props;
     const { totalFuelUsed, totalAmountDriven, totalDrivingLimit } = state;
-    const firstTrackerDate = cleanDate(trackers[trackers.length - 1].created_at);
+    const firstTrackerDate = trackers.length > 0 ? cleanDate(trackers[trackers.length - 1].created_at) : null;
     const percent = (totalAmountDriven / totalDrivingLimit) * 100;
 
     let progressData = [];
@@ -132,35 +139,41 @@ const ProgressView = props => {
 
     return (
         <div className="progressView">
-            <div className="progressStats">
-                {
-                    progressData.length > 0 ? progressData.map(dataItem => {
-                        const { name, text, unit, stat, startDate, icon } = dataItem;
-                        return (
-                            <Totals key={name}>
-                                <TotalContainer className="totalContainer">
-                                    <TotalLabel className={`${name}Text`}>{text}{startDate}</TotalLabel>
-                                    <TotalStat className={`${name}Stat`}>{stat} {unit}</TotalStat>
-                                </TotalContainer>
-                                <IconContainer>
-                                    {icon}
-                                </IconContainer>
-                            </Totals>
-                        );
-                    })
-                        :
-                        null
-                }
-            </div>
-            <LimitLabel>Total driving limit reached: {percent.toFixed(0)}%</LimitLabel>
-            <ProgressVisuals className="progressVisuals">
-                <Circle
-                    strokeWidth="4"
-                    strokeColor={blue}
-                    percent={percent}
-                />
-                <Percent>{percent.toFixed(0)}%</Percent>
-            </ProgressVisuals>
+            { trackers.length > 0
+                ?
+                <>
+                    <div className="progressStats">
+                        {
+                            progressData.length > 0 ? progressData.map(dataItem => {
+                                const { name, text, unit, stat, startDate, icon } = dataItem;
+                                return (
+                                    <Totals key={name}>
+                                        <TotalContainer className="totalContainer">
+                                            <TotalLabel className={`${name}Text`}>{text}{startDate}</TotalLabel>
+                                            <TotalStat className={`${name}Stat`}>{stat} {unit}</TotalStat>
+                                        </TotalContainer>
+                                        <IconContainer>
+                                            {icon}
+                                        </IconContainer>
+                                    </Totals>
+                                );
+                            })
+                                : null
+                        }
+                    </div>
+                    <LimitLabel>Total driving limit reached: {percent.toFixed(0)}%</LimitLabel>
+                    <ProgressVisuals className="progressVisuals">
+                        <Circle
+                            strokeWidth="4"
+                            strokeColor={blue}
+                            percent={percent}
+                        />
+                        <Percent>{percent.toFixed(0)}%</Percent>
+                    </ProgressVisuals>
+                </>
+                :
+                <NoProgress>You haven't made any progress...yet.</NoProgress>
+            }
         </div>
     );
 };

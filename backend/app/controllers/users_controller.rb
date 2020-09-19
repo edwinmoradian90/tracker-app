@@ -13,6 +13,22 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    @user = User.find(params[:id])
+    if @user 
+      @user.destroy
+      render json: {
+        status: 200,
+        message: 'User has been deleted'
+      }
+    else
+      render json: {
+        status: 500,
+        message: 'User not deleted'
+      }
+    end
+  end
+
   private 
 
   def user_params

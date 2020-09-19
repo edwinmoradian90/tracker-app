@@ -87,7 +87,7 @@ const icons = [
 ];
 
 const MoreView = props => {
-    const { moreOptions, user } = props;
+    const { moreOptions, user, optionsFunctionality } = props;
     const { firstName, lastName } = user;
     return (
         <div className="moreView">
@@ -106,6 +106,7 @@ const MoreView = props => {
                         moreOptions.map((option, i) => {
                             return (
                                 <OptionItem
+                                    onClick={() => optionsFunctionality[i]()}
                                     deleteAccount={i === 4}
                                     key={option}
                                     className="optionItem"

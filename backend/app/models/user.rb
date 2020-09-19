@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :trackers
+  has_many :trackers, dependent: :destroy
 
   has_secure_password
 
