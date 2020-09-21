@@ -90,7 +90,6 @@ const ConfirmationView = props => {
         confirmed,
         id,
     } = props;
-    console.log(confirmation);
     return (
         <ConfirmationViewContainer
             confirmationOpen={confirmationOpen}

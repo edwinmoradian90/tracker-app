@@ -67,7 +67,6 @@ const NoTrackers = styled.div`
 
 const TrackersView = props => {
     const { trackers } = props;
-    console.log(trackers)
 
     return (
         <TrackersContainer className="trackersView">
@@ -76,7 +75,6 @@ const TrackersView = props => {
                     ?
                     <ul className="allTrackers">
                         {trackers ? trackers.map((tracker, i) => {
-                            console.log('dispalying trackers')
                             const { created_at, id } = tracker;
                             return (
                                 <StyledLink key={i} to={`/trackers/${id}`}>

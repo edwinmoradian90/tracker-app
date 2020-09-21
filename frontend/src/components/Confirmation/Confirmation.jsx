@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import ConfirmationView from './ConfirmationView';
 
 const Confirmation = props => {
-    console.log(props)
     const [confirmed, setConfirmed] = useState(false);
     const confirmAction = (bool) => {
         setConfirmed(bool || true);

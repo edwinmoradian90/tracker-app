@@ -28,7 +28,6 @@ const Tracker = props => {
         amount_driven: selectedTracker.amount_driven,
     });
     const deleteTracker = () => {
-        console.log(id)
         dispatch(deleteTracker(id));
     };
 

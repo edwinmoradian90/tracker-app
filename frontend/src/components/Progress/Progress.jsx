@@ -38,7 +38,6 @@ const Progress = props => {
                 setState(newState);
             })
         };
-        console.log(state)
     };
 
     const getTrackers = () => {

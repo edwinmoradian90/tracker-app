@@ -18,7 +18,6 @@ const Signup = props => {
         passwordConfirmation: '',
     });
     const onSignup = () => {
-        console.log('signing up ');
         const {
             firstName,
             lastName,
@@ -27,7 +26,6 @@ const Signup = props => {
             passwordConfirmation,
         } = state;
         if (passwordConfirmation === password) {
-            console.log('passwords match')
             const user = {
                 first_name: firstName,
                 last_name: lastName,
@@ -36,7 +34,6 @@ const Signup = props => {
             };
             axios.post(url, { user })
                 .then(res => {
-                    console.log(res)
                     const { data } = res;
                     if (data.jwt) {
                         const url = 'http://localhost:3001/login';
@@ -46,7 +43,7 @@ const Signup = props => {
                         };
                         axios.post(url, { user }, { headers })
                             .then(res => {
-                                console.log(res);
+                                return true;
                             })
                             .catch(err => {
                                 console.log(err);
@@ -76,7 +73,6 @@ const Signup = props => {
                 .catch(err => console.log(err));
         } else {
             setCorrectPassword(false);
-            console.log('not working')
         };
     }
     const onChange = e => {

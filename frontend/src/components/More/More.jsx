@@ -45,7 +45,6 @@ const More = props => {
     };
 
     const confirmationToggle = (bool = false) => {
-        console.log(confirmationOpen)
         setConfirmationOpen(bool || !confirmationOpen);
     };
 
@@ -58,19 +57,15 @@ const More = props => {
     };
 
     useEffect(() => {
-        console.log('use effect')
         if (user === undefined) {
-            console.log('no user')
             dispatch(logoutCurrentUser());
             props.history.push('/');
         };
         const url = 'http://localhost:3001/user_is_authed';
         const token = getToken();
         const headers = { 'Authorization': token };
-        console.log('more page')
         axios.get(url, { headers })
             .then(res => {
-                console.log(res)
                 const { status } = res.data;
                 if (status === 200) {
                     const user = getCurrentUser();
