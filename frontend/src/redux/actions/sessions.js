@@ -1,8 +1,15 @@
-import { GET_CURRENT_USER } from '../constants/sessions';
+import {
+    GET_CURRENT_USER,
+    LOGOUT_CURRENT_USER,
+} from '../constants/sessions';
 
 const currentUser = user => ({
     type: GET_CURRENT_USER,
     user
 });
 
-export { currentUser };
+const logoutCurrentUser = () => ({
+    type: LOGOUT_CURRENT_USER,
+});
+
+export { currentUser, logoutCurrentUser };

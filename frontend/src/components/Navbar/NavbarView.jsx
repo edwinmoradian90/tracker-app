@@ -16,6 +16,7 @@ const Navbar = styled.div`
     top: min(91vh, 812px);
     position: fixed;
     width: 375px;
+    z-index: 10000;
 `;
 
 const NavbarList = styled.ul`

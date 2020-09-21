@@ -23,7 +23,7 @@ const ProfilePictureContainer = styled.section`
     height: 100px;
     opacity: .8;
     width: 100%;
-    z-index: 1000;
+    z-index: 10;
 `;
 
 const ProfilePicture = styled.div`
@@ -87,7 +87,12 @@ const icons = [
 ];
 
 const MoreView = props => {
-    const { moreOptions, user, optionsFunctionality } = props;
+    const {
+        moreOptions,
+        confirmationToggle,
+        selectConfirmation,
+        user,
+    } = props;
     const { firstName, lastName } = user;
     return (
         <div className="moreView">
@@ -106,7 +111,16 @@ const MoreView = props => {
                         moreOptions.map((option, i) => {
                             return (
                                 <OptionItem
-                                    onClick={() => optionsFunctionality[i]()}
+                                    id={i}
+                                    onClick={i === 2 || i === 4
+                                        ?
+                                        () => {
+                                            confirmationToggle(true);
+                                            selectConfirmation(i);
+                                        }
+                                        :
+                                        null
+                                    }
                                     deleteAccount={i === 4}
                                     key={option}
                                     className="optionItem"

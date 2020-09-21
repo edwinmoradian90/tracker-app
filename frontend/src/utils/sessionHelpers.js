@@ -41,7 +41,6 @@ const getHeaders = token => {
     return headers;
 };
 
-
 export {
     authHeader,
     getToken,

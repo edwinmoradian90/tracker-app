@@ -1,4 +1,4 @@
-import { GET_CURRENT_USER } from '../constants/sessions';
+import { GET_CURRENT_USER, LOGOUT_CURRENT_USER } from '../constants/sessions';
 
 const initialState = {
     currentUser: "",
@@ -12,6 +12,9 @@ const sessions = (state = initialState, action) => {
                 ...state,
                 currentUser: user
             };
+        case LOGOUT_CURRENT_USER:
+            const newState = { currentUser: "" };
+            return newState;
         default:
             return state;
     };

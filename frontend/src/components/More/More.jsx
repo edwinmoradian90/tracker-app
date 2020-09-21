@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
 import Header from '../Header/Header';
 import Loading from '../Loading/Loading';
 import MoreView from './MoreView';
-import { currentUser } from '../../redux/actions/sessions';
-import { getCurrentUser, getToken, removeCurrentUser } from '../../utils/sessionHelpers';
+import Confirmation from '../Confirmation/Confirmation';
+import { currentUser, logoutCurrentUser } from '../../redux/actions/sessions';
 import { delayLoading } from '../../utils/generalHelpers';
-import { useDispatch, useSelector } from 'react-redux';
+import { getCurrentUser, getToken, removeCurrentUser } from '../../utils/sessionHelpers';
+import { moreData } from '../../utils/confirmations/more/more';
 
 const More = props => {
     const pageName = 'More';
@@ -20,6 +22,8 @@ const More = props => {
         'Delete account',
     ];
     const [loading, setLoading] = useState(true);
+    const [confirmationOpen, setConfirmationOpen] = useState(false);
+    const [confirmation, setConfirmation] = useState(moreData[2]);
     const user = useSelector(state => state.sessions.currentUser);
 
     const deleteAccount = () => {
@@ -40,11 +44,26 @@ const More = props => {
         };
     };
 
-    const optionsFunctionality = [
-        '', '', '', '', deleteAccount
-    ];
+    const confirmationToggle = (bool = false) => {
+        console.log(confirmationOpen)
+        setConfirmationOpen(bool || !confirmationOpen);
+    };
+
+    const selectConfirmation = id => {
+        setConfirmation(moreData[id]);
+    };
+
+    const redirectUser = () => {
+        props.history.push('/login');
+    };
 
     useEffect(() => {
+        console.log('use effect')
+        if (user === undefined) {
+            console.log('no user')
+            dispatch(logoutCurrentUser());
+            props.history.push('/');
+        };
         const url = 'http://localhost:3001/user_is_authed';
         const token = getToken();
         const headers = { 'Authorization': token };
@@ -61,7 +80,7 @@ const More = props => {
                     props.history.push('/login');
                 };
             });
-    }, [currentUser]);
+    }, [currentUser, dispatch]);
     return (
         <div className='more'>
             <Header
@@ -72,11 +91,21 @@ const More = props => {
                     ?
                     <Loading />
                     :
-                    <MoreView
-                        optionsFunctionality={optionsFunctionality}
-                        moreOptions={moreOptions}
-                        user={user}
-                    />
+                    <>
+                        <MoreView
+                            moreOptions={moreOptions}
+                            confirmationToggle={confirmationToggle}
+                            confirmationOpen={confirmationOpen}
+                            selectConfirmation={selectConfirmation}
+                            user={user}
+                        />
+                        <Confirmation
+                            confirmationOpen={confirmationOpen}
+                            confirmationToggle={confirmationToggle}
+                            confirmation={confirmation}
+                            auxFunctions={redirectUser}
+                        />
+                    </>
             }
         </div>
     );

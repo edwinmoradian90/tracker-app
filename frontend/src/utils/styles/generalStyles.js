@@ -32,9 +32,10 @@ const fadein = keyframes`
 `;
 
 const GeneralButton = styled.div`
-    animation: ${riseup} .7s 1;
+    animation:${props => props.animation ? riseup + '.7s 1' : null};
     align-items: center;
     background: ${props => props.background};
+    border: ${props => props.border};
     border-radius: 3px;
     color: ${props => props.color};
     display: flex;
