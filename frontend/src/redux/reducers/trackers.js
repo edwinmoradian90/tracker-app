@@ -1,4 +1,8 @@
-import { USER_TRACKER, USER_TRACKERS } from '../constants/trackers';
+import {
+    USER_TRACKER,
+    USER_TRACKERS,
+    DELETE_TRACKER,
+} from '../constants/trackers';
 
 const initialState = {
     trackers: {},
@@ -17,6 +21,11 @@ const trackers = (state = initialState, actions) => {
             return {
                 ...state,
                 tracker,
+            };
+        case DELETE_TRACKER:
+            return {
+                ...state,
+                tracker: {},
             };
         default:
             return state;

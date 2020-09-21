@@ -1,5 +1,5 @@
-import { removeCurrentUser } from '../../sessionHelpers';
-import { deleteUser } from '../../userHelpers';
+import { removeCurrentUser } from '../../helpers/sessionHelpers';
+import { deleteUser } from '../../helpers/userHelpers';
 
 const moreData = [
     null,

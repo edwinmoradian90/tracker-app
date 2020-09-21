@@ -6,7 +6,7 @@ import { userTrackers } from '../../redux/actions/trackers';
 import TrackersView from './TrackersView';
 import Header from '../Header/Header';
 import Loading from '../Loading/Loading';
-import { delayLoading } from '../../utils/generalHelpers';
+import { delayLoading } from '../../utils/helpers/generalHelpers';
 
 const Trackers = props => {
     const pageName = "Track it";

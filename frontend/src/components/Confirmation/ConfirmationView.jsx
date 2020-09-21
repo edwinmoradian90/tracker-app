@@ -73,7 +73,7 @@ const DenyButton = styled.button`
     border: 0;
     height: 70px;
     opacity: .7;
-    width: 50%;
+    width: ${props => props.confirmed ? '100%' : '50%'};
     &:hover {
         cursor: pointer;
     }
@@ -87,6 +87,7 @@ const ConfirmationView = props => {
         confirmation,
         confirmAction,
         confirmed,
+        id
     } = props;
     console.log(confirmation);
     return (
@@ -110,7 +111,7 @@ const ConfirmationView = props => {
                             onClick={confirmation.confirm !== null
                                 ? () => {
                                     console.log('YES');
-                                    confirmation.confirm();
+                                    confirmation.confirm(id ? id : null);
                                     confirmAction();
                                 }
                                 : null}
@@ -118,6 +119,7 @@ const ConfirmationView = props => {
                             Yes
                         </ConfirmButton>
                         <DenyButton
+                            confirmed={confirmed}
                             onClick={() => {
                                 confirmationToggle(false)
                                 if (confirmed) {

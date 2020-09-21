@@ -2,14 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 import { IoIosArrowForward } from 'react-icons/io';
-import { cleanDate } from '../../utils/generalHelpers';
+import { cleanDate } from '../../utils/helpers/generalHelpers';
 import {
     white,
     black,
-    darkGrey,
     medGrey,
-    grey,
-    lightGrey
+    lightGrey,
+    line,
 } from '../../utils/colors/main';
 
 const dropdown = keyframes`
@@ -31,7 +30,7 @@ const StyledLink = styled(Link)`
     animation: ${dropdown} .7s 1; 
     align-items: center;
     background: ${white};
-    border-bottom: 1px solid lightgray;
+    border-bottom: 1px solid ${line};
     display: flex;
     height: 50px;
     justify-content: space-between;

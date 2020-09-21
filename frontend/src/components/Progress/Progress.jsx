@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
-import { getToken, removeCurrentUser } from '../../utils/sessionHelpers';
 import Header from '../Header/Header';
 import ProgressView from './ProgressView';
 import Loading from '../Loading/Loading';
-import { delayLoading } from '../../utils/generalHelpers';
+import { getToken, removeCurrentUser } from '../../utils/helpers/sessionHelpers';
+import { delayLoading } from '../../utils/helpers/generalHelpers';
 import { userTrackers } from '../../redux/actions/trackers';
 
 const Progress = props => {

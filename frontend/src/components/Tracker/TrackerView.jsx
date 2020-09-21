@@ -12,6 +12,7 @@ import {
     blue,
     green,
     white,
+    warningRed,
 } from '../../utils/colors/main';
 import { GeneralButton } from '../../utils/styles/generalStyles';
 
@@ -131,7 +132,7 @@ const EditButton = styled.div`
 
 const TrashCan = styled.span`
     animation: ${fadein} 1s 1;
-    color: lightcoral;
+    color: ${warningRed};
     font-size: 23px;
     opacity: .7;
     visibility: ${props => props.editMode ? 'visible' : 'hidden'}
@@ -143,6 +144,7 @@ const TrackerView = props => {
         submitEdits,
         selectedTracker,
         deleteTracker,
+        confirmationToggle,
         editMode,
         editModeToggle,
         updateTrackers,
@@ -163,10 +165,10 @@ const TrackerView = props => {
                 <Percent className="percentLimit">Limit reached: {percent.toFixed(0)}%</Percent>
                 <TrashCan
                     editMode={editMode}
-                    onClick={deleteTracker}
+                    onClick={() => confirmationToggle(true)}
                 >
                     <BsFillTrashFill
-                        onClick={deleteTracker}
+                        onClick={() => confirmationToggle(true)}
                     />
                 </TrashCan>
             </TopIconContainer>

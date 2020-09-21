@@ -3,7 +3,7 @@ import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { currentUser } from '../../redux/actions/sessions';
-import { getHeaders } from '../../utils/generalHelpers';
+import { getHeaders } from '../../utils/helpers/generalHelpers';
 import SignupView from './SignupView';
 
 const Signup = props => {

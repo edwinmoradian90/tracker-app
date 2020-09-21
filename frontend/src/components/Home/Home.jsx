@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 import { currentUser } from '../../redux/actions/sessions';
-import { delayLoading } from '../../utils/generalHelpers';
+import { delayLoading } from '../../utils/helpers/generalHelpers';
 import Loading from '../Loading/Loading';
 import HomeView from './HomeView';
 import Header from '../Header/Header';

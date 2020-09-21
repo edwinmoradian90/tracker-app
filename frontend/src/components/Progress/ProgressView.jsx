@@ -7,7 +7,7 @@ import {
     black,
     white
 } from '../../utils/colors/main';
-import { cleanDate } from '../../utils/generalHelpers';
+import { cleanDate } from '../../utils/helpers/generalHelpers';
 import { GoPencil } from 'react-icons/go';
 import { AiFillCar } from 'react-icons/ai';
 import { RiGasStationFill } from 'react-icons/ri';

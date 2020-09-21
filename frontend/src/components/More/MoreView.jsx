@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import { capitalizeFirstLetter } from '../../utils/generalHelpers';
+import { capitalizeFirstLetter } from '../../utils/helpers/generalHelpers';
 import {
     white,
     blue,
-    green,
     black,
-    medGrey,
-    lightGrey
+    lightGrey,
+    line,
+    warningRed,
 } from '../../utils/colors/main';
 import { dropdown } from '../../utils/styles/generalStyles';
 import { BiHelpCircle, BiEdit } from 'react-icons/bi';
@@ -18,7 +18,7 @@ import { IoIosPerson } from 'react-icons/io';
 const ProfilePictureContainer = styled.section`
     align-items: center;
     background: ${white};
-    border-bottom: 3px solid rgb(211,211,211, .2);
+    border-bottom: 3px solid ${line};
     display: flex;
     height: 100px;
     opacity: .8;
@@ -55,7 +55,7 @@ const OptionItem = styled.li`
     animation: ${dropdown} 1s 1;
     align-items: center;
     background: ${white};
-    border-bottom: 1px solid rgb(211, 211, 211, .3);
+    border-bottom: 1px solid ${line};
     color: ${props => props.deleteAccount ? 'lightcoral' : black};
     display: flex;
     font-size: 12px;
@@ -70,7 +70,7 @@ const OptionItem = styled.li`
 
 const Icon = styled.span`
     align-items: center;
-    color: ${props => props.deleteAccount ? 'lightcoral' : black};
+    color: ${props => props.deleteAccount ? warningRed : black};
     display: flex;
     font-size: 15px;
     font-weight: 300;

@@ -2,13 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { userTracker } from '../../redux/actions/trackers';
+import { userTracker, deleteTracker } from '../../redux/actions/trackers';
 import axios from 'axios';
-import TrackerView from '../Tracker/TrackerView';
 import Header from '../Header/Header';
 import Loading from '../Loading/Loading';
-import { getToken } from '../../utils/sessionHelpers';
-import { delayLoading } from '../../utils/generalHelpers';
+import TrackerView from '../Tracker/TrackerView';
+import Confirmation from '../Confirmation/Confirmation';
+import { trackerData } from '../../utils/confirmations/tracker/tracker';
+import { getToken } from '../../utils/helpers/sessionHelpers';
+import { delayLoading } from '../../utils/helpers/generalHelpers';
 
 const Tracker = props => {
     const [loading, setLoading] = useState(true);
@@ -18,24 +20,22 @@ const Tracker = props => {
     const id = props.match.params.id;
     let selectedTracker = useSelector(state => state.trackers.tracker);
     const [tracker, setTracker] = useState("");
+    const [confirmationOpen, setConfirmationOpen] = useState(false);
+    const [confirmation, setConfirmation] = useState(trackerData[0]);
     const [updateTrackers, setUpdateTrackers] = useState({
         fuel: selectedTracker.fuel,
         limit: selectedTracker.limit,
         amount_driven: selectedTracker.amount_driven,
     });
     const deleteTracker = () => {
-        const token = getToken();
-        const url = `http://localhost:3001/trackers/${id}`;
-        const headers = {
-            'Authorization': token,
-        };
-        axios.delete(url, { headers })
-            .then(res => {
-                console.log(res);
-                props.history.push('/trackers');
-            })
-            .catch(err => console.log(err));
+        console.log(id)
+        dispatch(deleteTracker(id));
     };
+
+    const confirmationToggle = bool => {
+        setConfirmationOpen(bool || false);
+    };
+
     const submitEdits = e => {
         e.preventDefault();
         const token = getToken();
@@ -88,6 +88,10 @@ const Tracker = props => {
         });
     };
 
+    const redirectUser = () => {
+        props.history.push('/trackers');
+    };
+
     return (
         <div className="tracker">
             <Header
@@ -98,16 +102,26 @@ const Tracker = props => {
                     ?
                     <Loading />
                     :
-                    <TrackerView
-                        deleteTracker={deleteTracker}
-                        editMode={editMode}
-                        editModeToggle={editModeToggle}
-                        selectedTracker={selectedTracker}
-                        onChange={onChange}
-                        submitEdits={submitEdits}
-                        updateTrackers={updateTrackers}
-                        tracker={tracker}
-                    />
+                    <>
+                        <TrackerView
+                            deleteTracker={deleteTracker}
+                            confirmationToggle={confirmationToggle}
+                            editMode={editMode}
+                            editModeToggle={editModeToggle}
+                            selectedTracker={selectedTracker}
+                            onChange={onChange}
+                            submitEdits={submitEdits}
+                            updateTrackers={updateTrackers}
+                            tracker={tracker}
+                        />
+                        <Confirmation
+                            id={id}
+                            confirmation={confirmation}
+                            confirmationOpen={confirmationOpen}
+                            confirmationToggle={confirmationToggle}
+                            auxFunctions={redirectUser}
+                        />
+                    </>
             }
         </div>
     );

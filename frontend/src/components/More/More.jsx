@@ -7,8 +7,8 @@ import Loading from '../Loading/Loading';
 import MoreView from './MoreView';
 import Confirmation from '../Confirmation/Confirmation';
 import { currentUser, logoutCurrentUser } from '../../redux/actions/sessions';
-import { delayLoading } from '../../utils/generalHelpers';
-import { getCurrentUser, getToken, removeCurrentUser } from '../../utils/sessionHelpers';
+import { delayLoading } from '../../utils/helpers/generalHelpers';
+import { getCurrentUser, getToken, removeCurrentUser } from '../../utils/helpers/sessionHelpers';
 import { moreData } from '../../utils/confirmations/more/more';
 
 const More = props => {

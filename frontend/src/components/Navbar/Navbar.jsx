@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
-import { getCurrentUser } from '../../utils/sessionHelpers';
+import { getCurrentUser } from '../../utils/helpers/sessionHelpers';
 import NavbarView from './NavbarView';
 
 const Navbar = props => {
