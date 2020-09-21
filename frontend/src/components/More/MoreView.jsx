@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { capitalizeFirstLetter } from '../../utils/helpers/generalHelpers';
 import {
@@ -138,5 +139,13 @@ const MoreView = props => {
         </div >
     );
 };
+
+const { array, object, func } = PropTypes;
+MoreView.propTypes = {
+    moreOptions: array.isRequired,
+    confirmationToggle: func.isRequired,
+    selectConfirmation: func.isRequired,
+    user: object.isRequired,
+}
 
 export default MoreView;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
 import { Circle } from 'rc-progress';
 import {
@@ -97,7 +98,7 @@ const NoProgress = styled.div`
 `;
 
 const ProgressView = props => {
-    const { trackers, state, addToValue, value } = props;
+    const { trackers, state } = props;
     const { totalFuelUsed, totalAmountDriven, totalDrivingLimit } = state;
     const firstTrackerDate = trackers.length > 0 ? cleanDate(trackers[trackers.length - 1].created_at) : null;
     const percent = (totalAmountDriven / totalDrivingLimit) * 100;
@@ -176,6 +177,12 @@ const ProgressView = props => {
             }
         </div>
     );
+};
+
+const { object, array } = PropTypes;
+ProgressView.propTypes = {
+    trackers: array,
+    state: object,
 };
 
 export default ProgressView;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { GeneralButton, fadein } from '../../utils/styles/generalStyles';
@@ -80,6 +81,13 @@ const LoginView = props => {
             </NewUser>
         </LoginContainer>
     );
+};
+
+const { func, object } = PropTypes;
+LoginView.propTypes = {
+    onChange: func.isRequired,
+    onSubmit: func.isRequired,
+    state: object.isRequired,
 };
 
 export default LoginView;

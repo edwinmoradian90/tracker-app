@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
 import { Line } from 'rc-progress';
 import { GoPencil } from 'react-icons/go';
@@ -143,7 +144,6 @@ const TrackerView = props => {
         onChange,
         submitEdits,
         selectedTracker,
-        deleteTracker,
         confirmationToggle,
         editMode,
         editModeToggle,
@@ -232,6 +232,17 @@ const TrackerView = props => {
             </div>
         </TrackerContainer>
     );
+};
+
+const { func, bool, object } = PropTypes;
+TrackerView.propTypes = {
+    onChange: func.isRequired,
+    submitEdits: func.isRequired,
+    selectedTracker: object.isRequired,
+    confirmationToggle: func.isRequired,
+    editMode: bool.isRequired,
+    editModeToggle: func.isRequired,
+    updateTrackers: object.isRequired,
 };
 
 export default TrackerView;

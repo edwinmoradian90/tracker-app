@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import ConfirmationView from './ConfirmationView';
 
 const Confirmation = props => {
+    console.log(props)
     const [confirmed, setConfirmed] = useState(false);
     const confirmAction = (bool) => {
         setConfirmed(bool || true);
@@ -13,6 +15,13 @@ const Confirmation = props => {
             confirmed={confirmed}
         />
     );
+};
+
+const { object, func, } = PropTypes;
+Confirmation.propTypes = {
+    auxFunctions: func,
+    confirmation: object.isRequired,
+    confirmationToggle: func.isRequired,
 };
 
 export default Confirmation;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 import { GeneralButton } from '../../utils/styles/generalStyles';
@@ -154,6 +155,14 @@ const HomeView = props => {
             }
         </div>
     );
+};
+
+const { object, func, bool } = PropTypes;
+HomeView.propTypes = {
+    submitTrackerForm: func.isRequired,
+    onChange: func.isRequired,
+    state: object.isRequired,
+    trackerCreated: bool.isRequired,
 };
 
 export default withRouter(HomeView);

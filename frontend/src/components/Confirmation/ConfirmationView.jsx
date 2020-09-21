@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { withRouter } from 'react-router-dom';
 import {
@@ -87,7 +88,7 @@ const ConfirmationView = props => {
         confirmation,
         confirmAction,
         confirmed,
-        id
+        id,
     } = props;
     console.log(confirmation);
     return (
@@ -133,6 +134,17 @@ const ConfirmationView = props => {
             </ConfirmationWrapper>
         </ConfirmationViewContainer>
     );
+};
+
+const { func, bool, object, number, string } = PropTypes;
+ConfirmationView.propTypes = {
+    auxFunctions: func,
+    confirmationAction: func,
+    id: string,
+    confirmationOpen: bool.isRequired,
+    confirmationToggle: func.isRequired,
+    confirmation: object.isRequired,
+    confirmed: bool.isRequired,
 };
 
 export default withRouter(ConfirmationView);

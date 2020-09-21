@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { GeneralButton } from '../../utils/styles/generalStyles';
@@ -121,5 +122,13 @@ const SignupView = props => {
         </SignupContainer >
     );
 };
+
+const { func, object, bool } = PropTypes;
+SignupView.propTypes = {
+    onChange: func.isRequired,
+    onSignup: func.isRequired,
+    correctPassword: bool.isRequired,
+    state: object.isRequired,
+}
 
 export default SignupView;

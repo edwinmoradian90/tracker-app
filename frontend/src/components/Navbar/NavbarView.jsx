@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { IoMdAdd } from 'react-icons/io';
@@ -113,6 +114,12 @@ const NavbarView = props => {
             </NavbarList>
         </Navbar>
     );
+};
+
+const { object } = PropTypes;
+NavbarView.propTypes = {
+    selectedTab: object.isRequired,
+    user: object.isRequired,
 };
 
 export default NavbarView;

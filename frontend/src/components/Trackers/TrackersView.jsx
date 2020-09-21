@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 import { IoIosArrowForward } from 'react-icons/io';
@@ -97,6 +98,10 @@ const TrackersView = props => {
             }
         </TrackersContainer>
     );
+};
+
+TrackersView.propTypes = {
+    trackers: PropTypes.array,
 };
 
 export default TrackersView;

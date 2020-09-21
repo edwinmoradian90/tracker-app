@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { withRouter, Link } from 'react-router-dom';
 import { IoIosArrowBack } from 'react-icons/io';
 import { AiOutlinePlus } from 'react-icons/ai';
@@ -57,6 +58,10 @@ const HeaderView = props => {
             }
         </NavContainer>
     );
+};
+
+HeaderView.propTypes = {
+    pageName: PropTypes.string.isRequired,
 };
 
 export default withRouter(HeaderView);
