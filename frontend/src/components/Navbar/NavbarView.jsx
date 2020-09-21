@@ -13,6 +13,7 @@ import {
 } from '../../utils/colors/main';
 
 const Navbar = styled.div`
+    pointer-events: ${props => props.user ? 'auto' : 'none'};
     top: min(91vh, 812px);
     position: fixed;
     width: 375px;
@@ -61,10 +62,10 @@ const IconText = styled.p`
 
 
 const NavbarView = props => {
-    const { selectedTab } = props;
+    const { selectedTab, user } = props;
     const { addStat, trackIt, progress, more } = selectedTab;
     return (
-        <Navbar className="navbarView">
+        <Navbar user={user} className="navbarView">
             <NavbarList className="navbar">
                 <NavItem
                     tab={addStat}

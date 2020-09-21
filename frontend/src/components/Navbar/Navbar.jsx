@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
+import { getCurrentUser } from '../../utils/sessionHelpers';
 import NavbarView from './NavbarView';
 
 const Navbar = props => {
+    const user = getCurrentUser();
     const path = `/${props.location.pathname.split('/')[1]}`;
     const pageRef = {
         "/": "addStat",
@@ -32,6 +34,7 @@ const Navbar = props => {
     return (
         <NavbarView
             selectedTab={selectedTab}
+            user={user}
         />
     );
 };
