@@ -77,7 +77,7 @@ class TrackersController < ApplicationController
       }
     end
   end
-
+  
   private
 
     def tracker_params

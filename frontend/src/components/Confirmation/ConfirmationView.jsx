@@ -110,7 +110,6 @@ const ConfirmationView = props => {
                             confirmed={confirmed}
                             onClick={confirmation.confirm !== null
                                 ? () => {
-                                    console.log('YES');
                                     confirmation.confirm(id ? id : null);
                                     confirmAction();
                                 }
@@ -124,7 +123,6 @@ const ConfirmationView = props => {
                                 confirmationToggle(false)
                                 if (confirmed) {
                                     auxFunctions();
-                                    console.log('condirmed function')
                                 };
                             }}
                         >

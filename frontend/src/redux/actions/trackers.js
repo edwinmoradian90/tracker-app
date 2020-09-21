@@ -33,4 +33,9 @@ const deleteTracker = id => {
     };
 };
 
-export { userTrackers, userTracker, deleteTracker };
+
+export {
+    userTrackers,
+    userTracker,
+    deleteTracker,
+};
