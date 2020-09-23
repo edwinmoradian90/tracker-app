@@ -21,7 +21,19 @@ const getToken = () => {
 const removeCurrentUser = () => {
     const currentUser = localStorage.getItem('currentUser');
     if (currentUser !== null) {
-        localStorage.removeItem('currentUser');
+        const url = 'http://localhost:3001/logout';
+        const token = getToken();
+        const headers = {
+            'Authorization': token,
+        };
+        axios.get(url, { headers })
+            .then(res => {
+                const { status } = res.data;
+                if (status === 200) {
+                    localStorage.removeItem('currentUser');
+                };
+            })
+            .catch(err => console.log(err));
     };
 };
 

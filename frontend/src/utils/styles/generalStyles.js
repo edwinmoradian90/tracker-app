@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
 
 const riseup = keyframes`
     from { 
@@ -31,8 +31,12 @@ const fadein = keyframes`
     }
 `;
 
+const animate = `riseup .7s 1`;
+
 const GeneralButton = styled.div`
-    animation:${props => props.animation ? riseup + '.7s 1' : null};
+    ${props => props.animation ? css`
+       animation: ${riseup} .7s 1;
+    ` : null};
     align-items: center;
     background: ${props => props.background};
     border: ${props => props.border};

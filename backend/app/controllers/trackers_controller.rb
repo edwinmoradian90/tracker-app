@@ -2,7 +2,7 @@ class TrackersController < ApplicationController
 
   def create
     @tracker = session_user.trackers.new(tracker_params)
-    if @tracker && @tracker.save!
+    if @tracker && @tracker.save! && is_admin
       render json: {
         status: 200,
         message: 'Tracker created',
@@ -33,7 +33,7 @@ class TrackersController < ApplicationController
   def update
     @tracker = Tracker.find(params[:id])
     @tracker.update(fuel: params[:fuel], amount_driven: params[:amount_driven], limit: params[:limit])
-    if @tracker.save!
+    if @tracker.save! && is_admin
       render json: {
         status: 200,
         message: 'Successfully updated tracker'
@@ -64,7 +64,7 @@ class TrackersController < ApplicationController
 
   def destroy
     @tracker = Tracker.find(params[:id])
-    if @tracker
+    if @tracker && is_admin
       @tracker.destroy
       render json: {
         status: 200,
@@ -82,6 +82,15 @@ class TrackersController < ApplicationController
 
     def tracker_params
       params.require(:tracker).permit(:fuel, :amount_driven, :limit)
+    end
+
+    def is_admin
+      @user = session_user
+      user_is_admin = false
+      if @user.admin
+        user_is_admin = true 
+      end
+      user_is_admin
     end
 
 end

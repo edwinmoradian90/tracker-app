@@ -119,7 +119,7 @@ const NavbarView = props => {
 const { object } = PropTypes;
 NavbarView.propTypes = {
     selectedTab: object.isRequired,
-    user: object.isRequired,
+    user: object,
 };
 
 export default NavbarView;

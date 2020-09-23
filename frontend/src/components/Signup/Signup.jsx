@@ -31,6 +31,7 @@ const Signup = props => {
                 last_name: lastName,
                 email: email,
                 password: password,
+                admin: false,
             };
             axios.post(url, { user })
                 .then(res => {

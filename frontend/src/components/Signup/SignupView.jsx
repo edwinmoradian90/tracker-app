@@ -99,6 +99,7 @@ const SignupView = props => {
                 />
             </InputContainer>
             <GeneralButton
+                animation={true}
                 background={() => checkForm() ? green : medGrey}
                 color={white}
                 onClick={() => checkForm() ? onSignup() : null}

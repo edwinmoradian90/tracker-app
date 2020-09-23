@@ -46,6 +46,7 @@ const LoginView = props => {
                         type="email"
                         className="email"
                         placeholder="Email"
+                        value={email}
                     />
                 </InputContainer>
                 <InputContainer className="passwordInputContainer">
@@ -56,12 +57,15 @@ const LoginView = props => {
                         className="password"
                         placeholder="Password"
                         marginBottom="20px"
+                        value={password}
                     />
                 </InputContainer>
             </div>
             <GeneralButton
+                animation={true}
                 background={email && password ? green : medGrey}
                 color={white}
+                className="submitLoginForm"
                 onClick={
                     email && password
                         ?

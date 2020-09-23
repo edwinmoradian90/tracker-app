@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   post "/signup", to: "users#create"
   get "/user_is_authed", to: "sessions#user_is_authed"
   get "/logged_in", to: "application#logged_in?"
+  get "/logout", to: "sessions#logout"
   resources :users
   resources :trackers
 end

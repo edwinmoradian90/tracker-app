@@ -217,6 +217,7 @@ const TrackerView = props => {
                     editMode
                         ?
                         <GeneralButton
+                            animation={true}
                             color={white}
                             margin="20px auto 0 auto"
                             width="320px"
