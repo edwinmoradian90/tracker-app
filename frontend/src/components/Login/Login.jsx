@@ -38,6 +38,7 @@ const Login = props => {
         axios.post(url, user)
             .then(res => {
                 const { status } = res.data;
+                console.log(res)
                 if (status !== 200) {
                     setIncorrectData(true);
                     console.log('incorrect data')
