@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { GeneralButton } from '../../utils/styles/generalStyles';
-import { green, medGrey, white } from '../../utils/colors/main';
+import { green, medGrey, white, warningRed } from '../../utils/colors/main';
 import { fadein } from '../../utils/styles/generalStyles';
 
 const SignupContainer = styled.div`
@@ -24,7 +24,7 @@ const NewUser = styled.p`
 `;
 
 const InputContainer = styled.div`
-    margin-bottom: 10px;
+    height: 100%;
 `;
 
 const Input = styled.input`
@@ -32,8 +32,23 @@ const Input = styled.input`
     width: 94%;
 `;
 
+const Error = styled.p`
+    color: ${warningRed};
+    display: flex;
+    visibility: ${props => props.incorrectData ? 'auto' : 'hidden'};
+    font-size: 14px;
+    font-weight: 300;
+    margin: 0 0 20px 0;
+`;
+
 const SignupView = props => {
-    const { onChange, onSignup, correctPassword, state } = props;
+    const {
+        onChange,
+        onSignup,
+        incorrectData,
+        state,
+        validations,
+    } = props;
     const {
         firstName,
         lastName,
@@ -46,7 +61,8 @@ const SignupView = props => {
         if (
             firstName && lastName
             && email && password &&
-            passwordConfirmation
+            passwordConfirmation &&
+            passwordConfirmation.length >= 6
         ) {
             return true;
         } else {
@@ -98,6 +114,9 @@ const SignupView = props => {
                     placeholder="Password Confirmation"
                 />
             </InputContainer>
+            <Error incorrectData={incorrectData}>
+                {validations.validation}
+            </Error>
             <GeneralButton
                 animation={true}
                 background={() => checkForm() ? green : medGrey}
@@ -113,13 +132,6 @@ const SignupView = props => {
                     Log in.
                 </Link>
             </NewUser>
-            {
-                correctPassword
-                    ?
-                    null
-                    :
-                    <p className="incorrectPassword">Passwords do not match.</p>
-            }
         </SignupContainer >
     );
 };
@@ -128,8 +140,9 @@ const { func, object, bool } = PropTypes;
 SignupView.propTypes = {
     onChange: func.isRequired,
     onSignup: func.isRequired,
-    correctPassword: bool.isRequired,
+    incorrectData: bool.isRequired,
     state: object.isRequired,
+    validations: object.isRequired,
 }
 
 export default SignupView;

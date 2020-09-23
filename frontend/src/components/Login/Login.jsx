@@ -12,6 +12,7 @@ const Login = props => {
         email: "",
         password: "",
     });
+    const [incorrectData, setIncorrectData] = useState(false);
     const currentUserCheck = () => {
         return localStorage.getItem('currentUser');
     };
@@ -19,6 +20,9 @@ const Login = props => {
         localStorage.removeItem('currentUser');
     };
     const onChange = e => {
+        if (incorrectData) {
+            setIncorrectData(false);
+        };
         setState({
             ...state,
             [e.target.name]: e.target.value
@@ -33,37 +37,45 @@ const Login = props => {
         const user = { email, password };
         axios.post(url, user)
             .then(res => {
-                const { data } = res;
-                const token = data.jwt;
-                const {
-                    first_name,
-                    last_name,
-                    email,
-                    updated_at,
-                    created_at,
-                    id,
-                } = data.user;
-                const userInfo = {
-                    firstName: first_name,
-                    lastName: last_name,
-                    email: email,
-                    updatedAt: updated_at,
-                    createdAt: created_at,
-                    id: id,
-                    token: `Bearer ${token}`,
-                };
-                if (token) {
-                    const newUrl = "http://localhost:3001/user_is_authed";
-                    const headers = {
-                        "Authorization": `Bearer ${token}`,
+                const { status } = res.data;
+                if (status !== 200) {
+                    setIncorrectData(true);
+                    console.log('incorrect data')
+                } else if (status === 200) {
+                    const { data } = res;
+                    const token = data.jwt;
+                    const {
+                        first_name,
+                        last_name,
+                        email,
+                        updated_at,
+                        created_at,
+                        id,
+                    } = data.user;
+                    const userInfo = {
+                        firstName: first_name,
+                        lastName: last_name,
+                        email: email,
+                        updatedAt: updated_at,
+                        createdAt: created_at,
+                        id: id,
+                        token: `Bearer ${token}`,
                     };
-                    axios.get(newUrl, { headers })
-                        .then(res => console.log('headers', res))
-                        .catch(err => console.log(err));
-                    localStorage.setItem('currentUser', JSON.stringify(userInfo));
-                    dispatch(currentUser(userInfo));
-                    props.history.push('/');
-                };
+                    if (token) {
+                        const newUrl = "http://localhost:3001/user_is_authed";
+                        const headers = {
+                            "Authorization": `Bearer ${token}`,
+                        };
+                        axios.get(newUrl, { headers })
+                            .then(res => {
+                                const { status } = res.data;
+                            })
+                            .catch(err => console.log(err));
+                        localStorage.setItem('currentUser', JSON.stringify(userInfo));
+                        dispatch(currentUser(userInfo));
+                        props.history.push('/');
+                    };
+                }
             })
             .catch(err => console.log(err));
     }
@@ -72,6 +84,7 @@ const Login = props => {
             onChange={onChange}
             onSubmit={onSubmit}
             state={state}
+            incorrectData={incorrectData}
         />
     );
 };

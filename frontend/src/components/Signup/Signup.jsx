@@ -9,7 +9,9 @@ import SignupView from './SignupView';
 const Signup = props => {
     const dispatch = useDispatch();
     const url = "http://localhost:3001/signup";
-    const [correctPassword, setCorrectPassword] = useState(true);
+    const validations = {
+        validation: 'Please check your information for errors.'
+    };
     const [state, setState] = useState({
         firstName: '',
         lastName: '',
@@ -17,6 +19,7 @@ const Signup = props => {
         password: '',
         passwordConfirmation: '',
     });
+    const [incorrectData, setIncorrectData] = useState(false);
     const onSignup = () => {
         const {
             firstName,
@@ -69,14 +72,19 @@ const Signup = props => {
                         localStorage.setItem('currentUser', JSON.stringify(userInfo));
                         dispatch(currentUser(userInfo));
                         props.history.push('/');
+                    } else {
+                        setIncorrectData(true);
                     }
                 })
                 .catch(err => console.log(err));
         } else {
-            setCorrectPassword(false);
+            setIncorrectData(true);
         };
     }
     const onChange = e => {
+        if (incorrectData) {
+            setIncorrectData(false);
+        };
         setState({
             ...state,
             [e.target.name]: e.target.value
@@ -87,7 +95,8 @@ const Signup = props => {
             <SignupView
                 onChange={onChange}
                 onSignup={onSignup}
-                correctPassword={correctPassword}
+                incorrectData={incorrectData}
+                validations={validations}
                 state={state}
             />
         </div>

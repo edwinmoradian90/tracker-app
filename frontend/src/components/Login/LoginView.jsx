@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { GeneralButton, fadein } from '../../utils/styles/generalStyles';
-import { green, medGrey, white } from '../../utils/colors/main';
+import { green, medGrey, white, warningRed } from '../../utils/colors/main';
 
 const LoginContainer = styled.div`
     display: flex;
@@ -31,8 +31,17 @@ const Input = styled.input`
     width: 94%;
 `;
 
+const Error = styled.p`
+    color: ${warningRed};
+    display: flex;
+    visibility: ${props => props.incorrectData ? 'auto' : 'hidden'};
+    font-size: 14px;
+    font-weight: 300;
+    margin: 0 0 20px 0;
+`;
+
 const LoginView = props => {
-    const { onChange, onSubmit, state } = props;
+    const { onChange, onSubmit, state, incorrectData } = props;
     const { email, password } = state;
     return (
         <LoginContainer className="loginView">
@@ -60,6 +69,7 @@ const LoginView = props => {
                         value={password}
                     />
                 </InputContainer>
+                <Error incorrectData={incorrectData}>Please check your email or password.</Error>
             </div>
             <GeneralButton
                 animation={true}
@@ -87,11 +97,12 @@ const LoginView = props => {
     );
 };
 
-const { func, object } = PropTypes;
+const { func, object, bool } = PropTypes;
 LoginView.propTypes = {
     onChange: func.isRequired,
     onSubmit: func.isRequired,
     state: object.isRequired,
+    incorrectData: bool.isRequired,
 };
 
 export default LoginView;
