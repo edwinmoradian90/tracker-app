@@ -1,0 +1,31 @@
+{
+  "name": "tracker-app",
+  "version": "1.0.0",
+  "description": "[![Contributors][contributors-shield]][contributors-url] [![Forks][forks-shield]][forks-url] [![Stargazers][stars-shield]][stars-url] [![Issues][issues-shield]][issues-url] [![MIT License][license-shield]][license-url] [![LinkedIn][linkedin-shield]][linkedin-url]",
+  "main": "index.js",
+  "dependencies": {
+    "prop-types": "^15.7.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "build": "cd frontend && npm install && npm build && cd ..",
+    "deploy": "cp -a frontend/build/. backend/public/",
+    "postinstall": "npm build && npm deploy && echo 'Client built!'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "yarn": "1.22.5",
+    "npm": "6.14.8",
+    "node": "12.18.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/edwinmoradian90/tracker-app.git"
+  },
+  "author": "Edwin Moradian",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/edwinmoradian90/tracker-app/issues"
+  },
+  "homepage": "https://github.com/edwinmoradian90/tracker-app#readme"
+}

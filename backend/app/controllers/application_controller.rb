@@ -1,5 +1,9 @@
 class ApplicationController < ActionController::API
-  before_action :require_login
+  before_action :require_login, except: %i['fallback_index_html']
+
+  def fallback_index_html
+    render :file => 'public/index.html'
+  end
 
   def encode_token(payload, expiration)
        payload[:exp] = expiration
