@@ -36,6 +36,11 @@ exports[`Login Renders 1`] = `
         value=""
       />
     </div>
+    <p
+      className="sc-gKAblj jFGtkr"
+    >
+      Please check your email or password.
+    </p>
   </div>
   <div
     className="sc-bdnylx jCKEPf submitLoginForm"
