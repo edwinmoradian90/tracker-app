@@ -10,7 +10,7 @@
   "scripts": {
     "build": "cd frontend && npm install && npm build && cd ..",
     "deploy": "cp -a frontend/build/. backend/public/",
-    "postinstall": "npm build && npm deploy && echo 'Client built!'",
+    "postinstall": "cd frontend && npm build && npm publish && echo 'Client built!'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
