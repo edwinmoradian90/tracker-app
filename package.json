@@ -8,9 +8,9 @@
   },
   "devDependencies": {},
   "scripts": {
-    "build": "cd frontend && npm install && npm build && cd ..",
-    "deploy": "cp -a frontend/build/. backend/public/",
-    "postinstall": "npm build && npm deploy && echo 'Client built!'",
+    "build": "cd frontend && npm install && npm run-script build && cd ..",
+    "deploy": "cp -a ./frontend/build/ backend/public/",
+    "postinstall": "npm run-script build && npm run-script deploy && echo 'Client built!'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
