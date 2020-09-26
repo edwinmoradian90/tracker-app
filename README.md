@@ -64,7 +64,7 @@ Built with React, Redux, and Rails.
 <!-- GETTING STARTED -->
 ## Getting Started
 
-The easiest way to get started with the app is to view the online demo [here](),
+The easiest way to get started with the app is to view the online demo [here](https://tracker-app-react-rails.herokuapp.com),
 but if you prefer, you can also install the project locally with the steps below.
 
 ### Prerequisites
@@ -78,12 +78,11 @@ gem install rails
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clone the repo
 ```sh
 git clone https://github.com/edwinmoradian90/tracker-app.git
 ```
-3. Install NPM packages
+2. Install NPM packages
 ```sh
 cd ./frontend
 npm install
@@ -117,6 +116,8 @@ Distributed under the MIT License. See `LICENSE` for more information.
 Edwin Moradian - [GitHub](https://github.com/edwinmoradian90) | [Portfolio](https://edwin-moradian.firebaseapp.com)
 
 Project Link: [https://github.com/edwinmoradian90/tracker-app](https://github.com/edwinmoradian90/tracker-app)
+
+Live demo: [https://tracker-app-react-rails.herokuapp.com](https://tracker-app-react-rails.herokuapp.com)
 
 
 
