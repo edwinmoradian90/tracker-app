@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  get '*path', to: "application#fallback_index_html", constraints: ->(request) do
-    !request.xhr? && request.format.html?
-  end
   post "/login", to: "sessions#login"
   get "/auto_login", to: "sessions#auto_login"
   post "/signup", to: "users#create"
@@ -10,4 +7,7 @@ Rails.application.routes.draw do
   get "/logout", to: "sessions#logout"
   resources :users
   resources :trackers
+  get '*path', to: "application#fallback_index_html", constraints: ->(request) do
+    !request.xhr? && request.format.html?
+  end
 end
