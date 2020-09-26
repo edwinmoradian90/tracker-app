@@ -23,7 +23,6 @@ const NewUser = styled.p`
 `;
 
 const InputContainer = styled.div`
-    height: 100%;
     margin-bottom: 0;
     width: 100%;
 `;
@@ -51,12 +50,16 @@ const LoginView = props => {
                     type="password"
                     className="password"
                     placeholder="Password"
-                    marginBottom="20px"
                     value={password}
                     width="100%"
                 />
             </InputContainer>
-            <Error incorrectData={incorrectData}>Please check your email or password.</Error>
+            <Error
+                margin="20px 20px 20px 0px"
+                incorrectData={incorrectData}
+            >
+                Please check your email or password.
+            </Error>
             <GeneralButton
                 animation={true}
                 background={email && password ? green : medGrey}

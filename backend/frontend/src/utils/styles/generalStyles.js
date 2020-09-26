@@ -78,7 +78,7 @@ const Error = styled.p`
     display: flex;
     font-size: 14px;
     font-weight: 300;
-    margin: 20px;
+    margin: ${props => props.margin ? props.margin : '20px'};
     visibility: ${props => props.incorrectData ? 'auto' : 'hidden'};
 `;
 
