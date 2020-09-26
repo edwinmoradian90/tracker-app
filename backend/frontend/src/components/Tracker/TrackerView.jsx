@@ -33,12 +33,13 @@ const fadein = keyframes`
     }
 
     to {
-        opacity: .7;
+        opacity: .9;
     }
 `;
 
 const TrackerContainer = styled.div`
     height: ${props => props.editMode ? '100vh' : 'auto'};
+    max-height: 100vh;
     padding: 20px 20px 0 20px;
 `;
 
@@ -65,13 +66,13 @@ const Percent = styled.div`
     color: ${medGrey};
     font-size: 12px;
     margin-bottom: 5px;
-    opacity: .7;
+    opacity: .9;
 `;
 
 const LineContainer = styled.div`
     margin: auto;
     padding-top: 10px;
-    opacity: .9;
+    opacity: 1;
 `;
 
 const StatContainer = styled.div`
@@ -84,14 +85,12 @@ const Label = styled.p`
     font-size: 14px;
     font-weight: 300;
     margin-bottom: 10px;
-    opacity: .7;
 `;
 
 const Stat = styled.p`
     color: ${black};
     font-size: 16px;
     font-weight: 300;
-    opacity: .8;
     padding: 7.5px 0px;
 `;
 
@@ -111,14 +110,13 @@ const EditButton = styled.div`
     align-items: center;
     color: ${props => props.editMode ? blue : 'lightgrey'};
     font-size: 25px;
-    opacity: .7;
 `;
 
 const TrashCan = styled.span`
     animation: ${fadein} 1s 1;
     color: ${warningRed};
     font-size: 23px;
-    opacity: .7;
+    opacity: .8;
     visibility: ${props => props.editMode ? 'visible' : 'hidden'};
 `;
 
@@ -137,7 +135,10 @@ const TrackerView = props => {
     const trackerIcons = [<GiSteeringWheel />, <RiGasStationFill />, <AiFillCar />];
     const percent = (selectedTracker.amount_driven / selectedTracker.limit) * 100;
     return (
-        <TrackerContainer editMode={editMode} className="trackerView">
+        <TrackerContainer
+            editMode={editMode}
+            className="trackerView"
+        >
             <TopIconContainer>
                 <EditButton
                     onClick={editModeToggle}

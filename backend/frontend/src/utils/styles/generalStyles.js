@@ -1,5 +1,5 @@
 import styled, { keyframes, css } from 'styled-components';
-import { line, medGrey } from '../colors/main';
+import { line, medGrey, warningRed } from '../colors/main';
 
 const riseup = keyframes`
     from { 
@@ -19,7 +19,7 @@ const dropdown = keyframes`
 
     to {
         margin-bottom: 0;
-        opacity: .7;
+        opacity: .9;
     }
 `;
 
@@ -28,7 +28,7 @@ const fadein = keyframes`
         opacity: 0;
     }
     to {
-        opacity: .7;
+        opacity: .9;
     }
 `;
 
@@ -73,4 +73,13 @@ const Input = styled.input`
     width: ${props => props.width ? props.width : '100%'};
 `;
 
-export { GeneralButton, Input, fadein, riseup, dropdown };
+const Error = styled.p`
+    color: ${warningRed};
+    display: flex;
+    font-size: 14px;
+    font-weight: 300;
+    margin: 20px;
+    visibility: ${props => props.incorrectData ? 'auto' : 'hidden'};
+`;
+
+export { GeneralButton, Input, Error, fadein, riseup, dropdown };

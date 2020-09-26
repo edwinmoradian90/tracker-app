@@ -23,9 +23,7 @@ const Trackers = props => {
         if (token) {
             axios.get(url, { headers })
                 .then(res => {
-                    console.log(res)
                     if (res.data.status === 200) {
-                        console.log('WORKING')
                         dispatch(userTrackers(res.data.trackers));
                         setTrackers(res.data.trackers);
                         delayLoading(1000, setLoading, false);

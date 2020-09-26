@@ -22,7 +22,6 @@ const ProfilePictureContainer = styled.section`
     border-bottom: 3px solid ${line};
     display: flex;
     height: 100px;
-    opacity: .8;
     width: 100%;
     z-index: 10;
 `;
@@ -37,7 +36,6 @@ const ProfilePicture = styled.div`
     height: 50px;
     justify-content:center;
     margin-left: 20px;
-    opacity: .7;
     width: 50px;
 `;
 
@@ -45,7 +43,6 @@ const UserNameText = styled.div`
     color: ${black};
     font-size: 15px;
     margin-left: 20px;
-    opacity: .7;
 `;
 
 const OptionsList = styled.ul`
@@ -63,7 +60,6 @@ const OptionItem = styled.li`
     font-weight: 300;
     height: 60px;
     padding: 0 20px;
-    opacity: .7;
     &:hover {
         cursor: pointer;
     };
@@ -76,7 +72,6 @@ const Icon = styled.span`
     font-size: 15px;
     font-weight: 300;
     margin-right: 15px;
-    opacity: .7;
 `;
 
 const icons = [

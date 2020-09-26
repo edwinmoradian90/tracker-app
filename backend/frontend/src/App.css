@@ -50,8 +50,9 @@ input {
 html {
     background: white !important;
     display: flex;
-    justify-content: center;
     height: 100vh;
+    justify-content: center;
+    scrollbar-width: none;
     /*min-width: 320px !important;
     max-width: 414px !important;*/
 }

@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 import { currentUser } from '../../redux/actions/sessions';
-import { delayLoading } from '../../utils/helpers/generalHelpers';
+import { delayLoading, checkTypedIsNumber } from '../../utils/helpers/generalHelpers';
 import Loading from '../Loading/Loading';
 import HomeView from './HomeView';
 import Header from '../Header/Header';
@@ -20,6 +20,7 @@ const Home = props => {
     });
     const [token, setToken] = useState("");
     const [trackerCreated, setTrackerCreated] = useState(false);
+    const [notANumber, setNotANumber] = useState(false);
     useEffect(() => {
         const userInfo = JSON.parse(localStorage.getItem('currentUser'));
         if (userInfo) {
@@ -33,11 +34,22 @@ const Home = props => {
         };
     }, []);
     const onChange = e => {
-        setState({
-            ...state,
-            [e.target.name]: e.target.value
-        });
+        e.preventDefault();
+        if (checkTypedIsNumber(e.target.value)) {
+            if (notANumber) {
+                setNotANumber(false);
+            };
+            setState({
+                ...state,
+                [e.target.name]: e.target.value
+            });
+        } else {
+            if (!notANumber) {
+                setNotANumber(true);
+            };
+        };
     };
+
     const submitTrackerForm = e => {
         e.preventDefault();
         const {
@@ -89,6 +101,7 @@ const Home = props => {
                             onChange={onChange}
                             submitTrackerForm={submitTrackerForm}
                             trackerCreated={trackerCreated}
+                            notANumber={notANumber}
                             state={state}
                         />
                     </div>

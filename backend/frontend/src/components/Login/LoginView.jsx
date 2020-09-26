@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { GeneralButton, Input, fadein } from '../../utils/styles/generalStyles';
+import { GeneralButton, Input, Error, fadein } from '../../utils/styles/generalStyles';
 import { green, medGrey, white, warningRed, line } from '../../utils/colors/main';
 
 const LoginContainer = styled.div`
@@ -26,15 +26,6 @@ const InputContainer = styled.div`
     height: 100%;
     margin-bottom: 0;
     width: 100%;
-`;
-
-const Error = styled.p`
-    color: ${warningRed};
-    display: flex;
-    visibility: ${props => props.incorrectData ? 'auto' : 'hidden'};
-    font-size: 14px;
-    font-weight: 300;
-    margin: 0 0 20px 0;
 `;
 
 const LoginView = props => {

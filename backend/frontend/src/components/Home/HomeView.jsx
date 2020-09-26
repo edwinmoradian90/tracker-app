@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
-import { GeneralButton, Input } from '../../utils/styles/generalStyles';
+import { GeneralButton, Input, Error } from '../../utils/styles/generalStyles';
 import {
     green,
     medGrey,
@@ -17,7 +17,7 @@ const dropdown = keyframes`
 
     to {
         margin-bottom: 0px;
-        opacity: .7;
+        opacity: .9;
     }
 `;
 
@@ -27,7 +27,7 @@ const fadein = keyframes`
     }
 
     to {
-        opacity: .7;
+        opacity: .9;
     }
 `;
 
@@ -36,7 +36,7 @@ const InputContainer = styled.div`
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    margin-top: 50px;
+    margin-top: 20px;
     padding: 0 20px;
     width: 100%;
 `;
@@ -51,7 +51,7 @@ const Label = styled.div`
     font-size: 11px;
     font-weight: 300;
     margin-bottom: 5px;
-    opacity: .7;
+    opacity: .9;
 `;
 
 const ButtonContainer = styled.div`
@@ -66,7 +66,7 @@ const ButtonContainer = styled.div`
 const TrackersButton = styled.div`
     animation: ${fadein} 2s 1;
     color: ${medGrey};
-    opacity: .7;
+    opacity: .9;
     top: 4vh;
     position: relative;
     &:hover {
@@ -80,11 +80,11 @@ const TrackerCreated = styled.div`
     display: flex;
     justify-content: center;
     margin-top: 12vh;
-    opacity: .7;
+    opacity: .9;
 `;
 
 const HomeView = props => {
-    const { onChange, submitTrackerForm, trackerCreated, state } = props;
+    const { onChange, submitTrackerForm, trackerCreated, notANumber, state } = props;
     const { amountDriven, drivingLimit, amountOfFuel } = state;
     return (
         <div className="homeView">
@@ -129,12 +129,15 @@ const HomeView = props => {
                     />
                 </InputWrapper>
             </InputContainer>
+            <Error incorrectData={notANumber}>
+                Only input numbers.
+            </Error>
             <ButtonContainer>
                 <GeneralButton
                     background={amountDriven ? green : medGrey}
                     color={white}
                     className="submitNewTracker"
-                    margin="20px 0 0 0"
+                    margin="0 0 0 0"
                     onClick={e => submitTrackerForm(e)}
                     width="100%"
                 >
@@ -164,6 +167,7 @@ HomeView.propTypes = {
     onChange: func.isRequired,
     state: object.isRequired,
     trackerCreated: bool.isRequired,
+    notANumber: bool.isRequired,
 };
 
 export default withRouter(HomeView);

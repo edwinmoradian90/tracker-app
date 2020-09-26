@@ -18,13 +18,12 @@ const userTracker = tracker => ({
 
 const deleteTracker = id => {
     const token = getToken();
-    const url = `http://localhost:3001/trackers/${id}`;
+    const url = `/trackers/${id}`;
     const headers = {
         'Authorization': token,
     };
     axios.delete(url, { headers })
         .then(res => {
-            console.log(res);
             return true;
         })
         .catch(err => console.log(err));

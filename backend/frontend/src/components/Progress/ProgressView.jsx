@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
-import { Circle } from 'rc-progress';
+import { Line } from 'rc-progress';
 import {
     blue,
     medGrey,
     black,
-    white
+    white,
+    green
 } from '../../utils/colors/main';
 import { cleanDate } from '../../utils/helpers/generalHelpers';
 import { GoPencil } from 'react-icons/go';
@@ -23,8 +24,14 @@ const dropdown = keyframes`
 
     to {
         margin-bottom: 0;
-        opacity: .7;
+        opacity: .9;
     }
+`;
+
+const ProgressViewContainer = styled.section`
+    height: 100%;
+    margin-top: 20px;
+    width: 100%;
 `;
 
 const Totals = styled.div`
@@ -35,7 +42,6 @@ const Totals = styled.div`
     justify-content: space-between;
     padding: 20px;
     margin: 20px auto;
-    opacity: .7;
     width: 80%;
 `;
 
@@ -48,14 +54,14 @@ const TotalLabel = styled.label`
     color: ${medGrey};
     font-size: 12px;
     font-weight: 300;
-    opacity: .7;
+    opacity: .9;
 `;
 
 const TotalStat = styled.div`
     color: ${black};
     font-size: 16px;
     margin-top: 20px;
-    opacity: .7;
+    opacity: .9;
 `;
 
 const IconContainer = styled.div`
@@ -64,29 +70,19 @@ const IconContainer = styled.div`
 `;
 
 const ProgressVisuals = styled.div`
-    background: ${white};
-    border-radius: 5px;
-    height: 100px;
-    padding: 20px 20vw;
-    margin: 20px auto 0 auto;
-    opacity: .8;
-    width: 100px;
+    box-sizing: border-box;
+    opacity: .9;
+    padding: 20px 20px 0 20px;
+    width: 100%;
 `;
 
 const LimitLabel = styled.label`
     color: ${medGrey};
     font-size: 12px;
     font-weight: 300;
-    opacity: .7;
+    opacity: .9;
+    margin-top: 20px;
     padding: 20px;
-`;
-
-const Percent = styled.div`
-   color: ${blue};
-   bottom: 62%;
-   left: 38%;
-   opacity: .7;
-   position: relative;
 `;
 
 const NoProgress = styled.div`
@@ -94,7 +90,7 @@ const NoProgress = styled.div`
     display: flex;
     justify-content: center;
     margin-top: 20px;
-    opacity: .7;
+    opacity: .9;
 `;
 
 const ProgressView = props => {
@@ -139,10 +135,18 @@ const ProgressView = props => {
     );
 
     return (
-        <div className="progressView">
+        <ProgressViewContainer className="progressView">
             { trackers.length > 0
                 ?
                 <>
+                    <LimitLabel>Total driving limit reached: {percent.toFixed(0)}%</LimitLabel>
+                    <ProgressVisuals className="progressVisuals">
+                        <Line
+                            strokeWidth="4"
+                            strokeColor={green}
+                            percent={percent}
+                        />
+                    </ProgressVisuals>
                     <div className="progressStats">
                         {
                             progressData.length > 0 ? progressData.map(dataItem => {
@@ -162,20 +166,11 @@ const ProgressView = props => {
                                 : null
                         }
                     </div>
-                    <LimitLabel>Total driving limit reached: {percent.toFixed(0)}%</LimitLabel>
-                    <ProgressVisuals className="progressVisuals">
-                        <Circle
-                            strokeWidth="4"
-                            strokeColor={blue}
-                            percent={percent}
-                        />
-                        <Percent>{percent.toFixed(0)}%</Percent>
-                    </ProgressVisuals>
                 </>
                 :
                 <NoProgress>You haven't made any progress...yet.</NoProgress>
             }
-        </div>
+        </ProgressViewContainer>
     );
 };
 

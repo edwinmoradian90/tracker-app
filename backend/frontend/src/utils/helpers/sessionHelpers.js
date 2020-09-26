@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const authHeader = () => {
-    const url = "http://localhost:3001/user_is_authed";
+    const url = 'user_is_authed';
     const userInfo = JSON.parse(localStorage.getItem('userInfo'));
     const headers = {
         "Authorization": `Bearer ${userInfo.token}`,
@@ -21,7 +21,7 @@ const getToken = () => {
 const removeCurrentUser = () => {
     const currentUser = localStorage.getItem('currentUser');
     if (currentUser !== null) {
-        const url = 'http://localhost:3001/logout';
+        const url = '/logout';
         const token = getToken();
         const headers = {
             'Authorization': token,

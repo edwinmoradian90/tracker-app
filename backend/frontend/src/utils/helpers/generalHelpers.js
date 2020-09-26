@@ -33,5 +33,12 @@ const capitalizeFirstLetter = word => {
     word.split('').forEach((letter, i) => newWord.push(i === 0 ? capitalizedLetter : letter));
     return newWord;
 };
+const checkTypedIsNumber = typed => {
+    let result = true;
+    if (isNaN(parseInt(typed[typed.length - 1])) && typed !== "") {
+        result = false;
+    };
+    return result;
+};
 
-export { cleanDate, delayLoading, capitalizeFirstLetter };
+export { cleanDate, delayLoading, capitalizeFirstLetter, checkTypedIsNumber };

@@ -11,9 +11,11 @@ import {
     blue,
     darkGrey,
     medGrey,
+    black
 } from '../../utils/colors/main';
 
 const Navbar = styled.div`
+    background: ${black};
     height: 70px;
     pointer-events: ${props => props.user ? 'auto' : 'none'};
     top: min(90vh, 896px);
@@ -25,7 +27,7 @@ const Navbar = styled.div`
 
 const NavbarList = styled.ul`
     align-items: center;
-    background: ${darkGrey};
+    background: ${black};
     display: flex;
     height: 70px;
     justify-content: space-around;
