@@ -41,10 +41,18 @@ class SessionsController < ApplicationController
   end
 
   def user_is_authed
-    render json: {
-      status: 200,
-      message: "You are authorized"
-    }
+    if session_user
+      render json: {
+        status: 200,
+        message: "You are authorized",
+        user: session_user
+      }
+    else
+      render json: {
+        status: 500,
+        message: "You are not authorized"
+      }
+    end
   end 
 end
 

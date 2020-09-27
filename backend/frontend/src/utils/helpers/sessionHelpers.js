@@ -1,14 +1,24 @@
 import axios from 'axios';
 
-const authHeader = () => {
-    const url = 'user_is_authed';
-    const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-    const headers = {
-        "Authorization": `Bearer ${userInfo.token}`,
+const getHeaders = token => {
+    const headers = {};
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (token || currentUser.token) {
+        headers['Authorization'] = token || currentUser.token;
     };
-    axios.get(url, { headers })
-        .then(res => console.log(res))
-        .catch(err => console.log(err));
+    return headers;
+};
+
+const authHeader = async () => {
+    let auth = { result: false, response: '' };
+    const headers = getHeaders();
+    console.log(headers)
+    if (headers) {
+        auth['response'] = await axios.get('/user_is_authed', { headers });
+        auth['result'] = await auth.response.data.status === 200 ? true : false;
+        console.log(auth)
+    };
+    return auth;
 };
 
 const getToken = () => {
@@ -45,14 +55,6 @@ const getCurrentUser = () => {
     };
 };
 
-const getHeaders = token => {
-    const headers = {}
-    const currentUserToken = JSON.parse(localStorage.getItem('currentUser').token) || '';
-    if (token || currentUserToken) {
-        headers['Authorization'] = token || currentUserToken;
-    };
-    return headers;
-};
 
 export {
     authHeader,

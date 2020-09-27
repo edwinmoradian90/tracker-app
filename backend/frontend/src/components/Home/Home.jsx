@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 import { currentUser } from '../../redux/actions/sessions';
+import { authHeader, getCurrentUser, getHeaders, getToken, removeCurrentUser } from '../../utils/helpers/sessionHelpers';
 import { delayLoading, checkTypedIsNumber } from '../../utils/helpers/generalHelpers';
 import Loading from '../Loading/Loading';
 import HomeView from './HomeView';
@@ -23,16 +24,20 @@ const Home = props => {
     const [notANumber, setNotANumber] = useState(false);
     const [submitForm, setSubmitForm] = useState(false);
     useEffect(() => {
-        const userInfo = JSON.parse(localStorage.getItem('currentUser'));
-        if (userInfo) {
-            const token = userInfo.token;
-            dispatch(currentUser(userInfo));
-            setToken(token);
-            delayLoading(1000, setLoading, false);
-        } else {
-            props.history.push('/login');
-            setLoading(false);
-        };
+        const headers = getHeaders();
+        const user = getCurrentUser();
+        axios.get('/user_is_authed', { headers })
+            .then(res => {
+                const { status } = res.data;
+                if (status === 200) {
+                    dispatch(currentUser(user));
+                    delayLoading(1000, setLoading, false);
+                } else {
+                    removeCurrentUser();
+                    props.history.push('/login');
+                    setLoading(false);
+                };
+            })
     }, []);
     const onChange = e => {
         e.preventDefault();
