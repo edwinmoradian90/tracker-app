@@ -105,7 +105,7 @@ const SignupView = props => {
                     onChange={e => onChange(e)}
                     type="password"
                     className="signupPassword"
-                    placeholder="Password"
+                    placeholder="Password (minimum six characters)"
                     width="100%"
                 />
                 <Input

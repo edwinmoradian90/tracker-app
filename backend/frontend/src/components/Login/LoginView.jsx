@@ -30,6 +30,7 @@ const InputContainer = styled.div`
 const LoginView = props => {
     const { onChange, onSubmit, state, incorrectData } = props;
     const { email, password } = state;
+    const validations = email && password && password.length >= 6;
     return (
         <LoginContainer className="loginView">
             <LoginTitle className="loginTitle">Please login or sign up to continue.</LoginTitle>
@@ -62,11 +63,11 @@ const LoginView = props => {
             </Error>
             <GeneralButton
                 animation={true}
-                background={email && password ? green : medGrey}
+                background={validations ? green : medGrey}
                 color={white}
                 className="submitLoginForm"
                 onClick={
-                    email && password
+                    validations
                         ?
                         e => onSubmit(e)
                         :
