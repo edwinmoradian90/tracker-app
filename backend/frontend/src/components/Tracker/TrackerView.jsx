@@ -38,17 +38,15 @@ const fadein = keyframes`
 `;
 
 const TrackerContainer = styled.div`
-    box-sizing: border-box;
     height: ${props => props.editMode ? '100vh' : 'auto'};
     max-height: 100vh;
-    padding: 20px 20px 0 20px;
 `;
 
 const TopIconContainer = styled.div`
     align-items: center;
     display: flex;
     justify-content: space-between;
-    margin-bottom: 10px;
+    padding: 20px 20px 0px 20px;
 `;
 
 const CardContainer = styled.div`
@@ -58,7 +56,7 @@ const CardContainer = styled.div`
     background: ${white};
     display: flex;
     justify-content: space-between;
-    margin: 30px auto;
+    margin: 20px 20px;
     padding: 20px 10px;
 `;
 
@@ -72,7 +70,7 @@ const Percent = styled.div`
 
 const LineContainer = styled.div`
     margin: auto;
-    padding-top: 10px;
+    padding: 10px 20px 0 20px;
     opacity: 1;
 `;
 
@@ -83,7 +81,7 @@ const StatContainer = styled.div`
 const Label = styled.p`
     color: ${medGrey};
     font-family: 'Roboto', sans-serif;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 300;
     margin-bottom: 10px;
 `;
@@ -101,9 +99,12 @@ const TrackerIconWrapper = styled.div`
     padding-right: 20px;
 `;
 
+const ButtonsEditMode = styled.div`
+    margin: 0 20px 0 20px;
+`;
+
 const EditButtonContainer = styled.div`
-    max-width: 375px;
-    width: 375px;
+    width: 100%;
 `;
 
 const EditButton = styled.div`
@@ -197,7 +198,7 @@ const TrackerView = props => {
                 })
             }
 
-            <div className="editModeButtons">
+            <ButtonsEditMode className="editModeButtons">
                 <EditButtonContainer onClick={editModeToggle} className="editModeButton">
                 </EditButtonContainer>
                 {
@@ -210,13 +211,14 @@ const TrackerView = props => {
                             background={updateTrackers.amount_driven ? green : medGrey}
                             onClick={e => updateTrackers.amount_driven ? submitEdits(e) : null}
                             className="submitEditsButton"
+                            width="100%"
                         >
                             Save
                             </GeneralButton>
                         :
                         null
                 }
-            </div>
+            </ButtonsEditMode>
         </TrackerContainer>
     );
 };
