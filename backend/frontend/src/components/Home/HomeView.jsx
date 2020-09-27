@@ -129,7 +129,10 @@ const HomeView = props => {
                     />
                 </InputWrapper>
             </InputContainer>
-            <Error incorrectData={notANumber}>
+            <Error
+                margin="15px 15px 15px 20px"
+                incorrectData={notANumber}
+            >
                 Only input numbers.
             </Error>
             <ButtonContainer>

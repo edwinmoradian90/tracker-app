@@ -13,6 +13,7 @@ const Login = props => {
         password: "",
     });
     const [incorrectData, setIncorrectData] = useState(false);
+    const [submitForm, setSubmitForm] = useState(false);
     const currentUserCheck = () => {
         return localStorage.getItem('currentUser');
     };

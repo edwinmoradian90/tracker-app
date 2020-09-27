@@ -54,6 +54,7 @@ const ConfirmationMessage = styled.p`
     color: ${medGrey};
     font-size: 14px;
     height: 65px;
+    line-height: 20px;
     margin: 20px 0;
     padding: 0 20px;
 `;
