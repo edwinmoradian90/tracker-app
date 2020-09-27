@@ -6,6 +6,7 @@ const darkGrey = '#333333';
 const blue = '#5AB1E5';
 const black = '#222222';
 const green = '#a8de8c';
+const lightGreen = '#cbf1b7';
 const warningRed = '#B33A3A'
 const line = 'rgb(211, 211, 211, .3)';
 
@@ -18,6 +19,7 @@ export {
     blue,
     black,
     green,
+    lightGreen,
     warningRed,
     line,
 };

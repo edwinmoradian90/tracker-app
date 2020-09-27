@@ -21,6 +21,7 @@ const Home = props => {
     const [token, setToken] = useState("");
     const [trackerCreated, setTrackerCreated] = useState(false);
     const [notANumber, setNotANumber] = useState(false);
+    const [submitForm, setSubmitForm] = useState(false);
     useEffect(() => {
         const userInfo = JSON.parse(localStorage.getItem('currentUser'));
         if (userInfo) {
@@ -35,6 +36,9 @@ const Home = props => {
     }, []);
     const onChange = e => {
         e.preventDefault();
+        if (submitForm) {
+            setSubmitForm(false);
+        };
         if (checkTypedIsNumber(e.target.value)) {
             if (notANumber) {
                 setNotANumber(false);
@@ -52,6 +56,9 @@ const Home = props => {
 
     const submitTrackerForm = e => {
         e.preventDefault();
+        if (!submitForm) {
+            setSubmitForm(true);
+        };
         const {
             amountOfFuel,
             amountDriven,
@@ -79,6 +86,7 @@ const Home = props => {
                 const { status } = res.data;
                 if (status === 200) {
                     setTrackerCreated(true);
+                    setSubmitForm(false);
                 } else if (status === 404) {
                     props.history.push("/login");
                 }
@@ -103,6 +111,7 @@ const Home = props => {
                             trackerCreated={trackerCreated}
                             notANumber={notANumber}
                             state={state}
+                            submitForm={submitForm}
                         />
                     </div>
             }

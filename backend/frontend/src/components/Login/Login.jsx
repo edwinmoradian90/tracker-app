@@ -24,6 +24,9 @@ const Login = props => {
         if (incorrectData) {
             setIncorrectData(false);
         };
+        if (submitForm) {
+            setSubmitForm(false);
+        };
         setState({
             ...state,
             [e.target.name]: e.target.value
@@ -31,6 +34,9 @@ const Login = props => {
     };
     const onSubmit = e => {
         e.preventDefault();
+        if (!submitForm) {
+            setSubmitForm(true);
+        };
         if (currentUserCheck()) {
             removeCurrentUser();
         };
@@ -69,11 +75,11 @@ const Login = props => {
                         axios.get(newUrl, { headers })
                             .then(res => {
                                 const { status } = res.data;
+                                localStorage.setItem('currentUser', JSON.stringify(userInfo));
+                                dispatch(currentUser(userInfo));
+                                props.history.push('/');
                             })
                             .catch(err => console.log(err));
-                        localStorage.setItem('currentUser', JSON.stringify(userInfo));
-                        dispatch(currentUser(userInfo));
-                        props.history.push('/');
                     };
                 }
             })
@@ -83,6 +89,7 @@ const Login = props => {
         <LoginView
             onChange={onChange}
             onSubmit={onSubmit}
+            submitForm={submitForm}
             state={state}
             incorrectData={incorrectData}
         />

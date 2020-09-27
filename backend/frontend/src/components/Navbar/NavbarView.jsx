@@ -18,7 +18,7 @@ const Navbar = styled.div`
     background: ${black};
     height: 70px;
     pointer-events: ${props => props.user ? 'auto' : 'none'};
-    top: min(90vh, 896px);
+    bottom: 0;
     position: fixed;
     width: 100%;
     max-width: 414px;
@@ -60,7 +60,7 @@ const Icon = styled.div`
 const IconText = styled.p`
     color: ${props => props.tab ? white : medGrey};
     font-family: 'Roboto', sans-serif;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 400;
     margin-top: 5px;
 `;

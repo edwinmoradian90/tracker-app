@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { GeneralButton, Input, Error, fadein } from '../../utils/styles/generalStyles';
-import { green, medGrey, white, warningRed, line } from '../../utils/colors/main';
+import { green, lightGreen, medGrey, white, warningRed, line } from '../../utils/colors/main';
 
 const LoginContainer = styled.div`
     display: flex;
@@ -28,7 +28,7 @@ const InputContainer = styled.div`
 `;
 
 const LoginView = props => {
-    const { onChange, onSubmit, state, incorrectData } = props;
+    const { onChange, onSubmit, state, incorrectData, submitForm } = props;
     const { email, password } = state;
     const validations = email && password && password.length >= 6;
     return (
@@ -63,7 +63,11 @@ const LoginView = props => {
             </Error>
             <GeneralButton
                 animation={true}
-                background={validations ? green : medGrey}
+                background={
+                    validations
+                        ? submitForm ? lightGreen : green
+                        : medGrey
+                }
                 color={white}
                 className="submitLoginForm"
                 onClick={
@@ -74,6 +78,7 @@ const LoginView = props => {
                         null
                 }
                 type="submit"
+                submitForm={submitForm}
             >
                 Log in
             </GeneralButton>
@@ -93,6 +98,7 @@ LoginView.propTypes = {
     onSubmit: func.isRequired,
     state: object.isRequired,
     incorrectData: bool.isRequired,
+    submitForm: bool.isRequired,
 };
 
 export default LoginView;

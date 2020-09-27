@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 import { GeneralButton, Input, Error } from '../../utils/styles/generalStyles';
 import {
+    lightGreen,
     green,
     medGrey,
     white,
@@ -84,7 +85,14 @@ const TrackerCreated = styled.div`
 `;
 
 const HomeView = props => {
-    const { onChange, submitTrackerForm, trackerCreated, notANumber, state } = props;
+    const {
+        onChange,
+        submitTrackerForm,
+        trackerCreated,
+        notANumber,
+        state,
+        submitForm,
+    } = props;
     const { amountDriven, drivingLimit, amountOfFuel } = state;
     return (
         <div className="homeView">
@@ -137,11 +145,15 @@ const HomeView = props => {
             </Error>
             <ButtonContainer>
                 <GeneralButton
-                    background={amountDriven ? green : medGrey}
+                    background={
+                        amountDriven
+                            ? green
+                            : medGrey}
                     color={white}
                     className="submitNewTracker"
                     margin="0 0 0 0"
                     onClick={e => submitTrackerForm(e)}
+                    submitForm={submitForm}
                     width="100%"
                 >
                     {trackerCreated ? 'Add another one' : 'Create new tracker'}
@@ -171,6 +183,7 @@ HomeView.propTypes = {
     state: object.isRequired,
     trackerCreated: bool.isRequired,
     notANumber: bool.isRequired,
+    submitForm: bool.isRequired,
 };
 
 export default withRouter(HomeView);

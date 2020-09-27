@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { GeneralButton, Input } from '../../utils/styles/generalStyles';
-import { green, medGrey, white, warningRed } from '../../utils/colors/main';
+import { green, lightGreen, medGrey, white, warningRed } from '../../utils/colors/main';
 import { fadein } from '../../utils/styles/generalStyles';
 
 const SignupContainer = styled.div`
@@ -47,6 +47,7 @@ const SignupView = props => {
         incorrectData,
         state,
         validations,
+        submitForm,
     } = props;
     const {
         firstName,
@@ -61,6 +62,7 @@ const SignupView = props => {
             firstName && lastName
             && email && password &&
             passwordConfirmation &&
+            password.length >= 6 &&
             passwordConfirmation.length >= 6
         ) {
             return true;
@@ -123,10 +125,14 @@ const SignupView = props => {
             </Error>
             <GeneralButton
                 animation={true}
-                background={() => checkForm() ? green : medGrey}
+                background={
+                    () => checkForm()
+                        ? submitForm ? lightGreen : green
+                        : medGrey}
                 color={white}
                 onClick={() => checkForm() ? onSignup() : null}
                 className="signupSubmit"
+                submitForm={submitForm}
             >
                 Sign up
             </GeneralButton>
@@ -147,6 +153,7 @@ SignupView.propTypes = {
     incorrectData: object.isRequired,
     state: object.isRequired,
     validations: object.isRequired,
+    submitForm: bool.isRequired,
 };
 
 export default SignupView;

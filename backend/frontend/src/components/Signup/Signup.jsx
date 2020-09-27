@@ -19,11 +19,15 @@ const Signup = props => {
         password: '',
         passwordConfirmation: '',
     });
+    const [submitForm, setSubmitForm] = useState(false);
     const [incorrectData, setIncorrectData] = useState({
         defaultError: false,
         emailError: false,
     });
     const onSignup = () => {
+        if (!submitForm) {
+            setSubmitForm(true);
+        };
         const {
             firstName,
             lastName,
@@ -81,11 +85,13 @@ const Signup = props => {
                             emailError: true,
                             defaultError: false,
                         });
+                        setSubmitForm(false);
                     } else if (status === 500) {
                         setIncorrectData({
                             emailError: false,
                             defaultError: true,
                         });
+                        setSubmitForm(false);
                     };
                 })
                 .catch(err => console.log(err));
@@ -103,6 +109,9 @@ const Signup = props => {
                 emailError: false,
             });
         };
+        if (submitForm) {
+            setSubmitForm(false);
+        };
         setState({
             ...state,
             [e.target.name]: e.target.value
@@ -113,6 +122,7 @@ const Signup = props => {
             <SignupView
                 onChange={onChange}
                 onSignup={onSignup}
+                submitForm={submitForm}
                 incorrectData={incorrectData}
                 validations={validations}
                 state={state}

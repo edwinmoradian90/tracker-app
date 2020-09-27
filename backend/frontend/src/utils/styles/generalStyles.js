@@ -43,9 +43,11 @@ const GeneralButton = styled.div`
     box-sizing: border-box;
     color: ${props => props.color};
     display: flex;
+    font-size: 16px;
     height: ${props => props.height};
     justify-content: center;
     padding: 20px 10px;
+    pointer-events: ${props => props.submitForm ? 'none' : 'auto'};
     margin: ${props => props.margin};
     min-width: 320px;
     max-width: 414px;
@@ -66,6 +68,7 @@ const Input = styled.input`
     box-sizing: border-box;
     color: ${medGrey};
     font-size: 16px;
+    font-weight: 300;
     padding: 15px 20px;
     pointer-events: ${props => props.disabled ? 'none' : null};
     margin-bottom: ${props => props.marginBottom};
