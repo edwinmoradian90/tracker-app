@@ -147,6 +147,6 @@ SignupView.propTypes = {
     incorrectData: object.isRequired,
     state: object.isRequired,
     validations: object.isRequired,
-}
+};
 
 export default SignupView;

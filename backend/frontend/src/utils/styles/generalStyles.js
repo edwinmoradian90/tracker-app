@@ -65,6 +65,7 @@ const Input = styled.input`
     border-radius: 5px;
     box-sizing: border-box;
     color: ${medGrey};
+    font-size: 16px;
     padding: 15px 20px;
     pointer-events: ${props => props.disabled ? 'none' : null};
     margin-bottom: ${props => props.marginBottom};
