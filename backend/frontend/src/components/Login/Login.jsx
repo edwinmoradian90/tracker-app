@@ -41,7 +41,10 @@ const Login = props => {
             removeCurrentUser();
         };
         const { email, password } = state;
-        const user = { email, password };
+        const user = {
+            email: email.toLowerCase(),
+            password: password.toLowerCase(),
+        };
         axios.post(url, user)
             .then(res => {
                 const { status } = res.data;

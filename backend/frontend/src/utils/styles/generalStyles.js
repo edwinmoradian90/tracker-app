@@ -113,7 +113,7 @@ const RotateDevice = styled.p`
         height: 100vh;
         justify-content: center;
         line-height: 25px;
-        width: 120vw;
+        width: 140vw;
     }
 `;
 

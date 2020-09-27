@@ -37,10 +37,10 @@ const Signup = props => {
         } = state;
         if (passwordConfirmation === password) {
             const user = {
-                first_name: firstName,
-                last_name: lastName,
-                email: email,
-                password: password,
+                first_name: firstName.toLowerCase(),
+                last_name: lastName.toLowerCase(),
+                email: email.toLowerCase(),
+                password: password.toLowerCase(),
                 admin: false,
             };
             axios.post(url, { user })

@@ -58,7 +58,8 @@ html {
 };
 
 body {
-    scrollbar-width: none;
+	background: #f6f6f6;
     height: 100vh;
+    scrollbar-width: none;
 	width: 100vw;
 };

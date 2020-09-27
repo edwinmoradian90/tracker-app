@@ -12,7 +12,7 @@ const ConfirmationViewContainer = styled.section`
     background: rgb(0,0,0, .1);
     display: ${props => props.confirmationOpen ? 'block' : 'none'};
     position: absolute;
-    height: 100%;
+    height: 100vh;
     top: 0;
     width: 100%;
     max-width: 414px;
