@@ -24,7 +24,7 @@ const dropdown = keyframes`
 
 const TrackersContainer = styled.div`
     background: ${lightGrey};
-    height: calc(812px - 118px);
+    height: 100%;
     max-width: 414px;
     width: 100vw;
 `;

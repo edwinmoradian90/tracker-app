@@ -100,7 +100,7 @@ const TrackerIconWrapper = styled.div`
 `;
 
 const ButtonsEditMode = styled.div`
-    margin: 0 20px 0 20px;
+    margin: 0 20px 20px 20px;
 `;
 
 const EditButtonContainer = styled.div`

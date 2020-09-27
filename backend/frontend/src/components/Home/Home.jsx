@@ -32,6 +32,7 @@ const Home = props => {
                 if (status === 200) {
                     dispatch(currentUser(user));
                     delayLoading(1000, setLoading, false);
+                    setToken(user.token);
                 } else {
                     removeCurrentUser();
                     props.history.push('/login');
@@ -88,6 +89,7 @@ const Home = props => {
         };
         axios.post(url, { tracker }, { headers })
             .then(res => {
+                console.log(res)
                 const { status } = res.data;
                 if (status === 200) {
                     setTrackerCreated(true);
