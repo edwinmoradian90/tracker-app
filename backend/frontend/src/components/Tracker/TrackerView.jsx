@@ -38,6 +38,7 @@ const fadein = keyframes`
 `;
 
 const TrackerContainer = styled.div`
+    box-sizing: border-box;
     height: ${props => props.editMode ? '100vh' : 'auto'};
     max-height: 100vh;
     padding: 20px 20px 0 20px;

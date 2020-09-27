@@ -10,11 +10,9 @@ import {
     green
 } from '../../utils/colors/main';
 import { cleanDate } from '../../utils/helpers/generalHelpers';
-import { GoPencil } from 'react-icons/go';
 import { AiFillCar } from 'react-icons/ai';
 import { RiGasStationFill } from 'react-icons/ri';
 import { GiSteeringWheel } from 'react-icons/gi';
-import { BsFillTrashFill } from 'react-icons/bs';
 
 const dropdown = keyframes`
     from { 
@@ -60,6 +58,7 @@ const TotalLabel = styled.label`
 const TotalStat = styled.div`
     color: ${black};
     font-size: 16px;
+    font-weight: 300;
     margin-top: 20px;
     opacity: .9;
 `;

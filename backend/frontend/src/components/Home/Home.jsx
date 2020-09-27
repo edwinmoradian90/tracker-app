@@ -89,7 +89,7 @@ const Home = props => {
                     setSubmitForm(false);
                 } else if (status === 404) {
                     props.history.push("/login");
-                }
+                };
             })
             .catch(err => console.log(err));
     };

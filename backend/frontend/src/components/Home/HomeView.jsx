@@ -4,7 +4,6 @@ import { withRouter } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 import { GeneralButton, Input, Error } from '../../utils/styles/generalStyles';
 import {
-    lightGreen,
     green,
     medGrey,
     white,

@@ -1,5 +1,5 @@
 import styled, { keyframes, css } from 'styled-components';
-import { line, medGrey, warningRed } from '../colors/main';
+import { line, black, medGrey, lightGrey, warningRed } from '../colors/main';
 
 const riseup = keyframes`
     from { 
@@ -86,4 +86,44 @@ const Error = styled.p`
     visibility: ${props => props.incorrectData ? 'auto' : 'hidden'};
 `;
 
-export { GeneralButton, Input, Error, fadein, riseup, dropdown };
+const AppContainer = styled.div`
+    background: ${lightGrey};
+    box-shadow: 1px 5px 80px ${black};
+    height: 100vh;
+    max-height: 896px;
+    max-width: 414px;
+    min-width: 320px;
+    width: 100%;
+    @media (min-width: 415px) and (max-height: 415px) {
+        display: none;
+        background: red;
+        width: 100vw !important;
+    };
+`;
+
+const RotateDevice = styled.p`
+    display: none;
+    @media (min-width: 415px) and (max-height: 415px) {
+        align-items: center;
+        background: ${lightGrey};
+        color: ${medGrey};
+        display: flex;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 300;
+        height: 100vh;
+        justify-content: center;
+        line-height: 25px;
+        width: 100vw;
+    }
+`;
+
+export {
+    GeneralButton,
+    Input,
+    Error,
+    AppContainer,
+    RotateDevice,
+    fadein,
+    riseup,
+    dropdown
+};
