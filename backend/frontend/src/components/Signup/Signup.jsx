@@ -9,7 +9,8 @@ const Signup = props => {
     const dispatch = useDispatch();
     const url = "/signup";
     const validations = {
-        validation: 'Please check your information for errors.'
+        defaultError: 'Please check your information for errors.',
+        emailError: 'Email already taken.',
     };
     const [state, setState] = useState({
         firstName: '',
@@ -18,7 +19,10 @@ const Signup = props => {
         password: '',
         passwordConfirmation: '',
     });
-    const [incorrectData, setIncorrectData] = useState(false);
+    const [incorrectData, setIncorrectData] = useState({
+        defaultError: false,
+        emailError: false,
+    });
     const onSignup = () => {
         const {
             firstName,
@@ -38,7 +42,8 @@ const Signup = props => {
             axios.post(url, { user })
                 .then(res => {
                     const { data } = res;
-                    if (data.jwt) {
+                    const { status } = res.data;
+                    if (data.jwt && status === 200) {
                         const url = '/login';
                         const token = `Bearer ${data.jwt}`;
                         const headers = {
@@ -71,18 +76,32 @@ const Signup = props => {
                         localStorage.setItem('currentUser', JSON.stringify(userInfo));
                         dispatch(currentUser(userInfo));
                         props.history.push('/');
-                    } else {
-                        setIncorrectData(true);
-                    }
+                    } else if (status === 409) {
+                        setIncorrectData({
+                            emailError: true,
+                            defaultError: false,
+                        });
+                    } else if (status === 500) {
+                        setIncorrectData({
+                            emailError: false,
+                            defaultError: true,
+                        });
+                    };
                 })
                 .catch(err => console.log(err));
         } else {
-            setIncorrectData(true);
+            setIncorrectData({
+                emailError: false,
+                defaultError: true,
+            });
         };
     }
     const onChange = e => {
-        if (incorrectData) {
-            setIncorrectData(false);
+        if (incorrectData.emailError || incorrectData.defaultError) {
+            setIncorrectData({
+                defaultError: false,
+                emailError: false,
+            });
         };
         setState({
             ...state,

@@ -28,8 +28,8 @@ const removeCurrentUser = () => {
         };
         axios.get(url, { headers })
             .then(res => {
-                console.log(status, res)
                 const { status } = res.data;
+                console.log(status, res)
                 if (status === 200) {
                     localStorage.removeItem('currentUser');
                 };

@@ -30,7 +30,11 @@ const InputContainer = styled.div`
 const Error = styled.p`
     color: ${warningRed};
     display: flex;
-    visibility: ${props => props.incorrectData ? 'auto' : 'hidden'};
+    visibility: ${props =>
+        props.incorrectData.defaultError || props.incorrectData.emailError
+            ? 'auto'
+            : 'hidden'
+    };
     font-size: 14px;
     font-weight: 300;
     margin: 0 0 20px 0;
@@ -115,7 +119,7 @@ const SignupView = props => {
                 />
             </InputContainer>
             <Error incorrectData={incorrectData}>
-                {validations.validation}
+                {incorrectData.emailError ? validations.emailError : validations.defaultError}
             </Error>
             <GeneralButton
                 animation={true}
@@ -140,7 +144,7 @@ const { func, object, bool } = PropTypes;
 SignupView.propTypes = {
     onChange: func.isRequired,
     onSignup: func.isRequired,
-    incorrectData: bool.isRequired,
+    incorrectData: object.isRequired,
     state: object.isRequired,
     validations: object.isRequired,
 }
