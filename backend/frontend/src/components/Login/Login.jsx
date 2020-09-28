@@ -77,7 +77,6 @@ const Login = props => {
                         };
                         axios.get(newUrl, { headers })
                             .then(res => {
-                                const { status } = res.data;
                                 localStorage.setItem('currentUser', JSON.stringify(userInfo));
                                 dispatch(currentUser(userInfo));
                                 props.history.push('/');

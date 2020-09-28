@@ -30,6 +30,7 @@ const ConfirmationWrapper = styled.div`
 
 const ConfirmationContainer = styled.div`
     background: ${white};
+    box-shadow: 1px 1px 60px ${medGrey};
     border-radius: 5px;
     height: 200px;
     padding-top: 20px;
@@ -138,7 +139,7 @@ const ConfirmationView = props => {
     );
 };
 
-const { func, bool, object, number, string } = PropTypes;
+const { func, bool, object, string } = PropTypes;
 ConfirmationView.propTypes = {
     auxFunctions: func,
     confirmationAction: func,

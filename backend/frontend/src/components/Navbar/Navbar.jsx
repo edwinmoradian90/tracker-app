@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
-import { getCurrentUser } from '../../utils/helpers/sessionHelpers';
+import axios from 'axios';
+import { getCurrentUser, getHeaders, removeCurrentUser } from '../../utils/helpers/sessionHelpers';
 import NavbarView from './NavbarView';
 
 const Navbar = props => {
     const user = getCurrentUser();
+    const headers = getHeaders();
     const path = `/${props.location.pathname.split('/')[1]}`;
     const pageRef = {
         "/": "addStat",
@@ -19,22 +21,51 @@ const Navbar = props => {
         progress: false,
         more: false,
     });
+    const [requireLogin, setRequireLogin] = useState(false);
 
     useEffect(() => {
-        if (selectedTab[currentPage]) return;
-        setSelectedTab({
+        const noTabSelected = {
             addStat: false,
             trackIt: false,
             progress: false,
             more: false,
-            [currentPage]: true,
-        });
-    }, [currentPage]);
+        };
+        if (requireLogin) {
+            setRequireLogin(false);
+        };
+        if (headers !== {} && user) {
+            axios.get('/user_is_authed', { headers })
+                .then(res => {
+                    const { status } = res.data;
+                    if (status !== 200) {
+                        removeCurrentUser();
+                        setSelectedTab(noTabSelected);
+                        setRequireLogin(true);
+                        props.history.push('/login');
+                    } else {
+                        if (selectedTab[currentPage]) return;
+                        setSelectedTab({
+                            addStat: false,
+                            trackIt: false,
+                            progress: false,
+                            more: false,
+                            [currentPage]: true,
+                        });
+                    };
+                })
+                .catch(err => console.log(err));
+        } else {
+            setRequireLogin(true);
+            setSelectedTab(noTabSelected);
+            props.history.push('/login');
+        };
+    }, [currentPage, requireLogin]);
 
     return (
         <NavbarView
             selectedTab={selectedTab}
             user={user}
+            requireLogin={requireLogin}
         />
     );
 };

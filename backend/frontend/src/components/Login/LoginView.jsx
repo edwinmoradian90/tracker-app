@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { GeneralButton, Input, Error, fadein } from '../../utils/styles/generalStyles';
-import { green, lightGreen, medGrey, white, warningRed, line } from '../../utils/colors/main';
+import { green, lightGreen, medGrey, white } from '../../utils/colors/main';
 
 const LoginContainer = styled.div`
     display: flex;

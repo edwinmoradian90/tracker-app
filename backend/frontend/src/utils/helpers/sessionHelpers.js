@@ -3,7 +3,7 @@ import axios from 'axios';
 const getHeaders = token => {
     const headers = {};
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    if (token || currentUser.token) {
+    if (currentUser !== null) {
         headers['Authorization'] = token || currentUser.token;
     };
     return headers;
@@ -31,20 +31,7 @@ const getToken = () => {
 const removeCurrentUser = () => {
     const currentUser = localStorage.getItem('currentUser');
     if (currentUser !== null) {
-        const url = '/logout';
-        const token = getToken();
-        const headers = {
-            'Authorization': token,
-        };
-        axios.get(url, { headers })
-            .then(res => {
-                const { status } = res.data;
-                console.log(status, res)
-                if (status === 200) {
-                    localStorage.removeItem('currentUser');
-                };
-            })
-            .catch(err => console.log(err));
+        localStorage.removeItem('currentUser');
     };
 };
 

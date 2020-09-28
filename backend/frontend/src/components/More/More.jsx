@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
-import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import Header from '../Header/Header';
 import Loading from '../Loading/Loading';
 import MoreView from './MoreView';
 import Confirmation from '../Confirmation/Confirmation';
-import { currentUser, logoutCurrentUser } from '../../redux/actions/sessions';
+import { currentUser } from '../../redux/actions/sessions';
 import { delayLoading } from '../../utils/helpers/generalHelpers';
-import { getCurrentUser, getToken, removeCurrentUser } from '../../utils/helpers/sessionHelpers';
+import { getCurrentUser } from '../../utils/helpers/sessionHelpers';
 import { moreData } from '../../utils/confirmations/more/more';
 
 const More = props => {
@@ -39,25 +38,10 @@ const More = props => {
     };
 
     useEffect(() => {
-        if (user === undefined) {
-            dispatch(logoutCurrentUser());
-            props.history.push('/');
-        };
-        const url = '/user_is_authed';
-        const token = getToken();
-        const headers = { 'Authorization': token };
-        axios.get(url, { headers })
-            .then(res => {
-                const { status } = res.data;
-                if (status === 200) {
-                    const user = getCurrentUser();
-                    dispatch(currentUser(user));
-                    delayLoading(1000, setLoading, false);
-                } else {
-                    props.history.push('/login');
-                };
-            });
-    }, [currentUser, dispatch]);
+        const user = getCurrentUser();
+        dispatch(currentUser(user));
+        delayLoading(1000, setLoading, false);
+    }, [dispatch]);
     return (
         <div className='more'>
             <Header

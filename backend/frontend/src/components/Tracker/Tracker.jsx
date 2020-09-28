@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { userTracker, deleteTracker } from '../../redux/actions/trackers';
+import { userTracker } from '../../redux/actions/trackers';
 import axios from 'axios';
 import Header from '../Header/Header';
 import Loading from '../Loading/Loading';
 import TrackerView from '../Tracker/TrackerView';
 import Confirmation from '../Confirmation/Confirmation';
 import { trackerData } from '../../utils/confirmations/tracker/tracker';
-import { getToken } from '../../utils/helpers/sessionHelpers';
+import { getHeaders } from '../../utils/helpers/sessionHelpers';
 import { delayLoading } from '../../utils/helpers/generalHelpers';
 
 const Tracker = props => {
@@ -21,7 +21,7 @@ const Tracker = props => {
     let selectedTracker = useSelector(state => state.trackers.tracker);
     const [tracker, setTracker] = useState("");
     const [confirmationOpen, setConfirmationOpen] = useState(false);
-    const [confirmation, setConfirmation] = useState(trackerData[0]);
+    const confirmation = trackerData[0];
     const [updateTrackers, setUpdateTrackers] = useState({
         fuel: selectedTracker.fuel,
         limit: selectedTracker.limit,
@@ -35,13 +35,31 @@ const Tracker = props => {
         setConfirmationOpen(bool || false);
     };
 
+    const getTracker = () => {
+        const url = `/trackers/${id}`;
+        const headers = getHeaders();
+        axios.get(url, { headers })
+            .then(res => {
+                if (res.data.status === 200) {
+                    loadTracker(res);
+                    delayLoading(1000, setLoading, false);
+                } else if (res.data.status === 404) {
+                    props.history.push("/login");
+                };
+            })
+            .catch(err => console.log(err));
+    };
+
+    const loadTracker = res => {
+        dispatch(userTracker(res.data.tracker));
+        setTracker(res.data.tracker);
+        selectedTracker = res.data.tracker;
+    };
+
     const submitEdits = e => {
         e.preventDefault();
-        const token = getToken();
         const url = `/trackers/${id}`;
-        const headers = {
-            "Authorization": token
-        };
+        const headers = getHeaders();
         const tracker = updateTrackers;
         axios.put(url, tracker, { headers })
             .then(res => {
@@ -53,24 +71,9 @@ const Tracker = props => {
     };
 
     useEffect(() => {
-        const url = `/trackers/${id}`;
-        const token = getToken();
-        const headers = {
-            "Authorization": token,
-        };
-        axios.get(url, { headers })
-            .then(res => {
-                if (res.data.status === 200) {
-                    dispatch(userTracker(res.data.tracker));
-                    setTracker(res.data.tracker);
-                    selectedTracker = res.data.tracker;
-                    delayLoading(1000, setLoading, false);
-                } else if (res.data.status === 404) {
-                    props.history.push("/login");
-                };
-            })
-            .catch(err => console.log(err));
+        getTracker();
     }, [editMode]);
+
     const onChange = e => {
         setUpdateTrackers({
             ...updateTrackers,

@@ -70,7 +70,7 @@ const Progress = props => {
                     props.history.push('/login');
                 } else if (status === 200) {
                     getTrackers();
-                }
+                };
             })
             .catch(err => console.log(err));
         getTotal(thingsToGet);

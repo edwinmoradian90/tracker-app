@@ -16,9 +16,9 @@ import {
 
 const Navbar = styled.div`
     background: ${black};
-    height: 70px;
-    pointer-events: ${props => props.user ? 'auto' : 'none'};
     bottom: 0;
+    height: 70px;
+    pointer-events: ${props => props.requireLogin ? 'none' : 'auto'};
     position: fixed;
     width: 100%;
     max-width: 414px;
@@ -32,6 +32,7 @@ const NavbarList = styled.ul`
     height: 70px;
     justify-content: space-around;
     list-style: none;
+    pointer-events: ${props => props.requireLogin ? 'none' : 'auto'};
 `;
 
 const StyledLink = styled(Link)`
@@ -67,11 +68,11 @@ const IconText = styled.p`
 
 
 const NavbarView = props => {
-    const { selectedTab, user } = props;
+    const { selectedTab, user, requireLogin } = props;
     const { addStat, trackIt, progress, more } = selectedTab;
     return (
-        <Navbar user={user} className="navbarView">
-            <NavbarList className="navbar">
+        <Navbar requireLogin={requireLogin} user={user} className="navbarView">
+            <NavbarList requireLogin={requireLogin} className="navbar">
                 <NavItem
                     tab={addStat}
                     name="addStat"
@@ -120,9 +121,10 @@ const NavbarView = props => {
     );
 };
 
-const { object } = PropTypes;
+const { object, bool } = PropTypes;
 NavbarView.propTypes = {
     selectedTab: object.isRequired,
+    requireLogin: bool.isRequired,
     user: object,
 };
 

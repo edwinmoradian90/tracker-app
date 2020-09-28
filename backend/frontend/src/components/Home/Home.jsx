@@ -1,44 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
-import { currentUser } from '../../redux/actions/sessions';
-import { authHeader, getCurrentUser, getHeaders, getToken, removeCurrentUser } from '../../utils/helpers/sessionHelpers';
 import { delayLoading, checkTypedIsNumber } from '../../utils/helpers/generalHelpers';
 import Loading from '../Loading/Loading';
 import HomeView from './HomeView';
 import Header from '../Header/Header';
+import { getHeaders } from '../../utils/helpers/sessionHelpers';
 
 const Home = props => {
     const url = "/trackers";
     const pageName = "Add stat";
-    const dispatch = useDispatch();
     const [loading, setLoading] = useState(true);
     const [state, setState] = useState({
         amountOfFuel: "",
         amountDriven: "",
         drivingLimit: "",
     });
-    const [token, setToken] = useState("");
     const [trackerCreated, setTrackerCreated] = useState(false);
     const [notANumber, setNotANumber] = useState(false);
     const [submitForm, setSubmitForm] = useState(false);
     useEffect(() => {
-        const headers = getHeaders();
-        const user = getCurrentUser();
-        axios.get('/user_is_authed', { headers })
-            .then(res => {
-                const { status } = res.data;
-                if (status === 200) {
-                    dispatch(currentUser(user));
-                    delayLoading(1000, setLoading, false);
-                    setToken(user.token);
-                } else {
-                    removeCurrentUser();
-                    props.history.push('/login');
-                    setLoading(false);
-                };
-            })
+        delayLoading(1000, setLoading, false);
     }, []);
     const onChange = e => {
         e.preventDefault();
@@ -65,19 +47,9 @@ const Home = props => {
         if (!submitForm) {
             setSubmitForm(true);
         };
-        const {
-            amountOfFuel,
-            amountDriven,
-            drivingLimit,
-        } = state;
-        const tracker = {
-            fuel: amountOfFuel || 0.0,
-            amount_driven: amountDriven || 0.0,
-            limit: drivingLimit || 0.0,
-        };
-        const headers = {
-            "Authorization": token
-        };
+        const { amountOfFuel, amountDriven, drivingLimit } = state;
+        const tracker = { fuel: amountOfFuel || 0.0, amount_driven: amountDriven || 0.0, limit: drivingLimit || 0.0 };
+        const headers = getHeaders();
         if (trackerCreated) {
             setTrackerCreated(false);
             setState({
@@ -89,7 +61,6 @@ const Home = props => {
         };
         axios.post(url, { tracker }, { headers })
             .then(res => {
-                console.log(res)
                 const { status } = res.data;
                 if (status === 200) {
                     setTrackerCreated(true);
