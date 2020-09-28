@@ -13,6 +13,7 @@ import Tracker from './components/Tracker/Tracker';
 import Progress from './components/Progress/Progress';
 import More from './components/More/More';
 import Navbar from './components/Navbar/Navbar';
+import Error from './components/Error/Error';
 import { AppContainer, RotateDevice } from './utils/styles/generalStyles';
 
 function App() {
@@ -26,8 +27,9 @@ function App() {
             <Route exact path='/more' component={More} />
             <Route exact path='/progress' component={Progress} />
             <Route exact path='/signup' component={Signup} />
-            <Route path='/login' component={Login} />
-            <Route path='/' component={Home} />
+            <Route exact path='/login' component={Login} />
+            <Route exact path='/' component={Home} />
+            <Route path="/:anything" component={Error} />
           </Switch>
           <Navbar />
         </Router>

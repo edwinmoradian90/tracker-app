@@ -90,6 +90,8 @@ const AppContainer = styled.div`
     background: ${lightGrey};
     box-shadow: 1px 5px 80px ${black};
     height: 100vh;
+    font-family: 'Roboto', sans-serif;
+    margin: 0 auto;
     max-height: 896px;
     max-width: 414px;
     min-width: 320px;

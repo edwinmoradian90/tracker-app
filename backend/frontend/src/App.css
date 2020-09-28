@@ -45,21 +45,23 @@ input {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-}
+};
+
 
 html {
     display: flex;
 	background: rgb(243, 243, 243);
-    font-family: 'Roboto';
+    font-family: 'Roboto', sans-serif;
     height: 100%;
     justify-content: center;
-	scrollbar-width: none;
     width: 100vw;
 };
 
+
 body {
 	background: #f6f6f6;
+    font-family: 'Roboto', sans-serif;
     height: 100vh;
-    scrollbar-width: none;
+	scrollbar-width: none;
 	width: 100vw;
 };

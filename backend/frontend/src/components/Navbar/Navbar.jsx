@@ -30,14 +30,15 @@ const Navbar = props => {
             progress: false,
             more: false,
         };
-        if (selectedTab[currentPage]) return;
-        setSelectedTab({
-            addStat: false,
-            trackIt: false,
-            progress: false,
-            more: false,
-            [currentPage]: true,
-        });
+        if (!selectedTab[currentPage]) {
+            setSelectedTab({
+                addStat: false,
+                trackIt: false,
+                progress: false,
+                more: false,
+                [currentPage]: true,
+            });
+        };
         if (requireLogin) {
             setRequireLogin(false);
             setSelectedTab(noTabSelected);
