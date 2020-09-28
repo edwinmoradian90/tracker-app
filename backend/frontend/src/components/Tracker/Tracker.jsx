@@ -21,12 +21,13 @@ const Tracker = props => {
     let selectedTracker = useSelector(state => state.trackers.tracker);
     const [tracker, setTracker] = useState("");
     const [confirmationOpen, setConfirmationOpen] = useState(false);
-    const confirmation = trackerData[0];
     const [updateTrackers, setUpdateTrackers] = useState({
         fuel: selectedTracker.fuel,
         limit: selectedTracker.limit,
         amount_driven: selectedTracker.amount_driven,
     });
+    const confirmation = trackerData[0];
+
     const deleteTracker = () => {
         dispatch(deleteTracker(id));
     };

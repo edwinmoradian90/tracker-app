@@ -26,7 +26,7 @@ function App() {
             <Route exact path='/more' component={More} />
             <Route exact path='/progress' component={Progress} />
             <Route exact path='/signup' component={Signup} />
-            <Route exact path='/login' component={Login} />
+            <Route path='/login' component={Login} />
             <Route path='/' component={Home} />
           </Switch>
           <Navbar />

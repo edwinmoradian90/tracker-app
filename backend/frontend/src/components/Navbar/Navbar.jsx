@@ -30,8 +30,17 @@ const Navbar = props => {
             progress: false,
             more: false,
         };
+        if (selectedTab[currentPage]) return;
+        setSelectedTab({
+            addStat: false,
+            trackIt: false,
+            progress: false,
+            more: false,
+            [currentPage]: true,
+        });
         if (requireLogin) {
             setRequireLogin(false);
+            setSelectedTab(noTabSelected);
         };
         if (headers !== {} && user) {
             axios.get('/user_is_authed', { headers })
@@ -42,15 +51,6 @@ const Navbar = props => {
                         setSelectedTab(noTabSelected);
                         setRequireLogin(true);
                         props.history.push('/login');
-                    } else {
-                        if (selectedTab[currentPage]) return;
-                        setSelectedTab({
-                            addStat: false,
-                            trackIt: false,
-                            progress: false,
-                            more: false,
-                            [currentPage]: true,
-                        });
                     };
                 })
                 .catch(err => console.log(err));
