@@ -3,7 +3,7 @@ import axios from 'axios';
 const getHeaders = token => {
     const headers = {};
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    if (currentUser !== null) {
+    if (currentUser !== null || token) {
         headers['Authorization'] = token || currentUser.token;
     };
     return headers;

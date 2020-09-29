@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
+  skip_before_action :require_login, only: [:login, :auto_login] 
 
-  skip_before_action :require_login, only: [:login, :auto_login]
   def login
     user = User.find_by(email: params[:email])
     if user && user.authenticate(params[:password])
@@ -41,18 +41,11 @@ class SessionsController < ApplicationController
   end
 
   def user_is_authed
-    if session_user
       render json: {
         status: 200,
         message: "You are authorized",
         user: session_user
       }
-    else
-      render json: {
-        status: 500,
-        message: "You are not authorized"
-      }
-    end
   end 
 end
 

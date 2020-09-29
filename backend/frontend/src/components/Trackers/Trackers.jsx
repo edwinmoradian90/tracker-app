@@ -7,6 +7,7 @@ import TrackersView from './TrackersView';
 import Header from '../Header/Header';
 import Loading from '../Loading/Loading';
 import { delayLoading } from '../../utils/helpers/generalHelpers';
+import { getHeaders } from '../../utils/helpers/sessionHelpers';
 
 const Trackers = props => {
     const pageName = "Track it";
@@ -14,13 +15,9 @@ const Trackers = props => {
     const [trackers, setTrackers] = useState("");
     const [loading, setLoading] = useState(true);
     const dispatch = useDispatch();
-    const userInfo = JSON.parse(localStorage.getItem("currentUser")) || "";
-    const token = userInfo.token;
-    const headers = {
-        "Authorization": token
-    };
+    const headers = getHeaders();
     useEffect(() => {
-        if (token) {
+        if (headers['Authorization']) {
             axios.get(url, { headers })
                 .then(res => {
                     if (res.data.status === 200) {
@@ -36,7 +33,7 @@ const Trackers = props => {
             setLoading(false);
             props.history.push('/login');
         }
-    }, [token]);
+    }, []);
     return (
 
         <div className="trackers">

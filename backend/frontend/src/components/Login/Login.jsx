@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { currentUser } from '../../redux/actions/sessions';
 import LoginView from './LoginView';
 import axios from 'axios';
+import { getHeaders } from '../../utils/helpers/sessionHelpers';
 
 const Login = props => {
     const dispatch = useDispatch();
@@ -72,13 +73,11 @@ const Login = props => {
                     };
                     if (token) {
                         const newUrl = "/user_is_authed";
-                        const headers = {
-                            "Authorization": `Bearer ${token}`,
-                        };
+                        const headers = getHeaders(token);
                         axios.get(newUrl, { headers })
                             .then(res => {
-                                localStorage.setItem('currentUser', JSON.stringify(userInfo));
                                 dispatch(currentUser(userInfo));
+                                localStorage.setItem('currentUser', JSON.stringify(userInfo));
                                 props.history.push('/');
                             })
                             .catch(err => console.log(err));

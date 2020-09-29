@@ -1,8 +1,9 @@
-class ApplicationController < ActionController::API
-  before_action :require_login, except: %i['fallback_index_html']
+class ApplicationController < ActionController::Base
+  before_action :require_login, except: [:fallback_index_html]
+  skip_before_action :verify_authenticity_token
 
   def fallback_index_html
-    render :file => 'public/index.html'
+    render :file => 'public/build/index.html'
   end
 
   def encode_token(payload, expiration)
