@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login Renders 1`] = `
+<div
+  className="sc-gtssRu jPJwkn loginView"
+>
+  <div
+    className="sc-dlnjPT dpOVoQ loginTitle"
+  >
+    Please login or sign up to continue.
+  </div>
+  <div
+    className="loginInputContainer"
+  >
+    <div
+      className="sc-eCApGN dCxyJq emailInputContainer"
+    >
+      <input
+        className="sc-jSFkmK ebVQMe email"
+        name="email"
+        onChange={[Function]}
+        placeholder="Email"
+        type="email"
+        value=""
+      />
+    </div>
+    <div
+      className="sc-eCApGN dCxyJq passwordInputContainer"
+    >
+      <input
+        className="sc-jSFkmK ebVQMe password"
+        name="password"
+        onChange={[Function]}
+        placeholder="Password"
+        type="password"
+        value=""
+      />
+    </div>
+    <p
+      className="sc-gKAblj jFGtkr"
+    >
+      Please check your email or password.
+    </p>
+  </div>
+  <div
+    className="sc-bdnylx jCKEPf submitLoginForm"
+    color="#FFFFFF"
+    onClick={null}
+    type="submit"
+  >
+    Log in
+  </div>
+  <p
+    className="sc-hKFyIo gOCaNB newUserSignupLink"
+  >
+    New user? 
+     
+    <a
+      href="/signup"
+      onClick={[Function]}
+    >
+      Sign up.
+    </a>
+  </p>
+</div>
+`;
